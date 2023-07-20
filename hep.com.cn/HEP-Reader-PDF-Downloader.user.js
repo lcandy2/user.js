@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         高教社文档阅读器 PDF下载
-// @version      1.0
+// @version      1.0.1
 // @description  为高教社文档阅读器添加PDF下载功能。该脚本在高教社文档阅读器页面上添加一个下载按钮，允许用户将文档以PDF格式下载到本地。
 // @namespace    https://github.com/lcandy2
 // @match        *://hep-urc-file.hep.com.cn/*
 // @author       Lcandy
 // @grant        none
+// @license      MPL-2.0
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js
 // @run-at       document-end
 // ==/UserScript==

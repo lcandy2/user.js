@@ -4,6 +4,7 @@
 // @version      1.3
 // @description  添加一个切换答案按钮，点击可显示/隐藏答案
 // @author       Lcandy
+// @license      MIT
 // @match        *://mooc1.chaoxing.com/mooc*
 // @match        *://mooc1.chaoxing.com/exam*
 // @homepage     https://github.com/lcandy2/user.js

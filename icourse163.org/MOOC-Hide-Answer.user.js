@@ -4,6 +4,7 @@
 // @version      1.4
 // @description  添加一个切换答案按钮，点击可显示/隐藏答案
 // @author       lcandy2
+// @license      MIT
 // @match        *://www.icourse163.org/learn/*
 // @homepage     https://github.com/lcandy2/user.js
 // @run-at       document-end

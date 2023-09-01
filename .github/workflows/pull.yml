@@ -1,0 +1,32 @@
+name: Pull, Rename and Push
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 这会每天在 UTC 时间 00:00 触发
+
+jobs:
+  pull_and_rename:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout source repository
+      uses: actions/checkout@v2
+      with:
+        repository: lcandy2/ShiTingShuo
+        path: ShiTingShuo
+
+    - name: Checkout target repository (to merge changes)
+      uses: actions/checkout@v2
+      with:
+        path: user.js
+
+    - name: Copy and rename file
+      run: |
+        cp ShiTingShuo/dist/main.user.js user.js/tsinghuaelt.com/main.user.js
+        cp ShiTingShuo/README.md user.js/tsinghuaelt.com.cn/README.md
+
+    - name: Commit and push
+      uses: actions-js/push@v1.4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        message: 'action: Update UserScript'

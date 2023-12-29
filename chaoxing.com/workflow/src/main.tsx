@@ -1,12 +1,15 @@
-import { render } from 'preact';
-import { App } from './app';
-import './index.css';
+import 'tdesign-react/es/style/index.css';
 
-render(
-  <App />,
-  (() => {
-    const app = document.createElement('div');
-    document.body.append(app);
-    return app;
-  })(),
-);
+import { NEW_BASE_SETTINGS } from './courses/consts';
+import { Main as CourseMain } from './courses/main';
+
+// 获取当前网址
+const currentURL = window.location.href;
+
+const COURSE = currentURL.includes(NEW_BASE_SETTINGS);
+
+$(() => {
+  if (COURSE) CourseMain();
+
+});
+

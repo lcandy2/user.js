@@ -37,8 +37,10 @@ export function App() {
   const [stuid, setStuid] = useState('');
   const [school, setSchool] = useState('');
   const [courseList, setCourseList] = useState([]);
-  const [courseListInput, setCourseListInput] = useState('');
-  const [courseListValue, setCourseListValue] = useState([]);
+  const [courseListInput, setCourseListInput] = useState('全部课程');
+  const [courseListLastInput, setCourseListLastInput] = useState('');
+  const [courseListDisableFilter, setCourseListDisableFilter] = useState(false);
+  const [courseListValue, setCourseListValue] = useState(["0", 0, "全部课程"]);
 
   const fetchUserInfo = async () => {
     const userInfo = await getUserInfo();
@@ -54,14 +56,15 @@ export function App() {
   }
 
   useEffect(() => {
+    console.log(courseListValue);
+  }, [courseListValue]);
+
+
+  useEffect(() => {
     fetchUserInfo();
     fetchCourseList();
     $('head').append(classStyles);
   }, []);
-
-  useEffect(() => {
-    setCourseValue();
-  }, [courseListInput]);
 
   const courseListOptions = [
     {
@@ -91,6 +94,7 @@ export function App() {
   ];
 
   const courseListFilter = (keyword, option) => {
+    if (courseListDisableFilter) return option;
     const spaceRegex = new RegExp(/\s+/g);
     const optionRegex = new RegExp(/###[\d@]+###/g);
     const optionProcessed = option.text.replace(optionRegex, '').replace(spaceRegex, '').toLowerCase();
@@ -98,45 +102,72 @@ export function App() {
     return optionProcessed.includes(keywordProcessed);
   }
 
-  const setCourseValue = () => {
+  const courseListOnBlur = () => {
+    if (courseListInput === courseListLastInput) {
+      return;
+    } else {
+      setCourseListInput(courseListLastInput);
+    }
+  }
+
+  const courseListOnFocus = () => {
+    setCourseListDisableFilter(true);
+    setCourseListLastInput(courseListInput);
+  }
+
+  const courseListOnChange = (value) => {
+    setCourseListInput(value);
+    setCourseListDisableFilter(false);
+  }
+
+  const courseListOnSelect = (value) => {
     const pattern = new RegExp(/(.+)###(\d+)@(\d+)###/);
-    const match = courseListInput.match(pattern);
+    const match = value.match(pattern);
+
     if (match) {
-      const index = parseInt(match[3]) 
+      const index = parseInt(match[3])
       const id = match[2];
       const name = match[1];
       setCourseListValue([id, index, name]);
       setCourseListInput(name);
+    } else {
+      setCourseListInput(value);
     }
   }
 
-  const courseListOnBlur = () => {
-  }
-
-  const courseListOnFocus = () => {
+  const courseListOnClear = () => {
+    courseListOnSelect("全部课程###0@0###");
   }
 
   return (
     <div style={{ paddingRight: 38 }}>
-      <Comment
-        avatar={(avatarUrl) ? <Avatar image={avatarUrl} size='small' /> : (name) ? <Avatar size='small'>name</Avatar> : null}
-        author={name}
-        datetime={`${stuid} | ${school}`}
-        style={{ height: '32px' }}
-      />
-      <Divider
-        align="center"
-        layout="horizontal"
-        style={{ margin: '8px 0' }}
-      >
-        将使用此账号完成视频学习
-      </Divider>
+      {
+        courseList.length > 0 &&
+        <>
+          <Comment
+            avatar={avatarUrl ? <Avatar image={avatarUrl} size='small' /> : name ? <Avatar size='small'>{name}</Avatar> : null}
+            author={name}
+            datetime={`${stuid} | ${school}`}
+            style={{ height: '32px' }}
+          />
+          <Divider
+            align="center"
+            layout="horizontal"
+            style={{ margin: '8px 0' }}
+          >
+            将使用此账号完成视频学习
+          </Divider>
+        </>
+      }
       <AutoComplete
         value={courseListInput}
         options={courseListOptions}
-        onChange={setCourseListInput}
+        onChange={courseListOnChange}
         onFocus={courseListOnFocus}
         onBlur={courseListOnBlur}
+        onSelect={courseListOnSelect}
+        onClear={courseListOnClear}
+        clearable
         highlightKeyword
         placeholder="请输入关键词搜索"
         filter={courseListFilter}

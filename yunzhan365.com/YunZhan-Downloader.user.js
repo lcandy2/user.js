@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         云展网PDF下载 YunZhanDownloader
 // @namespace    https://github.com/lcandy2/YunZhanDownloader
-// @version      1.0.3
+// @version      1.1
 // @author       lcandy2
 // @description  从云展网下载PDF书籍
+// @license      MIT
 // @icon         https://book.yunzhan365.com/favicon.ico
 // @match        *://book.yunzhan365.com/*/*/mobile/*
 // @require      https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js

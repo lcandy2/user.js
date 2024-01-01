@@ -2,7 +2,7 @@
 #### For Study and research use only
 
 ### Install UserScript Manager
-- [Tampermonkey (Recommand)](https://www.tampermonkey.net/)
+- [Tampermonkey (Recommend)](https://www.tampermonkey.net/)
 - others
 
 ### Install UserScript

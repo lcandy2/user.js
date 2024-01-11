@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         校友邦实习一键评价 XiaoYouBang Auto Review
 // @namespace    https://github.com/lcandy2/XiaoYouBang-Auto-Review
-// @version      1.3
+// @version      1.4
 // @author       lcandy2
 // @description  一键评价，自动填写评价内容
 // @license      MIT
 // @icon         https://www.xybsyw.com/favicon.ico
 // @match        *://*.xybsyw.com/personal/*
-// @require      https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
+// @require      https://registry.npmmirror.com/jquery/3.7.1/files/dist/jquery.min.js
 // @run-at       document-start
 // ==/UserScript==
 

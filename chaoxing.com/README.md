@@ -1,8 +1,8 @@
-# 超兴学习通自动化 Chaoxing Auto
+# 超兴学习通自动化 Chaoxing Auto <br>（学习通自动完成讨论）
 
 #### 超兴学习通自动化脚本，能自动完成讨论，具备自动完成讨论任务、一键回复指定话题、批量回复和创建话题等功能，让讨论任务变得轻松简单。
 
-[GreasyFork](https://greasyfork.org/scripts/489933) | [ScriptCat](https://scriptcat.org/script-show-page/1618)
+[GreasyFork](https://greasyfork.org/scripts/489933) | [ScriptCat](https://scriptcat.org/script-show-page/1618) | [GitHub](https://github.com/lcandy2/user.js/tree/main/chaoxing.com) | [Source](https://github.com/lcandy2/Chaoxing-Auto)
 
 ### 功能
 
@@ -34,10 +34,10 @@
 
 ### 支持
 
-- [ ] 旧版批量创建话题
+- [x] 旧版批量创建话题
 - [x] 旧版讨论批量回复
 - [x] 旧版讨论一键回复指定话题
-- [ ] 新版批量创建话题
+- [x] 新版批量创建话题
 - [x] 新版讨论批量回复
 - [x] 新版讨论一键回复指定话题
 

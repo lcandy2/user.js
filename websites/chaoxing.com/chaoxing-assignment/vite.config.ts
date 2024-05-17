@@ -15,6 +15,7 @@ export default defineConfig({
           "*://mooc1-api.chaoxing.com/work/stu-work*",
           "*://i.chaoxing.com/base*",
         ],
+        "run-at": "document-end",
       },
       build: {
         externalGlobals: {

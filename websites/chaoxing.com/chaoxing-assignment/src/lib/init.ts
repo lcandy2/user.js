@@ -7,3 +7,12 @@ export const wrapElements = () => {
   document.body.appendChild(wrapper);
   wrapper.style.display = "none";
 };
+
+export const removeStyles = () => {
+  const styles = document.querySelectorAll("link[rel=stylesheet]");
+  styles.forEach((style) => {
+    if (style.getAttribute("href")?.includes("chaoxing")) {
+      style.remove();
+    }
+  });
+};

@@ -1,6 +1,7 @@
-interface ExtractedTask {
+export interface ExtractedTask {
   title: string;
   status: string;
+  uncommitted: boolean;
   course: string;
   leftTime: string | undefined;
   workId: string;
@@ -17,12 +18,15 @@ export function extractTasks(): ExtractedTask[] {
     const optionElement = task.querySelector('div[role="option"]');
     let title: string = "";
     let status: string = "";
+    let uncommitted: boolean = false;
     let course: string = "";
-    let leftTime: string | undefined;
+    let leftTime: string = "";
     if (optionElement) {
       title = optionElement.querySelector("p")?.textContent || "";
+      const statusElement = optionElement.querySelector("span:nth-of-type(1)");
       status =
-        optionElement.querySelector("span:nth-of-type(1)")?.textContent || "";
+        statusElement?.textContent || "";
+      uncommitted = statusElement?.className.includes("status") || false;
       course =
         optionElement.querySelector("span:nth-of-type(2)")?.textContent || "";
       leftTime = optionElement.querySelector(".fr")?.textContent || "";
@@ -42,6 +46,7 @@ export function extractTasks(): ExtractedTask[] {
     return {
       title,
       status,
+      uncommitted,
       course,
       leftTime,
       workId,

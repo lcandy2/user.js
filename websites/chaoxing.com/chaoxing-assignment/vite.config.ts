@@ -1,21 +1,24 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import monkey, { cdn } from 'vite-plugin-monkey';
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import monkey, { cdn } from "vite-plugin-monkey";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     monkey({
-      entry: 'src/main.ts',
+      entry: "src/main.ts",
       userscript: {
-        icon: 'https://vitejs.dev/logo.svg',
-        namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.google.com/'],
+        icon: "https://vitejs.dev/logo.svg",
+        namespace: "npm/vite-plugin-monkey",
+        match: [
+          "*://mooc1-api.chaoxing.com/work/stu-work*",
+          "*://i.chaoxing.com/base*",
+        ],
       },
       build: {
         externalGlobals: {
-          vue: cdn.jsdelivr('Vue', 'dist/vue.global.prod.js'),
+          vue: cdn.jsdelivr("Vue", "dist/vue.global.prod.js"),
         },
       },
     }),

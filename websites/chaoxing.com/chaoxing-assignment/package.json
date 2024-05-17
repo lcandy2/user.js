@@ -1,11 +1,11 @@
 {
   "name": "chaoxing-assignment",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build && shx cp -r ./dist/* ./",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -13,10 +13,11 @@
     "vuetify": "^3.6.6"
   },
   "devDependencies": {
-    "@mdi/font": "^7.4.47",
     "@vitejs/plugin-vue": "^5.0.4",
+    "shx": "^0.3.4",
     "vite": "^5.2.11",
     "vite-plugin-monkey": "^3.5.2",
+    "vite-plugin-vuetify": "^2.0.3",
     "vue-tsc": "^2.0.19"
   },
   "prettier": {}

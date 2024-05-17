@@ -21,14 +21,14 @@ export const backgroundRequest = ({ url, method = "get", headers = BASE_HEADERS,
       method,
       headers: headers as Record<string, string> | undefined,
       data: body,
-      onload: (res) => {
-        try {
-          const json = JSON.parse(res.responseText) || {};
-          resolve(json);
-        } catch (error) {
-          console.error(error);
-        }
-      },
+      // onload: (res) => {
+      //   try {
+      //     const json = JSON.parse(res.responseText) || {};
+      //     resolve(json);
+      //   } catch (error) {
+      //     console.error(error);
+      //   }
+      // },
       onerror: (err) => {
         reject(err);
       },

@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { API_VISIT_COURSE, backgroundRequest, ExtractedTask, extractTasks } from "../lib";
+import {
+  API_VISIT_COURSE,
+  backgroundRequest,
+  ExtractedTask,
+  extractTasks,
+} from "../lib";
 import { ref } from "vue";
 
 const extractedData = extractTasks();
@@ -9,7 +14,7 @@ const headers = [
   { key: "course", title: "课程" },
   { key: "leftTime", title: "剩余时间" },
   { key: "status", title: "状态" },
-  { key: "action", title: "操作" }
+  { key: "action", title: "操作" },
 ];
 
 const search = ref("");
@@ -32,8 +37,7 @@ const getCourseLinkHref = (item: ExtractedTask) => {
   requestUrl.searchParams.append("clazzid", clazzId);
   requestUrl.searchParams.append("pageHeader", "8"); // Open task page directly
   return requestUrl.href;
-}
-
+};
 </script>
 
 <template>
@@ -48,9 +52,25 @@ const getCourseLinkHref = (item: ExtractedTask) => {
         single-line
       ></v-text-field>
     </template>
-    <v-data-table :items="extractedData" :search="search" hover :headers="headers" sticky items-per-page="-1" hide-default-footer>
-      <template v-slot:item.action="{ item }"> <!-- 使用插槽自定义列的渲染方式 -->
-        <v-btn :variant="item.uncommitted ? 'tonal' : 'plain'" color="primary" :href="getCourseLinkHref(item)" target="_blank">{{item.uncommitted ? "立即完成" : "查看详情"}}</v-btn> <!-- 添加按钮 -->
+    <v-data-table
+      :items="extractedData"
+      :search="search"
+      hover
+      :headers="headers"
+      sticky
+      items-per-page="-1"
+      hide-default-footer
+    >
+      <template v-slot:item.action="{ item }">
+        <!-- 使用插槽自定义列的渲染方式 -->
+        <v-btn
+          :variant="item.uncommitted ? 'tonal' : 'plain'"
+          color="primary"
+          :href="getCourseLinkHref(item)"
+          target="_blank"
+          >{{ item.uncommitted ? "立即完成" : "查看详情" }}</v-btn
+        >
+        <!-- 添加按钮 -->
       </template>
     </v-data-table>
   </v-card>

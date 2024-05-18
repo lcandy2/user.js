@@ -27,6 +27,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^5.0.4
         version: 5.0.4(vite@5.2.11)(vue@3.4.27(typescript@5.4.5))
+      material-design-icons-iconfont:
+        specifier: ^6.7.0
+        version: 6.7.0
       shx:
         specifier: ^0.3.4
         version: 0.3.4
@@ -36,12 +39,31 @@ importers:
       vite-plugin-monkey:
         specifier: ^3.5.2
         version: 3.5.2(vite@5.2.11)
-      vite-plugin-vuetify:
-        specifier: ^2.0.3
-        version: 2.0.3(vite@5.2.11)(vue@3.4.27(typescript@5.4.5))(vuetify@3.6.6)
       vue-tsc:
         specifier: ^2.0.19
         version: 2.0.19(typescript@5.4.5)
+
+  websites/educoder.net/educoder-helper:
+    dependencies:
+      vue:
+        specifier: ^3.4.14
+        version: 3.4.27(typescript@5.4.5)
+      vuetify:
+        specifier: ^3.6.6
+        version: 3.6.6(typescript@5.4.5)(vite-plugin-vuetify@2.0.3)(vue@3.4.27(typescript@5.4.5))
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^5.0.3
+        version: 5.0.4(vite@5.2.11)(vue@3.4.27(typescript@5.4.5))
+      vite:
+        specifier: ^5.0.11
+        version: 5.2.11
+      vite-plugin-monkey:
+        specifier: ^3.5.1
+        version: 3.5.2(vite@5.2.11)
+      vue-tsc:
+        specifier: ^1.8.27
+        version: 1.8.27(typescript@5.4.5)
 
 packages:
 
@@ -293,11 +315,20 @@ packages:
       vite: ^5.0.0
       vue: ^3.2.25
 
+  '@volar/language-core@1.11.1':
+    resolution: {integrity: sha512-dOcNn3i9GgZAcJt43wuaEykSluAuOkQgzni1cuxLxTV0nJKanQztp7FxyswdRILaKH+P2XZMPRp2S4MV/pElCw==}
+
   '@volar/language-core@2.2.4':
     resolution: {integrity: sha512-7As47GndxGxsqqYnbreLrfB5NDUeQioPM2LJKUuB4/34c0NpEJ2byVl3c9KYdjIdiEstWZ9JLtLKNTaPWb5jtA==}
 
+  '@volar/source-map@1.11.1':
+    resolution: {integrity: sha512-hJnOnwZ4+WT5iupLRnuzbULZ42L7BWWPMmruzwtLhJfpDVoZLjNBxHDi2sY2bgZXCKlpU5XcsMFoYrsQmPhfZg==}
+
   '@volar/source-map@2.2.4':
     resolution: {integrity: sha512-m92FLpR9vB1YEZfiZ+bfgpLrToL/DNkOrorWVep3pffHrwwI4Tx2oIQN+sqHJfKkiT5N3J1owC+8crhAEinfjg==}
+
+  '@volar/typescript@1.11.1':
+    resolution: {integrity: sha512-iU+t2mas/4lYierSnoFOeRFQUhAEMgsFuQxoxvwn5EdQopw43j+J27a4lt9LMInx1gLJBC6qL14WYGlgymaSMQ==}
 
   '@volar/typescript@2.2.4':
     resolution: {integrity: sha512-uAQC53tgEbHO62G8NXMfmBrJAlP2QJ9WxVEEQqqK3I6VSy8frL5LbH3hAWODxiwMWixv74wJLWlKbWXOgdIoRQ==}
@@ -313,6 +344,14 @@ packages:
 
   '@vue/compiler-ssr@3.4.27':
     resolution: {integrity: sha512-CVRzSJIltzMG5FcidsW0jKNQnNRYC8bT21VegyMMtHmhW3UOI7knmUehzswXLrExDLE6lQCZdrhD4ogI7c+vuw==}
+
+  '@vue/language-core@1.8.27':
+    resolution: {integrity: sha512-L8Kc27VdQserNaCUNiSFdDl9LWT24ly8Hpwf1ECy3aFb9m6bDhBGQYOujDm21N7EW3moKIOKEanQwe1q5BK+mA==}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   '@vue/language-core@2.0.19':
     resolution: {integrity: sha512-A9EGOnvb51jOvnCYoRLnMP+CcoPlbZVxI9gZXE/y2GksRWM6j/PrLEIC++pnosWTN08tFpJgxhSS//E9v/Sg+Q==}
@@ -523,6 +562,9 @@ packages:
   magic-string@0.30.10:
     resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
 
+  material-design-icons-iconfont@6.7.0:
+    resolution: {integrity: sha512-lSj71DgVv20kO0kGbs42icDzbRot61gEDBLQACzkUuznRQBUYmbxzEkGU6dNBb5fRWHMaScYlAXX96HQ4/cJWA==}
+
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
 
@@ -550,6 +592,9 @@ packages:
 
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
+
+  muggle-string@0.3.1:
+    resolution: {integrity: sha512-ckmWDJjphvd/FvZawgygcUeQCxzvohjFO5RxTjj4eq8kw359gFF3E1brjfI+viLMxss5JrHTDRHZvu2/tuy0Qg==}
 
   muggle-string@0.4.1:
     resolution: {integrity: sha512-VNTrAak/KhO2i8dqqnqnAHOa3cYBwXEZe9h+D5h/1ZqFSTEFHdM65lR7RoIqq3tBBYavsOXV84NoHXZ0AkPyqQ==}
@@ -743,6 +788,12 @@ packages:
   vue-template-compiler@2.7.16:
     resolution: {integrity: sha512-AYbUWAJHLGGQM7+cNTELw+KsOG9nl2CnSv467WobS5Cv9uk3wFcnr1Etsz2sEIHEZvw1U+o9mRlEO6QbZvUPGQ==}
 
+  vue-tsc@1.8.27:
+    resolution: {integrity: sha512-WesKCAZCRAbmmhuGl3+VrdWItEvfoFIPXOvUJkjULi+x+6G/Dy69yO3TBRJDr9eUlmsNAwVmxsNZxvHKzbkKdg==}
+    hasBin: true
+    peerDependencies:
+      typescript: '*'
+
   vue-tsc@2.0.19:
     resolution: {integrity: sha512-JWay5Zt2/871iodGF72cELIbcAoPyhJxq56mPPh+M2K7IwI688FMrFKc/+DvB05wDWEuCPexQJ6L10zSwzzapg==}
     hasBin: true
@@ -926,13 +977,26 @@ snapshots:
       vite: 5.2.11
       vue: 3.4.27(typescript@5.4.5)
 
+  '@volar/language-core@1.11.1':
+    dependencies:
+      '@volar/source-map': 1.11.1
+
   '@volar/language-core@2.2.4':
     dependencies:
       '@volar/source-map': 2.2.4
 
+  '@volar/source-map@1.11.1':
+    dependencies:
+      muggle-string: 0.3.1
+
   '@volar/source-map@2.2.4':
     dependencies:
       muggle-string: 0.4.1
+
+  '@volar/typescript@1.11.1':
+    dependencies:
+      '@volar/language-core': 1.11.1
+      path-browserify: 1.0.1
 
   '@volar/typescript@2.2.4':
     dependencies:
@@ -968,6 +1032,20 @@ snapshots:
     dependencies:
       '@vue/compiler-dom': 3.4.27
       '@vue/shared': 3.4.27
+
+  '@vue/language-core@1.8.27(typescript@5.4.5)':
+    dependencies:
+      '@volar/language-core': 1.11.1
+      '@volar/source-map': 1.11.1
+      '@vue/compiler-dom': 3.4.27
+      '@vue/shared': 3.4.27
+      computeds: 0.0.1
+      minimatch: 9.0.4
+      muggle-string: 0.3.1
+      path-browserify: 1.0.1
+      vue-template-compiler: 2.7.16
+    optionalDependencies:
+      typescript: 5.4.5
 
   '@vue/language-core@2.0.19(typescript@5.4.5)':
     dependencies:
@@ -1009,6 +1087,7 @@ snapshots:
       upath: 2.0.1
       vue: 3.4.27(typescript@5.4.5)
       vuetify: 3.6.6(typescript@5.4.5)(vite-plugin-vuetify@2.0.3)(vue@3.4.27(typescript@5.4.5))
+    optional: true
 
   acorn-walk@8.3.2: {}
 
@@ -1050,6 +1129,7 @@ snapshots:
   debug@4.3.4:
     dependencies:
       ms: 2.1.2
+    optional: true
 
   default-browser-id@3.0.0:
     dependencies:
@@ -1207,6 +1287,8 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
 
+  material-design-icons-iconfont@6.7.0: {}
+
   merge-stream@2.0.0: {}
 
   mimic-fn@2.1.0: {}
@@ -1225,7 +1307,10 @@ snapshots:
 
   mrmime@1.0.1: {}
 
-  ms@2.1.2: {}
+  ms@2.1.2:
+    optional: true
+
+  muggle-string@0.3.1: {}
 
   muggle-string@0.4.1: {}
 
@@ -1353,7 +1438,8 @@ snapshots:
 
   untildify@4.0.0: {}
 
-  upath@2.0.1: {}
+  upath@2.0.1:
+    optional: true
 
   vite-plugin-monkey@3.5.2(vite@5.2.11):
     dependencies:
@@ -1378,6 +1464,7 @@ snapshots:
       vuetify: 3.6.6(typescript@5.4.5)(vite-plugin-vuetify@2.0.3)(vue@3.4.27(typescript@5.4.5))
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   vite@5.2.11:
     dependencies:
@@ -1391,6 +1478,13 @@ snapshots:
     dependencies:
       de-indent: 1.0.2
       he: 1.2.0
+
+  vue-tsc@1.8.27(typescript@5.4.5):
+    dependencies:
+      '@volar/typescript': 1.11.1
+      '@vue/language-core': 1.8.27(typescript@5.4.5)
+      semver: 7.6.2
+      typescript: 5.4.5
 
   vue-tsc@2.0.19(typescript@5.4.5):
     dependencies:

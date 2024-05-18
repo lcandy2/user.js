@@ -7,4 +7,3 @@ import TasksList from "./components/tasks-list.vue";
 <template>
   <TasksList />
 </template>
-

@@ -1,6 +1,3 @@
 module.exports = {
-  extends: [
-    'plugin:vue/base',
-    'plugin:vuetify/base'
-  ]
-}
+  extends: ["plugin:vue/base", "plugin:vuetify/base"],
+};

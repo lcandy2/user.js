@@ -24,8 +24,7 @@ export function extractTasks(): ExtractedTask[] {
     if (optionElement) {
       title = optionElement.querySelector("p")?.textContent || "";
       const statusElement = optionElement.querySelector("span:nth-of-type(1)");
-      status =
-        statusElement?.textContent || "";
+      status = statusElement?.textContent || "";
       uncommitted = statusElement?.className.includes("status") || false;
       course =
         optionElement.querySelector("span:nth-of-type(2)")?.textContent || "";

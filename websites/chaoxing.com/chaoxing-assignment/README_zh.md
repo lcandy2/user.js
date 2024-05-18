@@ -1,5 +1,5 @@
 # 学习通任务一览 Chaoxing Assignment <a href="https://greasyfork.org/scripts/495345" title="前往 Greasy Fork 下载"><img alt="Greasy Fork 下载数量" src="https://img.shields.io/greasyfork/dt/495345?label=%E4%B8%8B%E8%BD%BD"></a> <a href="https://github.com/lcandy2/user.js" target="_blank"><img alt="GitHub stars 数量" src="https://img.shields.io/github/stars/lcandy2?label=%E5%96%9C%E6%AC%A2%E5%B0%B1star%E5%90%A7"></a>
-甜檸Cirtron@lcandy2 的项目.
+A [甜檸Cirtron@lcandy2](https://github.com/lcandy2)'s project.
 
 <a href="https://greasyfork.org/scripts/495345"><img alt="Greasy Fork 版本" src="https://img.shields.io/greasyfork/v/495345?label=%E7%89%88%E6%9C%AC&link=https%3A%2F%2Fgreasyfork.org%2Fscripts%2F495345"></a>&nbsp;<a href="https://github.com/lcandy2/user.js/tree/main/websites/chaoxing.com/chaoxing-assignment"><img alt="GitHub 源代码" src="https://img.shields.io/badge/%E6%BA%90%E4%BB%A3%E7%A0%81-GitHub-4078c0?logo=github&link=https%3A%2F%2Fgithub.com%2Flcandy2%2Fuser.js%2Ftree%2Fmain%2Fwebsites%2Fchaoxing.com%2Fchaoxing-assignment"></a>&nbsp;<a href="https://greasyfork.org/scripts/495345"><img alt="Greasy Fork 在线下载" src="https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%B8%8B%E8%BD%BD-Greasy_Fork-rgb(153%2C0%2C0)?logo=greasyfork&link=https%3A%2F%2Fgreasyfork.org%2Fscripts%2F495345"></a>&nbsp;<a href="https://scriptcat.org/script-show-page/1845/"><img alt="Script Cat 脚本猫 在线下载" src="https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%B8%8B%E8%BD%BD-Script_Cat_%E8%84%9A%E6%9C%AC%E7%8C%AB-4793d7?logo=gnuicecat&link=https%3A%2F%2Fscriptcat.org%2Fscript-show-page%2F1845%2F"></a>
 
@@ -44,9 +44,9 @@
 
 #### 2. 安装本脚本
 - <a href="https://greasyfork.org/scripts/495345"><img alt="Greasy Fork 在线下载" src="https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%B8%8B%E8%BD%BD-Greasy_Fork-rgb(153%2C0%2C0)?logo=greasyfork&link=https%3A%2F%2Fgreasyfork.org%2Fscripts%2F495345"><br>https://greasyfork.org/scripts/495345</a>  
-<!-- [https://greasyfork.org/scripts/495345](https://greasyfork.org/scripts/495345) -->
+<br>
 - <a href="https://scriptcat.org/script-show-page/1845/"><img alt="Script Cat 脚本猫 在线下载" src="https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%B8%8B%E8%BD%BD-Script_Cat_%E8%84%9A%E6%9C%AC%E7%8C%AB-4793d7?logo=gnuicecat&link=https%3A%2F%2Fscriptcat.org%2Fscript-show-page%2F1845%2F"><br>https://scriptcat.org/script-show-page/1845</a>  
-<!-- [https://scriptcat.org/script-show-page/1845](https://scriptcat.org/script-show-page/1845) -->
+<br>
 - [GitHub 生链接 Raw](https://github.com/lcandy2/user.js/raw/main/websites/chaoxing.com/chaoxing-assignment/chaoxing-assignment.user.js)
 
 ### 使用说明

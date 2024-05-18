@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         学习通任务一览 Chaoxing Assignment
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/chaoxing.com/chaoxing-assignment
-// @version      1.2
+// @version      1.2.1
 // @author       甜檸Cirtron (lcandy2)
 // @description  支持作业、考试列表快速查看 | 电脑端快速查看，绝不错过任何作业与考试 | 【💡操作简单】学习通任务一览，无需任何配置，安装即可使用。【📅功能专注】专为查看作业和考试列表设计，增加提醒功能，确保不错过任何重要任务。【⏱️快速查看】在电脑端快速显示所有待办的作业和即将到来的考试，帮助及时安排学习计划，有效管理时间。【🚀提升体验】这一功能填补了原版学习通的空白，为学术生活带来了极大的便利和效率。
 // @license      AGPL-3.0-or-later
@@ -17,6 +17,7 @@
 // @require      https://registry.npmmirror.com/vue/3.4.27/files/dist/vue.global.prod.js
 // @require      data:application/javascript,%3Bwindow.Vue%3DVue%3B
 // @require      https://registry.npmmirror.com/vuetify/3.6.6/files/dist/vuetify.min.js
+// @require      ;
 // @resource     VuetifyStyle                                                   https://registry.npmmirror.com/vuetify/3.6.6/files/dist/vuetify.min.css
 // @resource     material-design-icons-iconfont/dist/material-design-icons.css  https://fonts.googlefonts.cn/css?family=Material+Icons
 // @grant        GM_addStyle

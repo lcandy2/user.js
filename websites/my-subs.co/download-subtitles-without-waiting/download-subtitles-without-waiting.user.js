@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Download Subtitles without Waiting
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/my-subs.co/download-subtitles-without-waiting
-// @version      1.0.0
+// @version      1.1.0
 // @author       甜檸Cirtron (lcandy2)
 // @description  Download subtitles without waiting. Supports My-Subs.co and so on.
 // @license      AGPL-3.0-or-later
@@ -33,7 +33,8 @@
     });
   }
   function makeDownloadAvaliable() {
-    downloadBtn.removeAttribute("disabled");
+    const downloadBtnElement = downloadBtn || document.querySelector("#downloadBtn");
+    downloadBtnElement && downloadBtnElement.removeAttribute("disabled");
   }
   function addBrandization() {
     const counterDownElement = counterDown || document.querySelector("#countdown");

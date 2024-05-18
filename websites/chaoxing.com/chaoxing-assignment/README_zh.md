@@ -44,9 +44,9 @@ A [甜檸Cirtron@lcandy2](https://github.com/lcandy2)'s project.
 
 #### 2. 安装本脚本
 - <a href="https://greasyfork.org/scripts/495345"><img alt="Greasy Fork 在线下载" src="https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%B8%8B%E8%BD%BD-Greasy_Fork-rgb(153%2C0%2C0)?logo=greasyfork&link=https%3A%2F%2Fgreasyfork.org%2Fscripts%2F495345"><br>https://greasyfork.org/scripts/495345</a>  
-<br>
+
 - <a href="https://scriptcat.org/script-show-page/1845/"><img alt="Script Cat 脚本猫 在线下载" src="https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%B8%8B%E8%BD%BD-Script_Cat_%E8%84%9A%E6%9C%AC%E7%8C%AB-4793d7?logo=gnuicecat&link=https%3A%2F%2Fscriptcat.org%2Fscript-show-page%2F1845%2F"><br>https://scriptcat.org/script-show-page/1845</a>  
-<br>
+
 - [GitHub 生链接 Raw](https://github.com/lcandy2/user.js/raw/main/websites/chaoxing.com/chaoxing-assignment/chaoxing-assignment.user.js)
 
 ### 使用说明

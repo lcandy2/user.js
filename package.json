@@ -2,11 +2,16 @@
   "name": "user-scripts-from-lcandy2",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
-  "author": "lcandy2",
-  "license": "GPL-3.0",
+  "keywords": ["userscript","user.js","lcandy2","tampermonkey","greasemonkey"],
+  "private": true,
+  "author": {
+    "name": "甜檸Cirtron (lcandy2)",
+    "email": "vanilla#citrons.cc",
+    "url": "https://github.com/lcandy2"
+  },
+  "license": "AGPL-3.0-or-later",
   "devDependencies": {
-    "prettier": "3.2.5",
+    "prettier": "^3.2.5",
     "typescript": "^5.3.3"
   },
   "prettier": {},

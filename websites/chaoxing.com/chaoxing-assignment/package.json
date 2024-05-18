@@ -1,7 +1,14 @@
 {
   "name": "chaoxing-assignment",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://greasyfork.org/scripts/495345",
+  "author": {
+    "name": "甜檸Cirtron (lcandy2)",
+    "email": "vanilla#citrons.cc",
+    "url": "https://github.com/lcandy2"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

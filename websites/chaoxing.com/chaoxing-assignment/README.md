@@ -50,7 +50,7 @@ In the list, just click the button to go to the detailed page of the assignments
   - [Microsoft Edge 浏览器](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao) 
   - [其他安装方式 All Install Methods](https://violentmonkey.github.io/get-it/)
 - [其他脚本管理器 All Script Managers](https://greasyfork.org/help/installing-user-scripts)
-- 
+
 #### 2. 安装本脚本 Install This User Script
 - <a href="https://greasyfork.org/scripts/495345"><img alt="Greasy Fork 在线下载" src="https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%B8%8B%E8%BD%BD-Greasy_Fork-rgb(153%2C0%2C0)?logo=greasyfork&link=https%3A%2F%2Fgreasyfork.org%2Fscripts%2F495345"></a>  
 [https://greasyfork.org/scripts/495345](https://greasyfork.org/scripts/495345)

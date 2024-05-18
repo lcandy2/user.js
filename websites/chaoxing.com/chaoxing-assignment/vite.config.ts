@@ -34,7 +34,9 @@ export default defineConfig(({ command }) => {
             vue: cdn
             .npmmirror("Vue", "dist/vue.global.prod.js")
             .concat(util.dataUrl(";window.Vue=Vue;")),
-            vuetify: cdn.npmmirror("Vuetify", "dist/vuetify.min.js").concat(";window.Vuetify=Vuetify;"),
+            vuetify: cdn.
+            npmmirror("Vuetify", "dist/vuetify.min.js")
+            .concat(util.dataUrl(";")),
             // "vuetify/components": "Vuetify",
             // "vuetify/directives": "Vuetify",
             // "vuetify/iconsets/md": "Vuetify",

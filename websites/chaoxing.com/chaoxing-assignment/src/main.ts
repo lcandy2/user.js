@@ -2,7 +2,7 @@ import {
   addMenuItem,
   addMenuItemExam, addMenuItemExamLegacy,
   addMenuItemLegacy,
-  extractExams,
+  extractExams, keepRemoveHtmlStyle, removeScripts,
   removeStyles,
   urlDetection,
   wrapElements
@@ -14,11 +14,14 @@ const urlDetect = urlDetection();
 if (urlDetect === "homework") {
   wrapElements();
   removeStyles();
+  removeScripts();
   appendApp();
 }
 if (urlDetect === "exam") {
   wrapElements();
   removeStyles();
+  removeScripts();
+  keepRemoveHtmlStyle();
   appendApp();
 }
 if (urlDetect === "home") {

@@ -18,4 +18,11 @@ export function addBrandization() {
       counterDownElement.appendChild(p2);
     }
   }
+  const brandizationElement = counterDownElement?.cloneNode(true);
+  if (brandizationElement) {
+    counterDownElement?.parentNode?.replaceChild(
+      brandizationElement,
+      counterDownElement,
+    );
+  }
 }

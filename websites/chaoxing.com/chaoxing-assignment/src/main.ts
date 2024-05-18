@@ -1,11 +1,16 @@
-import { addMenuItem, removeStyles, urlDetection, wrapElements } from "./lib";
+import { addMenuItem, addMenuItemLegacy, removeStyles, urlDetection, wrapElements } from "./lib";
 import { appendApp } from "./app";
 
-if (urlDetection() === "homework") {
+const urlDetect = urlDetection();
+
+if (urlDetect === "homework") {
   wrapElements();
   removeStyles();
   appendApp();
 }
-if (urlDetection() === "home") {
+if (urlDetect === "home") {
   addMenuItem();
+}
+if (urlDetect === "legacyHome") {
+  addMenuItemLegacy()
 }

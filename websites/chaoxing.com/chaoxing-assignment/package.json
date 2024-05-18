@@ -1,7 +1,7 @@
 {
   "name": "chaoxing-assignment",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "AGPL-3.0-or-later",
   "homepage": "https://greasyfork.org/scripts/495345",
   "author": {
@@ -25,6 +25,7 @@
     "shx": "^0.3.4",
     "vite": "^5.2.11",
     "vite-plugin-monkey": "^3.5.2",
+    "vite-plugin-vuetify": "^2.0.3",
     "vue-tsc": "^2.0.19"
   },
   "prettier": {}

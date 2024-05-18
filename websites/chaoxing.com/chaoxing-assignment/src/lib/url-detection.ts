@@ -1,4 +1,4 @@
-type UrlType = "home" | "homework" | undefined;
+type UrlType = "home" | "homework" | "legacyHome" | undefined;
 
 export const urlDetection = (): UrlType => {
   const url = window.location.href;
@@ -7,5 +7,8 @@ export const urlDetection = (): UrlType => {
   }
   if (url.includes("i.chaoxing.com/base")) {
     return "home";
+  }
+  if (url.includes("i.mooc.chaoxing.com/space/index")) {
+    return "legacyHome";
   }
 };

@@ -9,7 +9,7 @@ importers:
   .:
     devDependencies:
       prettier:
-        specifier: 3.2.5
+        specifier: ^3.2.5
         version: 3.2.5
       typescript:
         specifier: ^5.3.3
@@ -39,6 +39,9 @@ importers:
       vite-plugin-monkey:
         specifier: ^3.5.2
         version: 3.5.2(vite@5.2.11)
+      vite-plugin-vuetify:
+        specifier: ^2.0.3
+        version: 2.0.3(vite@5.2.11)(vue@3.4.27(typescript@5.4.5))(vuetify@3.6.6)
       vue-tsc:
         specifier: ^2.0.19
         version: 2.0.19(typescript@5.4.5)
@@ -1087,7 +1090,6 @@ snapshots:
       upath: 2.0.1
       vue: 3.4.27(typescript@5.4.5)
       vuetify: 3.6.6(typescript@5.4.5)(vite-plugin-vuetify@2.0.3)(vue@3.4.27(typescript@5.4.5))
-    optional: true
 
   acorn-walk@8.3.2: {}
 
@@ -1129,7 +1131,6 @@ snapshots:
   debug@4.3.4:
     dependencies:
       ms: 2.1.2
-    optional: true
 
   default-browser-id@3.0.0:
     dependencies:
@@ -1307,8 +1308,7 @@ snapshots:
 
   mrmime@1.0.1: {}
 
-  ms@2.1.2:
-    optional: true
+  ms@2.1.2: {}
 
   muggle-string@0.3.1: {}
 
@@ -1438,8 +1438,7 @@ snapshots:
 
   untildify@4.0.0: {}
 
-  upath@2.0.1:
-    optional: true
+  upath@2.0.1: {}
 
   vite-plugin-monkey@3.5.2(vite@5.2.11):
     dependencies:
@@ -1464,7 +1463,6 @@ snapshots:
       vuetify: 3.6.6(typescript@5.4.5)(vite-plugin-vuetify@2.0.3)(vue@3.4.27(typescript@5.4.5))
     transitivePeerDependencies:
       - supports-color
-    optional: true
 
   vite@5.2.11:
     dependencies:

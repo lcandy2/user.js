@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         【学习通任务一览】支持作业、考试列表 | 电脑端快速查看，绝不错过任何作业与考试
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/chaoxing.com/chaoxing-assignment
-// @version      1.0.1
+// @version      1.0.2
 // @author       甜檸Cirtron (lcandy2)
 // @description  【💡操作简单】学习通任务一览，无需任何配置，安装即可使用。【📅功能专注】专为查看作业和考试列表设计，增加提醒功能，确保不错过任何重要任务。【⏱️快速查看】在电脑端快速显示所有待办的作业和即将到来的考试，帮助及时安排学习计划，有效管理时间。【🚀提升体验】这一功能填补了原版学习通的空白，为学术生活带来了极大的便利和效率。
 // @license      AGPL-3.0-or-later
@@ -10,6 +10,7 @@
 // @source       https://github.com/lcandy2/user.js/tree/main/websites/chaoxing.com/chaoxing-assignment
 // @match        *://mooc1-api.chaoxing.com/work/stu-work*
 // @match        *://i.chaoxing.com/base*
+// @match        *://i.mooc.chaoxing.com/space/index*
 // @require      https://registry.npmmirror.com/vue/3.4.27/files/dist/vue.global.prod.js
 // @require      data:application/javascript,%3Bwindow.Vue%3DVue%3B
 // @require      https://registry.npmmirror.com/vuetify/3.6.6/files/dist/vuetify.min.js
@@ -49,6 +50,9 @@
     if (url.includes("i.chaoxing.com/base")) {
       return "home";
     }
+    if (url.includes("i.mooc.chaoxing.com/space/index")) {
+      return "legacyHome";
+    }
   };
   const addMenuItem = () => {
     const menubarElement = document.querySelector('div.menubar[role="menubar"]');
@@ -68,16 +72,41 @@
         "https://mooc1-api.chaoxing.com/work/stu-work"
       );
       const iconElement = document.createElement("span");
-      iconElement.className = "icon3 zne_bj_icon";
+      iconElement.className = "icon-space icon-bj";
       menuItemElement.appendChild(iconElement);
       const titleElement = document.createElement("h5");
       titleElement.title = "全部作业";
-      titleElement.textContent = "全部作业";
+      const boldElement = document.createElement("b");
+      boldElement.textContent = "全部作业";
+      titleElement.appendChild(boldElement);
       menuItemElement.appendChild(titleElement);
       const arrowElement = document.createElement("span");
       arrowElement.className = "arrow icon-uniE900";
       menuItemElement.appendChild(arrowElement);
       menubarElement.prepend(menuItemElement);
+    }
+  };
+  const addMenuItemLegacy = () => {
+    const funclistulElement = document.querySelector("ul.funclistul");
+    if (funclistulElement) {
+      const liElement = document.createElement("li");
+      liElement.id = "li_chaoxing-assignment-task";
+      const spanElement = document.createElement("span");
+      liElement.appendChild(spanElement);
+      const aElement = document.createElement("a");
+      aElement.id = "chaoxing-assignment-task";
+      aElement.href = "javascript:switchM('chaoxing-assignment-task','https://mooc1-api.chaoxing.com/work/stu-work')";
+      aElement.target = "_top";
+      aElement.title = "全部作业";
+      const bIconElement = document.createElement("b");
+      bIconElement.className = "liticons znewyun zne_bj_icon";
+      aElement.appendChild(bIconElement);
+      const emTitleElement = document.createElement("em");
+      emTitleElement.setAttribute("style", "font-weight: bolder;");
+      emTitleElement.textContent = "全部作业";
+      aElement.appendChild(emTitleElement);
+      liElement.appendChild(aElement);
+      funclistulElement.prepend(liElement);
     }
   };
   function extractTasks() {
@@ -541,13 +570,17 @@
       })()
     );
   };
-  if (urlDetection() === "homework") {
+  const urlDetect = urlDetection();
+  if (urlDetect === "homework") {
     wrapElements();
     removeStyles();
     appendApp();
   }
-  if (urlDetection() === "home") {
+  if (urlDetect === "home") {
     addMenuItem();
+  }
+  if (urlDetect === "legacyHome") {
+    addMenuItemLegacy();
   }
 
 })(Vuetify, Vue);

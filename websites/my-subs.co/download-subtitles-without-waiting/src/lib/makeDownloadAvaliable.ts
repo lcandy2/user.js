@@ -1,7 +1,7 @@
-declare const downloadBtn: HTMLButtonElement;
+declare const downloadBtn: HTMLButtonElement | undefined;
 
 export function makeDownloadAvaliable() {
-  //   const downloadButton = document.querySelector('#downloadBtn');
-  //   downloadButton?.removeAttribute('disabled');
-  downloadBtn.removeAttribute("disabled");
+  const downloadBtnElement =
+    downloadBtn || document.querySelector("#downloadBtn");
+  downloadBtnElement && downloadBtnElement.removeAttribute("disabled");
 }

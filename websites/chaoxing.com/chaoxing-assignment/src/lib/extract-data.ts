@@ -56,3 +56,63 @@ export function extractTasks(): ExtractedTask[] {
   });
   return tasks;
 }
+
+export interface ExtractedExam {
+  title: string;
+  status: string;
+  timeLeft: string;
+  expired: boolean;
+  finished: boolean;
+  examId: string;
+  courseId: string;
+  classId: string;
+  raw: string;
+}
+
+export function extractExams(): ExtractedExam[] {
+  const examElements = document.querySelectorAll(
+    "#chaoxing-assignment-wrapper ul.ks_list > li",
+  );
+  const exams = Array.from(examElements).map((exam) => {
+    const dlElement = exam.querySelector("dl");
+    const imgElement = exam.querySelector("div.ks_pic > img");
+    let title: string = "";
+    let timeLeft: string = "";
+    let status: string = "";
+    let expired: boolean = false;
+    let examId: string = "";
+    let courseId: string = "";
+    let classId: string = "";
+    if (dlElement) {
+      title = dlElement.querySelector("dt")?.textContent || "";
+      timeLeft = dlElement.querySelector("dd")?.textContent || "";
+    }
+    if (imgElement) {
+      expired = imgElement.getAttribute("src")?.includes("ks_02") || false;
+    }
+    status = exam.querySelector("span.ks_state")?.textContent || "";
+    const raw = exam.getAttribute("data") || "";
+    if (raw) {
+      const rawWithHost = window.location.protocol + '//' + window.location.host + raw;
+      const rawUrl = new URL(rawWithHost);
+      const searchParams = rawUrl.searchParams;
+      examId = searchParams.get("taskrefId") || "";
+      courseId = searchParams.get("courseId") || "";
+      classId = searchParams.get("classId") || "";
+    }
+    const finished = status.includes("已完成") || status.includes("待批阅");
+
+    return {
+      title,
+      status,
+      timeLeft,
+      expired,
+      finished,
+      examId,
+      courseId,
+      classId,
+      raw,
+    };
+  });
+  return exams;
+}

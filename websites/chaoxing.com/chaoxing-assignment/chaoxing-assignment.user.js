@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         【学习通任务一览】支持作业、考试列表 | 电脑端快速查看，绝不错过任何作业与考试
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/chaoxing.com/chaoxing-assignment
-// @version      1.0.2
+// @version      1.1
 // @author       甜檸Cirtron (lcandy2)
 // @description  【💡操作简单】学习通任务一览，无需任何配置，安装即可使用。【📅功能专注】专为查看作业和考试列表设计，增加提醒功能，确保不错过任何重要任务。【⏱️快速查看】在电脑端快速显示所有待办的作业和即将到来的考试，帮助及时安排学习计划，有效管理时间。【🚀提升体验】这一功能填补了原版学习通的空白，为学术生活带来了极大的便利和效率。
 // @license      AGPL-3.0-or-later
@@ -11,6 +11,8 @@
 // @match        *://mooc1-api.chaoxing.com/work/stu-work*
 // @match        *://i.chaoxing.com/base*
 // @match        *://i.mooc.chaoxing.com/space/index*
+// @match        *://i.mooc.chaoxing.com/settings*
+// @match        *://mooc1-api.chaoxing.com/exam-ans/exam/phone/examcode*
 // @require      https://registry.npmmirror.com/vue/3.4.27/files/dist/vue.global.prod.js
 // @require      data:application/javascript,%3Bwindow.Vue%3DVue%3B
 // @require      https://registry.npmmirror.com/vuetify/3.6.6/files/dist/vuetify.min.js
@@ -34,6 +36,8 @@
     wrapper.style.display = "none";
   };
   const removeStyles = () => {
+    const html = document.querySelector("html");
+    html == null ? void 0 : html.removeAttribute("style");
     const styles = document.querySelectorAll("link[rel=stylesheet]");
     styles.forEach((style) => {
       var _a;
@@ -44,13 +48,19 @@
   };
   const urlDetection = () => {
     const url = window.location.href;
-    if (url.includes("mooc1-api.chaoxing.com/work/stu-work")) {
-      return "homework";
+    const hash = window.location.hash;
+    if (hash.includes("chaoxing-assignment")) {
+      if (url.includes("mooc1-api.chaoxing.com/work/stu-work")) {
+        return "homework";
+      }
+      if (url.includes("mooc1-api.chaoxing.com/exam-ans/exam/phone/examcode")) {
+        return "exam";
+      }
     }
     if (url.includes("i.chaoxing.com/base")) {
       return "home";
     }
-    if (url.includes("i.mooc.chaoxing.com/space/index")) {
+    if (url.includes("i.mooc.chaoxing.com/space/index") || url.includes("i.mooc.chaoxing.com/settings")) {
       return "legacyHome";
     }
   };
@@ -65,11 +75,11 @@
       menuItemElement.setAttribute("imgname", "icon-home");
       menuItemElement.setAttribute(
         "onclick",
-        `setUrl('1000001','https://mooc1-api.chaoxing.com/work/stu-work',this,'0','全部作业')`
+        `setUrl('1000001','https://mooc1-api.chaoxing.com/work/stu-work#chaoxing-assignment',this,'0','全部作业')`
       );
       menuItemElement.setAttribute(
         "dataurl",
-        "https://mooc1-api.chaoxing.com/work/stu-work"
+        "https://mooc1-api.chaoxing.com/work/stu-work#chaoxing-assignment"
       );
       const iconElement = document.createElement("span");
       iconElement.className = "icon-space icon-bj";
@@ -78,6 +88,38 @@
       titleElement.title = "全部作业";
       const boldElement = document.createElement("b");
       boldElement.textContent = "全部作业";
+      titleElement.appendChild(boldElement);
+      menuItemElement.appendChild(titleElement);
+      const arrowElement = document.createElement("span");
+      arrowElement.className = "arrow icon-uniE900";
+      menuItemElement.appendChild(arrowElement);
+      menubarElement.prepend(menuItemElement);
+    }
+  };
+  const addMenuItemExam = () => {
+    const menubarElement = document.querySelector('div.menubar[role="menubar"]');
+    if (menubarElement) {
+      const menuItemElement = document.createElement("a");
+      menuItemElement.setAttribute("role", "menuitem");
+      menuItemElement.setAttribute("focus_element", "0");
+      menuItemElement.setAttribute("tabindex", "-1");
+      menuItemElement.id = "first1000002";
+      menuItemElement.setAttribute("imgname", "icon-home");
+      menuItemElement.setAttribute(
+        "onclick",
+        `setUrl('1000002','https://mooc1-api.chaoxing.com/exam-ans/exam/phone/examcode#chaoxing-assignment',this,'0','全部考试')`
+      );
+      menuItemElement.setAttribute(
+        "dataurl",
+        "https://mooc1-api.chaoxing.com/exam-ans/exam/phone/examcode#chaoxing-assignment"
+      );
+      const iconElement = document.createElement("span");
+      iconElement.className = "icon-space icon-cj";
+      menuItemElement.appendChild(iconElement);
+      const titleElement = document.createElement("h5");
+      titleElement.title = "全部考试";
+      const boldElement = document.createElement("b");
+      boldElement.textContent = "全部考试";
       titleElement.appendChild(boldElement);
       menuItemElement.appendChild(titleElement);
       const arrowElement = document.createElement("span");
@@ -95,7 +137,7 @@
       liElement.appendChild(spanElement);
       const aElement = document.createElement("a");
       aElement.id = "chaoxing-assignment-task";
-      aElement.href = "javascript:switchM('chaoxing-assignment-task','https://mooc1-api.chaoxing.com/work/stu-work')";
+      aElement.href = "javascript:switchM('chaoxing-assignment-task','https://mooc1-api.chaoxing.com/work/stu-work#chaoxing-assignment')";
       aElement.target = "_top";
       aElement.title = "全部作业";
       const bIconElement = document.createElement("b");
@@ -104,6 +146,29 @@
       const emTitleElement = document.createElement("em");
       emTitleElement.setAttribute("style", "font-weight: bolder;");
       emTitleElement.textContent = "全部作业";
+      aElement.appendChild(emTitleElement);
+      liElement.appendChild(aElement);
+      funclistulElement.prepend(liElement);
+    }
+  };
+  const addMenuItemExamLegacy = () => {
+    const funclistulElement = document.querySelector("ul.funclistul");
+    if (funclistulElement) {
+      const liElement = document.createElement("li");
+      liElement.id = "li_chaoxing-assignment-exam";
+      const spanElement = document.createElement("span");
+      liElement.appendChild(spanElement);
+      const aElement = document.createElement("a");
+      aElement.id = "chaoxing-assignment-exam";
+      aElement.href = "javascript:switchM('chaoxing-assignment-exam','https://mooc1-api.chaoxing.com/exam-ans/exam/phone/examcode#chaoxing-assignment')";
+      aElement.target = "_top";
+      aElement.title = "全部考试";
+      const bIconElement = document.createElement("b");
+      bIconElement.className = "liticons znewyun zne_jc_icon";
+      aElement.appendChild(bIconElement);
+      const emTitleElement = document.createElement("em");
+      emTitleElement.setAttribute("style", "font-weight: bolder;");
+      emTitleElement.textContent = "全部考试";
       aElement.appendChild(emTitleElement);
       liElement.appendChild(aElement);
       funclistulElement.prepend(liElement);
@@ -154,13 +219,61 @@
     });
     return tasks;
   }
+  function extractExams() {
+    const examElements = document.querySelectorAll(
+      "#chaoxing-assignment-wrapper ul.ks_list > li"
+    );
+    const exams = Array.from(examElements).map((exam) => {
+      var _a, _b, _c, _d;
+      const dlElement = exam.querySelector("dl");
+      const imgElement = exam.querySelector("div.ks_pic > img");
+      let title = "";
+      let timeLeft = "";
+      let status = "";
+      let expired = false;
+      let examId = "";
+      let courseId = "";
+      let classId = "";
+      if (dlElement) {
+        title = ((_a = dlElement.querySelector("dt")) == null ? void 0 : _a.textContent) || "";
+        timeLeft = ((_b = dlElement.querySelector("dd")) == null ? void 0 : _b.textContent) || "";
+      }
+      if (imgElement) {
+        expired = ((_c = imgElement.getAttribute("src")) == null ? void 0 : _c.includes("ks_02")) || false;
+      }
+      status = ((_d = exam.querySelector("span.ks_state")) == null ? void 0 : _d.textContent) || "";
+      const raw = exam.getAttribute("data") || "";
+      if (raw) {
+        const rawWithHost = window.location.protocol + "//" + window.location.host + raw;
+        const rawUrl = new URL(rawWithHost);
+        const searchParams = rawUrl.searchParams;
+        examId = searchParams.get("taskrefId") || "";
+        courseId = searchParams.get("courseId") || "";
+        classId = searchParams.get("classId") || "";
+      }
+      const finished = status.includes("已完成") || status.includes("待批阅");
+      return {
+        title,
+        status,
+        timeLeft,
+        expired,
+        finished,
+        examId,
+        courseId,
+        classId,
+        raw
+      };
+    });
+    return exams;
+  }
   const API_VISIT_COURSE = "https://mooc1.chaoxing.com/visit/stucoursemiddle?ismooc2=1";
+  const API_OPEN_EXAM = "https://mooc1-api.chaoxing.com/exam-ans/exam/test/examcode/examnotes";
   const cssLoader = (e) => {
     const t = GM_getResourceText(e);
     return GM_addStyle(t), t;
   };
   cssLoader("VuetifyStyle");
-  const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
     __name: "tasks-list",
     setup(__props) {
       const extractedData = extractTasks();
@@ -169,7 +282,7 @@
         { key: "course", title: "课程" },
         { key: "leftTime", title: "剩余时间" },
         { key: "status", title: "状态" },
-        { key: "action", title: "操作" }
+        { key: "action", title: "", sortable: false }
       ];
       const search = vue.ref("");
       const getCourseLinkHref = (item) => {
@@ -232,11 +345,11 @@
       };
     }
   });
-  const _sfc_main = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
     __name: "App",
     setup(__props) {
       return (_ctx, _cache) => {
-        return vue.openBlock(), vue.createBlock(_sfc_main$1);
+        return vue.openBlock(), vue.createBlock(_sfc_main$2);
       };
     }
   });
@@ -550,6 +663,78 @@
       class: "material-icons"
     })
   };
+  const _sfc_main = /* @__PURE__ */ vue.defineComponent({
+    __name: "exams-list",
+    setup(__props) {
+      const extractedData = extractExams();
+      const headers = [
+        { key: "title", title: "考试名称" },
+        { key: "timeLeft", title: "剩余时间" },
+        { key: "status", title: "状态" },
+        { key: "action", title: "", sortable: false }
+      ];
+      const search = vue.ref("");
+      const getCourseLinkHref = (item) => {
+        const courseId = item.courseId;
+        const classId = item.classId;
+        const examId = item.examId;
+        const requestUrl = new URL(API_OPEN_EXAM);
+        requestUrl.searchParams.append("courseId", courseId);
+        requestUrl.searchParams.append("classId", classId);
+        requestUrl.searchParams.append("examId", examId);
+        return requestUrl.href;
+      };
+      return (_ctx, _cache) => {
+        const _component_v_text_field = vue.resolveComponent("v-text-field");
+        const _component_v_btn = vue.resolveComponent("v-btn");
+        const _component_v_data_table = vue.resolveComponent("v-data-table");
+        const _component_v_card = vue.resolveComponent("v-card");
+        return vue.openBlock(), vue.createBlock(_component_v_card, {
+          title: "考试列表",
+          variant: "flat"
+        }, {
+          text: vue.withCtx(() => [
+            vue.createVNode(_component_v_text_field, {
+              modelValue: search.value,
+              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => search.value = $event),
+              label: "搜索",
+              "prepend-inner-icon": "search",
+              variant: "outlined",
+              "hide-details": "",
+              "single-line": ""
+            }, null, 8, ["modelValue"])
+          ]),
+          default: vue.withCtx(() => [
+            vue.createVNode(_component_v_data_table, {
+              items: vue.unref(extractedData),
+              search: search.value,
+              hover: "",
+              headers,
+              sticky: "",
+              "items-per-page": "-1",
+              "hide-default-footer": ""
+            }, {
+              "item.action": vue.withCtx(({ item }) => [
+                vue.createVNode(_component_v_btn, {
+                  variant: item.finished || item.expired ? "plain" : "tonal",
+                  color: "primary",
+                  href: getCourseLinkHref(item),
+                  target: "_blank"
+                }, {
+                  default: vue.withCtx(() => [
+                    vue.createTextVNode(vue.toDisplayString(item.finished || item.expired ? "查看详情" : "前往考试"), 1)
+                  ]),
+                  _: 2
+                }, 1032, ["variant", "href"])
+              ]),
+              _: 1
+            }, 8, ["items", "search"])
+          ]),
+          _: 1
+        });
+      };
+    }
+  });
   const appendApp = () => {
     const vuetify$1 = vuetify.createVuetify({
       // components,
@@ -562,11 +747,19 @@
         }
       }
     });
-    vue.createApp(_sfc_main).use(vuetify$1).mount(
+    let app = _sfc_main$1;
+    const urlDetect2 = urlDetection();
+    if (urlDetect2 === "homework") {
+      app = _sfc_main$2;
+    }
+    if (urlDetect2 === "exam") {
+      app = _sfc_main;
+    }
+    vue.createApp(app).use(vuetify$1).mount(
       (() => {
-        const app = document.createElement("div");
-        document.body.append(app);
-        return app;
+        const app2 = document.createElement("div");
+        document.body.append(app2);
+        return app2;
       })()
     );
   };
@@ -576,10 +769,17 @@
     removeStyles();
     appendApp();
   }
+  if (urlDetect === "exam") {
+    wrapElements();
+    removeStyles();
+    appendApp();
+  }
   if (urlDetect === "home") {
+    addMenuItemExam();
     addMenuItem();
   }
   if (urlDetect === "legacyHome") {
+    addMenuItemExamLegacy();
     addMenuItemLegacy();
   }
 

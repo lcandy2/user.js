@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  API_VISIT_COURSE,
-  backgroundRequest,
-  ExtractedTask,
-  extractTasks,
-} from "../lib";
+import { API_VISIT_COURSE, ExtractedTask, extractTasks } from "../lib";
 import { ref } from "vue";
 
 const extractedData = extractTasks();
@@ -14,7 +9,7 @@ const headers = [
   { key: "course", title: "课程" },
   { key: "leftTime", title: "剩余时间" },
   { key: "status", title: "状态" },
-  { key: "action", title: "操作" },
+  { key: "action", title: "", sortable: false }
 ];
 
 const search = ref("");

@@ -22,7 +22,9 @@ export default defineConfig(({ command }) => {
           match: [
             "*://mooc1-api.chaoxing.com/work/stu-work*",
             "*://i.chaoxing.com/base*",
-            "*://i.mooc.chaoxing.com/space/index*"
+            "*://i.mooc.chaoxing.com/space/index*",
+            "*://i.mooc.chaoxing.com/settings*",
+            "*://mooc1-api.chaoxing.com/exam-ans/exam/phone/examcode*"
           ],
           "run-at": "document-end"
         },

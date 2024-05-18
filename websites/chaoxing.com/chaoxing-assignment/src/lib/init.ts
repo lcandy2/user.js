@@ -9,6 +9,8 @@ export const wrapElements = () => {
 };
 
 export const removeStyles = () => {
+  const html = document.querySelector("html");
+  html?.removeAttribute("style");
   const styles = document.querySelectorAll("link[rel=stylesheet]");
   styles.forEach((style) => {
     if (style.getAttribute("href")?.includes("chaoxing")) {

@@ -1,0 +1,23 @@
+{
+  "name": "download-subtitles-without-waiting",
+  "description": "Download subtitles without waiting. Supports My-Subs.co and so on.",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://greasyfork.org/scripts/495403",
+  "author": {
+    "name": "甜檸Cirtron (lcandy2)",
+    "email": "vanilla#citrons.cc",
+    "url": "https://github.com/lcandy2"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && shx cp -r ./dist/* ./",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.11",
+    "vite-plugin-monkey": "^3.5.1"
+  }
+}

@@ -2,7 +2,7 @@
 
 A [甜檸Cirtron@lcandy2](https://github.com/lcandy2)'s project.
 
-[GitHub](https://github.com/lcandy2/user.js/tree/main/websites/my-subs.co/download-subtitles-without-waiting) | [Greasy Fork (install here)](https://greasyfork.org/scripts/495403)
+[GitHub](https://github.com/lcandy2/user.js/tree/main/websites/my-subs.co/download-subtitles-without-waiting) | [Greasy Fork (install here)](https://greasyfork.org/scripts/495404) | [ScriptCat](https://scriptcat.org/script-show-page/1846) | [OpenUserJS](https://openuserjs.org/scripts/Lcandy/Download_Subtitles_without_Waiting)
 
 ### How to Use
 

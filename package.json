@@ -2,7 +2,13 @@
   "name": "user-scripts-from-lcandy2",
   "version": "1.0.0",
   "description": "",
-  "keywords": ["userscript","user.js","lcandy2","tampermonkey","greasemonkey"],
+  "keywords": [
+    "userscript",
+    "user.js",
+    "lcandy2",
+    "tampermonkey",
+    "greasemonkey"
+  ],
   "private": true,
   "author": {
     "name": "甜檸Cirtron (lcandy2)",
@@ -12,6 +18,7 @@
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
     "prettier": "^3.2.5",
+    "shx": "^0.3.4",
     "typescript": "^5.3.3"
   },
   "prettier": {},

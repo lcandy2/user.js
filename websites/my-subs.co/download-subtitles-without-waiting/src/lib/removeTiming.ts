@@ -1,4 +1,4 @@
-declare const countDownInterval: number;
+declare const countDownInterval: number | undefined;
 
 export function removeTimingScripts() {
   const scripts = document.querySelectorAll("script");

@@ -1,0 +1,23 @@
+{
+  "name": "educoder-copy-helper",
+  "private": true,
+  "version": "1.0",
+  "description": "📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨与《头歌助手 EduCoder Helper》搭配使用解锁“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。🧹大小仅1.82KB，极小尺寸，无需任何权限，无需任何配置，安装即用。",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://greasyfork.org/scripts/495490",
+  "author": {
+    "name": "甜檸Cirtron (lcandy2)",
+    "email": "vanilla#citrons.cc",
+    "url": "https://github.com/lcandy2"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && shx cp -r ./dist/* ./",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.11",
+    "vite-plugin-monkey": "^3.5.1"
+  }
+}

@@ -52,8 +52,20 @@ importers:
         specifier: ^2.0.19
         version: 2.0.19(typescript@5.4.5)
 
+  websites/educoder.net/educoder-copy-helper:
+    devDependencies:
+      vite:
+        specifier: ^5.0.11
+        version: 5.2.11
+      vite-plugin-monkey:
+        specifier: ^3.5.1
+        version: 3.5.2(vite@5.2.11)
+
   websites/educoder.net/educoder-helper:
     dependencies:
+      js-base64:
+        specifier: ^3.7.7
+        version: 3.7.7
       vue:
         specifier: ^3.4.14
         version: 3.4.27(typescript@5.4.5)
@@ -70,6 +82,9 @@ importers:
       vite-plugin-monkey:
         specifier: ^3.5.1
         version: 3.5.2(vite@5.2.11)
+      vite-plugin-vuetify:
+        specifier: ^2.0.3
+        version: 2.0.3(vite@5.2.11)(vue@3.4.27(typescript@5.4.5))(vuetify@3.6.6)
       vue-tsc:
         specifier: ^1.8.27
         version: 1.8.27(typescript@5.4.5)
@@ -579,6 +594,9 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+
+  js-base64@3.7.7:
+    resolution: {integrity: sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==}
 
   magic-string@0.30.10:
     resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
@@ -1326,6 +1344,8 @@ snapshots:
       is-docker: 2.2.1
 
   isexe@2.0.0: {}
+
+  js-base64@3.7.7: {}
 
   magic-string@0.30.10:
     dependencies:

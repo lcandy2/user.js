@@ -1,9 +1,11 @@
 import { defineConfig } from "vite";
 import monkey from "vite-plugin-monkey";
+import version from 'vite-plugin-package-version';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    version(),
     monkey({
       entry: "src/main.ts",
       userscript: {

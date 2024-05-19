@@ -1,21 +1,31 @@
 {
   "name": "educoder-helper",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0",
+  "description": "【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。🧹简单高效代码，无需任何权限，无需任何配置，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://greasyfork.org/scripts/495490",
+  "author": {
+    "name": "甜檸Cirtron (lcandy2)",
+    "email": "vanilla#citrons.cc",
+    "url": "https://github.com/lcandy2"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build && shx cp -r ./dist/* ./",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.14",
+    "js-base64": "^3.7.7",
+    "vue": "^3.4.27",
     "vuetify": "^3.6.6"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.3",
-    "vite": "^5.0.11",
-    "vite-plugin-monkey": "^3.5.1",
-    "vue-tsc": "^1.8.27"
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.2.11",
+    "vite-plugin-monkey": "^3.5.2",
+    "vite-plugin-vuetify": "^2.0.3",
+    "vue-tsc": "^2.0.19"
   }
 }

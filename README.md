@@ -1,11 +1,11 @@
 # lcandy2/user.js
 <sup>Some lcandy2's projects</sup>
 
-### Lists 脚本列表
+## Lists 脚本列表
 
-#### 学习通 chaoxing.com
+### 学习通 chaoxing.com
 
-##### [学习通任务一览 Chaoxing Assignment](./websites/chaoxing.com/chaoxing-assignment)
+#### [学习通任务一览 Chaoxing Assignment](./websites/chaoxing.com/chaoxing-assignment)
 
 > 支持作业、考试列表电脑端快速查看，免受错过作业与考试困扰
 

@@ -33,7 +33,9 @@ const handleReset = async () => {
   }
 
   for (const [index, path] of allPaths.value.entries()) {
-    progress.value = ((index + 1) / allPaths.value.length) * 100;
+    if (allPaths.value.length > 1) {
+      progress.value = ((index + 1) / allPaths.value.length) * 100;
+    }
     progressMessage.value = `正在重置：${path}`;
     const { taskId } = getTaskInfo();
     const window = unsafeWindow;
@@ -62,7 +64,6 @@ const handleReset = async () => {
   isWaitingForRefresh.value = true;
   await new Promise((resolve) => setTimeout(resolve, 1000));
   window.location.reload();
-  progress.value = 100;
   progressMessage.value = "重置完成，等待页面刷新";
   props.setIsPersistent(false);
 };
@@ -140,7 +141,7 @@ const handleRefresh = () => {
       </v-btn>
 
       <v-btn v-if="isWaitingForRefresh" color="primary" variant="tonal" @click="handleRefresh">
-        刷新页面
+        手动刷新页面
       </v-btn>
     </template>
   </v-card>

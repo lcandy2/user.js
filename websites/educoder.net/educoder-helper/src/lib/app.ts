@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import { createVuetify } from "vuetify";
-import CopyAll from "../components/copy-all.vue";
 import "vuetify/dist/vuetify.css";
+import ToolbarApp from "../components/toolbar-app.vue";
 
 export const appendCopyAllButton = () => {
   const css = document.createElement("link");
@@ -11,7 +11,7 @@ export const appendCopyAllButton = () => {
   document.head.appendChild(css);
 
   const vuetify = createVuetify({});
-  const app = createApp(CopyAll);
+  const app = createApp(ToolbarApp);
   app.use(vuetify);
 
   const antRow = document.querySelectorAll(".ant-row");

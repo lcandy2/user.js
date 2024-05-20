@@ -41,7 +41,6 @@ onMounted(async () => {
     for (const [index, path] of paths.entries()) {
       progress.value = ((index + 1) / paths.length) * 100;
       progressMessage.value = `正在获取文件：${path}`;
-      console.debug(progress.value);
       const { taskId } = getTaskInfo();
       const response = await fetch(
         `https://data.educoder.net/api/tasks/${taskId}/rep_content.json?path=${path}`,

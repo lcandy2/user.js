@@ -4,6 +4,12 @@ import CopyAll from "../components/copy-all.vue";
 import "vuetify/dist/vuetify.css";
 
 export const appendCopyAllButton = () => {
+  const css = document.createElement("link");
+  css.rel = "stylesheet";
+  css.href =
+    "https://registry.npmmirror.com/@mdi/font/7.4.47/files/css/materialdesignicons.min.css";
+  document.head.appendChild(css);
+
   const vuetify = createVuetify({});
   const app = createApp(CopyAll);
   app.use(vuetify);

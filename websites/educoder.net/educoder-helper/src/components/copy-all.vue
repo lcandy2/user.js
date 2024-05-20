@@ -3,7 +3,7 @@ import CopyAllContent from "./copy-all-content.vue";
 </script>
 
 <template>
-  <v-dialog max-width="800" max-height="680">
+  <v-dialog max-width="800" scrollable>
     <template v-slot:activator="{ props: activatorProps }">
       <v-btn
         v-bind="activatorProps"

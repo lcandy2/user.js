@@ -35,6 +35,8 @@ const handleReset = async () => {
   for (const [index, path] of allPaths.value.entries()) {
     if (allPaths.value.length > 1) {
       progress.value = ((index + 1) / allPaths.value.length) * 100;
+    } else {
+      progress.value = -1;
     }
     progressMessage.value = `正在重置：${path}`;
     const { taskId } = getTaskInfo();

@@ -36,6 +36,7 @@ const handleReset = async () => {
     progress.value = ((index + 1) / allPaths.value.length) * 100;
     progressMessage.value = `正在重置：${path}`;
     const { taskId } = getTaskInfo();
+    const window = unsafeWindow;
     const response = await fetch(
       `https://data.educoder.net/api/tasks/${taskId}/reset_original_code.json?path=${path}`,
       {
@@ -51,7 +52,7 @@ const handleReset = async () => {
     if (res && res.content) {
       console.info(`重置成功：${path}`)
     } else {
-      console.error(`重置失败：${path}`)
+      console.error(`重置失败：${path}`,res)
     }
     await new Promise((resolve) => setTimeout(resolve, 250));
   }

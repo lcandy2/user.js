@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         头歌助手 Educoder Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper
-// @version      1.4.3
+// @version      1.5
 // @author       甜檸Cirtron (lcandy2)
 // @description  【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。🧹简单高效代码，无需任何权限，无需任何配置，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全
 // @license      AGPL-3.0-or-later
@@ -46,15 +46,15 @@
     };
   };
   var _unsafeWindow = /* @__PURE__ */ (() => typeof unsafeWindow != "undefined" ? unsafeWindow : void 0)();
-  const _hoisted_1$2 = {
+  const _hoisted_1$3 = {
     key: 0,
     style: { "display": "flex", "flex-direction": "row", "align-items": "center", "gap": "1em" }
   };
-  const _hoisted_2$1 = {
+  const _hoisted_2$2 = {
     class: "text-body-2",
     style: { "margin": "0" }
   };
-  const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$6 = /* @__PURE__ */ vue.defineComponent({
     __name: "copy-all-content",
     props: {
       isActive: {}
@@ -189,9 +189,9 @@ ${file.content}\`\`\``).join("\n\n");
             }),
             vue.createVNode(_component_v_card_actions, null, {
               default: vue.withCtx(() => [
-                isLoading.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [
+                isLoading.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$3, [
                   vue.createVNode(_component_v_progress_circular, { "model-value": progress.value }, null, 8, ["model-value"]),
-                  vue.createElementVNode("p", _hoisted_2$1, vue.toDisplayString(progressMessage.value), 1)
+                  vue.createElementVNode("p", _hoisted_2$2, vue.toDisplayString(progressMessage.value), 1)
                 ])) : vue.createCommentVNode("", true),
                 helperNotInstalled.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
                   key: 1,
@@ -223,7 +223,7 @@ ${file.content}\`\`\``).join("\n\n");
       };
     }
   });
-  const _sfc_main$3 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$5 = /* @__PURE__ */ vue.defineComponent({
     __name: "copy-all",
     setup(__props) {
       return (_ctx, _cache) => {
@@ -241,26 +241,26 @@ ${file.content}\`\`\``).join("\n\n");
             }), null, 16)
           ]),
           default: vue.withCtx(({ isActive }) => [
-            vue.createVNode(_sfc_main$4, { "is-active": isActive }, null, 8, ["is-active"])
+            vue.createVNode(_sfc_main$6, { "is-active": isActive }, null, 8, ["is-active"])
           ]),
           _: 1
         });
       };
     }
   });
-  const _hoisted_1$1 = { style: { "display": "flex", "flex-direction": "row", "align-items": "center", "gap": "1em" } };
-  const _hoisted_2 = {
+  const _hoisted_1$2 = { style: { "display": "flex", "flex-direction": "row", "align-items": "center", "gap": "1em" } };
+  const _hoisted_2$1 = {
     class: "text-body-1",
     style: { "margin": "0" }
   };
-  const _hoisted_3 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_4 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_5 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_6 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_7 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_8 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_9 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
+  const _hoisted_3$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_4$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_5$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_6$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_7$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_8$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_9$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
     __name: "reset-all-content",
     props: {
       isActive: {},
@@ -403,12 +403,12 @@ ${file.content}\`\`\``).join("\n\n");
           default: vue.withCtx(() => [
             inProgress.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 0 }, {
               default: vue.withCtx(() => [
-                vue.createElementVNode("div", _hoisted_1$1, [
+                vue.createElementVNode("div", _hoisted_1$2, [
                   vue.createVNode(_component_v_progress_circular, {
                     "model-value": progress.value,
                     indeterminate: progress.value === -1
                   }, null, 8, ["model-value", "indeterminate"]),
-                  vue.createElementVNode("p", _hoisted_2, vue.toDisplayString(progressMessage.value), 1)
+                  vue.createElementVNode("p", _hoisted_2$1, vue.toDisplayString(progressMessage.value), 1)
                 ])
               ]),
               _: 1
@@ -420,21 +420,21 @@ ${file.content}\`\`\``).join("\n\n");
             })) : isAvailable.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 2 }, {
               default: vue.withCtx(() => [
                 vue.createTextVNode(" 你确定要将所有代码恢复为初始状态？"),
-                _hoisted_3,
-                _hoisted_4,
+                _hoisted_3$1,
+                _hoisted_4$1,
                 vue.createTextVNode(" 请注意，此操作不可撤销，所有未保存的代码将会丢失。 ")
               ]),
               _: 1
             })) : (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 3 }, {
               default: vue.withCtx(() => [
                 vue.createTextVNode(" 本插件需要《头歌复制助手 EduCoder Copy Helper》安装并启用后方可使用。"),
-                _hoisted_5,
+                _hoisted_5$1,
                 vue.createTextVNode("请安装并启用后刷新页面再试。 "),
-                _hoisted_6,
-                _hoisted_7,
+                _hoisted_6$1,
+                _hoisted_7$1,
                 vue.createTextVNode(" Greasy Fork 安装地址：https://greasyfork.org/scripts/495490 "),
-                _hoisted_8,
-                _hoisted_9,
+                _hoisted_8$1,
+                _hoisted_9$1,
                 vue.createTextVNode(" ScriptCat脚本猫 安装地址：https://scriptcat.org/script-show-page/1860 ")
               ]),
               _: 1
@@ -445,7 +445,7 @@ ${file.content}\`\`\``).join("\n\n");
       };
     }
   });
-  const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$3 = /* @__PURE__ */ vue.defineComponent({
     __name: "reset-all",
     setup(__props) {
       const isPersistent = vue.ref(false);
@@ -468,13 +468,375 @@ ${file.content}\`\`\``).join("\n\n");
             }), null, 16)
           ]),
           default: vue.withCtx(({ isActive }) => [
-            vue.createVNode(_sfc_main$2, {
+            vue.createVNode(_sfc_main$4, {
               "is-active": isActive,
               "set-is-persistent": setIsPersistent
             }, null, 8, ["is-active"])
           ]),
           _: 1
         }, 8, ["persistent"]);
+      };
+    }
+  });
+  const _hoisted_1$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_2 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_3 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_4 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_5 = /* @__PURE__ */ vue.createElementVNode("b", null, "该门实验成绩无效。", -1);
+  const _hoisted_6 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_7 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_8 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_9 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_10 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_11 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_12 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_13 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_14 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_15 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_16 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_17 = /* @__PURE__ */ vue.createElementVNode("b", null, "该门实验成绩无效。", -1);
+  const _hoisted_18 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_19 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_20 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_21 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_22 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_23 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_24 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_25 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_26 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
+    __name: "get-anser-content",
+    props: {
+      isActive: {},
+      setIsPersistent: { type: Function }
+    },
+    setup(__props) {
+      const props = __props;
+      const closeDialog = () => {
+        props.isActive.value = false;
+      };
+      const waitingForReading = vue.ref(-1);
+      const isInFirstCheck = vue.ref(true);
+      const isInSecondCheck = vue.ref(false);
+      const isInFinalResult = vue.ref(false);
+      const answerInfo = vue.ref({
+        answer_id: -1,
+        answer_radio: -1,
+        answer_score: -1
+      });
+      const answerContent = vue.ref("");
+      const inProgress = vue.ref(false);
+      const isError = vue.ref(false);
+      const isWaitingForRefresh = vue.ref(false);
+      const allPaths = vue.ref([]);
+      const handleGetAnswerInfo = async () => {
+        inProgress.value = true;
+        const window2 = _unsafeWindow;
+        const { taskId } = getTaskInfo();
+        const response = await fetch(
+          `https://data.educoder.net/api/tasks/${taskId}/get_answer_info.json`,
+          {
+            credentials: "include",
+            headers: {
+              "X-EDU-Signature": window2.xEduSignature || "",
+              "X-EDU-Timestamp": window2.xEduTimestamp || "",
+              "X-EDU-Type": window2.xEduType || "pc"
+            }
+          }
+        );
+        const res = await response.json();
+        if (res.status && res.status === 1 && res.message && res.message.answer_id) {
+          isInSecondCheck.value = true;
+          const answer_id = res.message.answer_id;
+          const answer_radio = res.message.answer_radio || -1;
+          const answer_score = res.message.answer_score || -1;
+          answerInfo.value = {
+            answer_id,
+            answer_radio,
+            answer_score
+          };
+        } else if (res.status && res.status === 3 && res.message && res.message[0] && res.message[0].answer_contents) {
+          answerContent.value = res.message[0].answer_contents;
+          isInFinalResult.value = true;
+        } else {
+          isError.value = true;
+        }
+        inProgress.value = false;
+      };
+      const handleUnclockAnswer = async () => {
+        inProgress.value = true;
+        const window2 = _unsafeWindow;
+        const { taskId } = getTaskInfo();
+        const answer_id = answerInfo.value.answer_id;
+        const url = new URL(`https://data.educoder.net/api/tasks/${taskId}/unlock_answer.json`);
+        url.searchParams.append("answer_id", answer_id.toString());
+        const response = await fetch(
+          url.href,
+          {
+            credentials: "include",
+            headers: {
+              "X-EDU-Signature": window2.xEduSignature || "",
+              "X-EDU-Timestamp": window2.xEduTimestamp || "",
+              "X-EDU-Type": window2.xEduType || "pc"
+            }
+          }
+        );
+        const res = await response.json();
+        if (res && res.contents) {
+          answerContent.value = res.contents;
+          isInFinalResult.value = true;
+        } else {
+          isError.value = true;
+        }
+        inProgress.value = false;
+      };
+      const waitingForReadingDisabled = vue.computed(() => waitingForReading.value > 0);
+      const isAvailable = vue.computed(() => isInFirstCheck || isInSecondCheck);
+      vue.watch(
+        () => waitingForReading.value,
+        (value) => {
+          if (value > 0) {
+            setTimeout(() => {
+              waitingForReading.value = value - 1;
+            }, 1e3);
+          }
+        }
+      );
+      vue.watch(() => isInFirstCheck.value, (value) => {
+        if (value) {
+          isInFirstCheck.value = true;
+          isInSecondCheck.value = false;
+          isInFinalResult.value = false;
+        }
+      });
+      vue.watch(() => isInSecondCheck.value, (value) => {
+        if (value) {
+          isInFirstCheck.value = false;
+          isInSecondCheck.value = true;
+          isInFinalResult.value = false;
+        }
+      });
+      vue.watch(() => isInFinalResult.value, (value) => {
+        if (value) {
+          isInFirstCheck.value = false;
+          isInSecondCheck.value = false;
+          isInFinalResult.value = true;
+        }
+      });
+      vue.onMounted(() => {
+        waitingForReading.value = 0;
+        const window2 = _unsafeWindow;
+        if (window2.educoderCopyHelper === void 0) {
+          isInFirstCheck.value = false;
+          return;
+        }
+        isInFirstCheck.value = true;
+        const paths = window2.taskChallengePath && window2.taskChallengePath.split("；").filter((value) => value !== "");
+        if (paths) {
+          allPaths.value = paths;
+        }
+      });
+      const handleRefresh = () => {
+        window.location.reload();
+      };
+      return (_ctx, _cache) => {
+        const _component_v_card_text = vue.resolveComponent("v-card-text");
+        const _component_v_textarea = vue.resolveComponent("v-textarea");
+        const _component_v_btn = vue.resolveComponent("v-btn");
+        const _component_v_spacer = vue.resolveComponent("v-spacer");
+        const _component_v_card = vue.resolveComponent("v-card");
+        return vue.openBlock(), vue.createBlock(_component_v_card, {
+          "prepend-icon": "mdi-alert",
+          title: isError.value ? "重置失败" : isInFinalResult.value ? "答案已解锁" : isAvailable.value ? "查看答案？这将会留下记录！" : "依赖插件未安装",
+          loading: inProgress.value
+        }, {
+          actions: vue.withCtx(() => [
+            !isAvailable.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+              key: 0,
+              text: "安装插件",
+              variant: "elevated",
+              color: "primary",
+              href: "https://greasyfork.org/scripts/495490",
+              target: "_blank"
+            })) : vue.createCommentVNode("", true),
+            !isAvailable.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+              key: 1,
+              text: "脚本猫",
+              variant: "text",
+              color: "primary",
+              href: "https://scriptcat.org/script-show-page/1860",
+              target: "_blank"
+            })) : vue.createCommentVNode("", true),
+            vue.createVNode(_component_v_spacer),
+            vue.createVNode(_component_v_btn, {
+              disabled: inProgress.value,
+              onClick: closeDialog
+            }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode(vue.toDisplayString(isError.value || isInFinalResult.value ? "完成" : "取消"), 1)
+              ]),
+              _: 1
+            }, 8, ["disabled"]),
+            isAvailable.value && !isError.value && !isWaitingForRefresh.value && isInFirstCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+              key: 2,
+              disabled: inProgress.value || waitingForReadingDisabled.value,
+              loading: inProgress.value,
+              color: "error",
+              variant: "tonal",
+              onClick: handleGetAnswerInfo
+            }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode(vue.toDisplayString(waitingForReadingDisabled.value ? `请等待 ${waitingForReading.value} 秒` : "已知晓上述内容，查看答案，并留下记录"), 1)
+              ]),
+              _: 1
+            }, 8, ["disabled", "loading"])) : vue.createCommentVNode("", true),
+            isAvailable.value && !isError.value && !isWaitingForRefresh.value && isInSecondCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+              key: 3,
+              disabled: inProgress.value || waitingForReadingDisabled.value,
+              loading: inProgress.value,
+              color: "error",
+              variant: "tonal",
+              onClick: handleUnclockAnswer
+            }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode(" 已知晓，解锁答案，并留下记录 ")
+              ]),
+              _: 1
+            }, 8, ["disabled", "loading"])) : vue.createCommentVNode("", true),
+            isWaitingForRefresh.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+              key: 4,
+              color: "primary",
+              variant: "tonal",
+              onClick: handleRefresh
+            }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode(" 手动刷新页面 ")
+              ]),
+              _: 1
+            })) : vue.createCommentVNode("", true)
+          ]),
+          default: vue.withCtx(() => [
+            isError.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 0 }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode(" 重置失败，请刷新再试。")
+              ]),
+              _: 1
+            })) : isInFirstCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 1 }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode(" 你确定要查看当前练习答案？"),
+                _hoisted_1$1,
+                vue.createTextVNode("一旦查看答案，你的信息会被平台记录，可供老师查阅。"),
+                _hoisted_2,
+                _hoisted_3,
+                vue.createTextVNode(" 被记录的查看答案操作会导致但不限于以下结果："),
+                _hoisted_4,
+                _hoisted_5,
+                _hoisted_6,
+                _hoisted_7,
+                vue.createTextVNode(" 请注意，此操作不可撤销！"),
+                _hoisted_8,
+                vue.createTextVNode("一旦查看答案，便会不可逆转地留下记录。 ")
+              ]),
+              _: 1
+            })) : isInSecondCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 2 }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode(" 将花费 " + vue.toDisplayString(answerInfo.value.answer_score) + " 积分查看答案", 1),
+                _hoisted_9,
+                _hoisted_10,
+                vue.createTextVNode(" answer_id: " + vue.toDisplayString(answerInfo.value.answer_id), 1),
+                _hoisted_11,
+                vue.createTextVNode(" answer_radio: " + vue.toDisplayString(answerInfo.value.answer_radio), 1),
+                _hoisted_12,
+                vue.createTextVNode(" answer_score: " + vue.toDisplayString(answerInfo.value.answer_score), 1),
+                _hoisted_13,
+                _hoisted_14,
+                vue.createTextVNode(" 一旦查看答案，你的信息会被平台记录，可供老师查阅。"),
+                _hoisted_15,
+                vue.createTextVNode(" 可能导致但不限于以下结果："),
+                _hoisted_16,
+                _hoisted_17,
+                _hoisted_18,
+                _hoisted_19,
+                vue.createTextVNode(" 你确定要继续吗？ ")
+              ]),
+              _: 1
+            })) : isInFinalResult.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 3 }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode(" 答案解锁已被记录。"),
+                _hoisted_20,
+                _hoisted_21,
+                vue.createVNode(_component_v_textarea, {
+                  "auto-grow": "",
+                  modelValue: answerContent.value,
+                  "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => answerContent.value = $event),
+                  disabled: inProgress.value,
+                  readonly: isError.value || inProgress.value,
+                  placeholder: "答案将在这里显示",
+                  loading: inProgress.value,
+                  "persistent-placeholder": ""
+                }, null, 8, ["modelValue", "disabled", "readonly", "loading"])
+              ]),
+              _: 1
+            })) : (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 4 }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode(" 本插件需要《头歌复制助手 EduCoder Copy Helper》安装并启用后方可使用。"),
+                _hoisted_22,
+                vue.createTextVNode("请安装并启用后刷新页面再试。 "),
+                _hoisted_23,
+                _hoisted_24,
+                vue.createTextVNode(" Greasy Fork 安装地址：https://greasyfork.org/scripts/495490 "),
+                _hoisted_25,
+                _hoisted_26,
+                vue.createTextVNode(" ScriptCat脚本猫 安装地址：https://scriptcat.org/script-show-page/1860 ")
+              ]),
+              _: 1
+            }))
+          ]),
+          _: 1
+        }, 8, ["title", "loading"]);
+      };
+    }
+  });
+  const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
+    __name: "get-anser",
+    setup(__props) {
+      const isPersistent = vue.ref(false);
+      const setIsPersistent = (value) => {
+        isPersistent.value = value;
+      };
+      const isAvailable = vue.ref(false);
+      vue.onMounted(() => {
+        if (window.educoderAnswerHelper) {
+          isAvailable.value = true;
+        } else {
+          isAvailable.value = false;
+        }
+      });
+      return (_ctx, _cache) => {
+        const _component_v_btn = vue.resolveComponent("v-btn");
+        const _component_v_dialog = vue.resolveComponent("v-dialog");
+        return isAvailable.value ? (vue.openBlock(), vue.createBlock(_component_v_dialog, {
+          key: 0,
+          "max-width": "800",
+          width: "600",
+          scrollable: "",
+          persistent: isPersistent.value
+        }, {
+          activator: vue.withCtx(({ props: activatorProps }) => [
+            vue.createVNode(_component_v_btn, vue.mergeProps(activatorProps, {
+              color: "surface-variant",
+              text: "答案？",
+              variant: "plain"
+            }), null, 16)
+          ]),
+          default: vue.withCtx(({ isActive }) => [
+            vue.createVNode(_sfc_main$2, {
+              "is-active": isActive,
+              "set-is-persistent": setIsPersistent
+            }, null, 8, ["is-active"])
+          ]),
+          _: 1
+        }, 8, ["persistent"])) : vue.createCommentVNode("", true);
       };
     }
   });
@@ -485,7 +847,8 @@ ${file.content}\`\`\``).join("\n\n");
       return (_ctx, _cache) => {
         return vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
           vue.createVNode(_sfc_main$1),
-          vue.createVNode(_sfc_main$3)
+          vue.createVNode(_sfc_main$3),
+          vue.createVNode(_sfc_main$5)
         ]);
       };
     }

@@ -54,15 +54,15 @@ const handleReset = async () => {
     );
     const res = await response.json();
     if (res && res.content) {
-      console.info(`重置成功：${path}`)
+      console.info(`重置成功：${path}`);
     } else {
-      console.error(`重置失败：${path}`,res)
+      console.error(`重置失败：${path}`, res);
     }
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
 
-  progress.value = -1
-  progressMessage.value = "等待刷新"
+  progress.value = -1;
+  progressMessage.value = "等待刷新";
   isWaitingForRefresh.value = true;
   await new Promise((resolve) => setTimeout(resolve, 1000));
   window.location.reload();
@@ -93,7 +93,9 @@ const handleRefresh = () => {
 <template>
   <v-card
     prepend-icon="mdi-alert"
-    :title="isError ? '重置失败' :isAvailable ? '重置全部代码？' : '依赖插件未安装'"
+    :title="
+      isError ? '重置失败' : isAvailable ? '重置全部代码？' : '依赖插件未安装'
+    "
     :loading="inProgress"
   >
     <v-card-text v-if="inProgress">
@@ -105,16 +107,14 @@ const handleRefresh = () => {
           gap: 1em;
         "
       >
-      <v-progress-circular
-        :model-value="progress"
-        :indeterminate="progress === -1"
-      ></v-progress-circular>
-      <p class="text-body-1" style="margin: 0">{{ progressMessage }}</p>
+        <v-progress-circular
+          :model-value="progress"
+          :indeterminate="progress === -1"
+        ></v-progress-circular>
+        <p class="text-body-1" style="margin: 0">{{ progressMessage }}</p>
       </div>
     </v-card-text>
-    <v-card-text v-else-if="isError">
-      重置失败，请刷新再试。
-    </v-card-text>
+    <v-card-text v-else-if="isError"> 重置失败，请刷新再试。 </v-card-text>
     <v-card-text v-else-if="isAvailable">
       你确定要将所有代码恢复为初始状态？<br /><br />
       请注意，此操作不可撤销，所有未保存的代码将会丢失。
@@ -127,28 +127,49 @@ const handleRefresh = () => {
       ScriptCat脚本猫 安装地址：https://scriptcat.org/script-show-page/1860
     </v-card-text>
     <template v-slot:actions>
-      <v-btn v-if="!isAvailable" text="安装插件" variant="elevated" color="primary"
-             href="https://greasyfork.org/scripts/495490" target="_blank"></v-btn>
-      <v-btn v-if="!isAvailable" text="脚本猫" variant="text" color="primary"
-             href="https://scriptcat.org/script-show-page/1860" target="_blank"></v-btn>
+      <v-btn
+        v-if="!isAvailable"
+        text="安装插件"
+        variant="elevated"
+        color="primary"
+        href="https://greasyfork.org/scripts/495490"
+        target="_blank"
+      ></v-btn>
+      <v-btn
+        v-if="!isAvailable"
+        text="脚本猫"
+        variant="text"
+        color="primary"
+        href="https://scriptcat.org/script-show-page/1860"
+        target="_blank"
+      ></v-btn>
 
       <v-spacer></v-spacer>
 
       <v-btn :disabled="inProgress" @click="closeDialog">
-        {{isError ? '完成' : '取消' }}
+        {{ isError ? "完成" : "取消" }}
       </v-btn>
 
-      <v-btn :disabled="inProgress" v-if="isAvailable && !isError && !isWaitingForRefresh" color="error" variant="tonal" @click="handleReset">
+      <v-btn
+        :disabled="inProgress"
+        v-if="isAvailable && !isError && !isWaitingForRefresh"
+        color="error"
+        variant="tonal"
+        @click="handleReset"
+      >
         重置所有代码
       </v-btn>
 
-      <v-btn v-if="isWaitingForRefresh" color="primary" variant="tonal" @click="handleRefresh">
+      <v-btn
+        v-if="isWaitingForRefresh"
+        color="primary"
+        variant="tonal"
+        @click="handleRefresh"
+      >
         手动刷新页面
       </v-btn>
     </template>
   </v-card>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

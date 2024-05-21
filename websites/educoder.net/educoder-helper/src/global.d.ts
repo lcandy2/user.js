@@ -5,6 +5,7 @@ declare global {
     xEduTimestamp: string;
     xEduType: string;
     educoderCopyHelper: string;
+    educoderAnswerHelper: string;
   }
 }
 

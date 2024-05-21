@@ -78,7 +78,7 @@ const filesContent = computed(() => {
     return "获取代码失败，请刷新再试。";
   }
   return files.value
-  .filter((file) => file.visible)
+    .filter((file) => file.visible)
     .map((file) => `${file.name}\n\`\`\`\n${file.content}\`\`\``)
     .join("\n\n");
 });
@@ -94,14 +94,23 @@ watch(
   (newValues) => {
     allChecked.value = newValues.every(Boolean);
   },
-  { deep: true }
+  { deep: true },
 );
 </script>
 
 <template>
   <v-card :loading="isLoading" title="全部代码">
     <v-card-text>
-      <v-checkbox-btn v-if="files.length" label="全选" v-model="allChecked" @click="() => {(allChecked) && (files.forEach((file) => (file.visible = false)))}"></v-checkbox-btn>
+      <v-checkbox-btn
+        v-if="files.length"
+        label="全选"
+        v-model="allChecked"
+        @click="
+          () => {
+            allChecked && files.forEach((file) => (file.visible = false));
+          }
+        "
+      ></v-checkbox-btn>
       <v-checkbox-btn
         v-for="(file, index) in files"
         :key="index"
@@ -132,8 +141,22 @@ watch(
         <v-progress-circular :model-value="progress"></v-progress-circular>
         <p class="text-body-2" style="margin: 0">{{ progressMessage }}</p>
       </div>
-      <v-btn v-if="helperNotInstalled" text="安装《头歌复制助手 EduCoder Copy Helper》" variant="elevated" color="primary" href="https://greasyfork.org/scripts/495490" target="_blank"></v-btn>
-      <v-btn v-if="helperNotInstalled" text="通过 ScriptCat 脚本猫安装" variant="text" color="primary" href="https://scriptcat.org/script-show-page/1860" target="_blank"></v-btn>
+      <v-btn
+        v-if="helperNotInstalled"
+        text="安装《头歌复制助手 EduCoder Copy Helper》"
+        variant="elevated"
+        color="primary"
+        href="https://greasyfork.org/scripts/495490"
+        target="_blank"
+      ></v-btn>
+      <v-btn
+        v-if="helperNotInstalled"
+        text="通过 ScriptCat 脚本猫安装"
+        variant="text"
+        color="primary"
+        href="https://scriptcat.org/script-show-page/1860"
+        target="_blank"
+      ></v-btn>
       <v-spacer></v-spacer>
       <v-btn text="关闭" @click="closeDialog"></v-btn>
     </v-card-actions>

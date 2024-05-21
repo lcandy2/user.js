@@ -1,26 +1,33 @@
 <script setup lang="ts">
-import ResetAllContent from "./reset-all-content.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import GetAnserContent from "./get-anser-content.vue";
 
 const isPersistent = ref(false);
 const setIsPersistent = (value: boolean) => {
   isPersistent.value = value;
 };
+const isAvailable = ref(false);
+
+onMounted(() => {
+  if (window.educoderAnswerHelper) {
+    isAvailable.value = true;
+  } else {
+    isAvailable.value = false;  }
+});
 </script>
 
 <template>
-  <v-dialog max-width="400" :persistent="isPersistent">
+  <v-dialog v-if="isAvailable" max-width="800" width="600" scrollable :persistent="isPersistent">
     <template v-slot:activator="{ props: activatorProps }">
       <v-btn
         v-bind="activatorProps"
-        prepend-icon="mdi-restart"
-        color="warning"
-        text="全部重置"
+        color="surface-variant"
+        text="答案？"
         variant="plain"
       ></v-btn>
     </template>
     <template v-slot:default="{ isActive }">
-      <ResetAllContent
+      <GetAnserContent
         :is-active="isActive"
         :set-is-persistent="setIsPersistent"
       />

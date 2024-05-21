@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         头歌助手 Educoder Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper
-// @version      1.5
+// @version      1.5.1
 // @author       甜檸Cirtron (lcandy2)
 // @description  【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。🧹简单高效代码，无需任何权限，无需任何配置，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全
 // @license      AGPL-3.0-or-later
@@ -482,9 +482,9 @@ ${file.content}\`\`\``).join("\n\n");
   const _hoisted_2 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_3 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_4 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_5 = /* @__PURE__ */ vue.createElementVNode("b", null, "该门实验成绩无效。", -1);
+  const _hoisted_5 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_6 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_7 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_7 = /* @__PURE__ */ vue.createElementVNode("b", null, "该门实验成绩无效。", -1);
   const _hoisted_8 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_9 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_10 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
@@ -494,9 +494,9 @@ ${file.content}\`\`\``).join("\n\n");
   const _hoisted_14 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_15 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_16 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_17 = /* @__PURE__ */ vue.createElementVNode("b", null, "该门实验成绩无效。", -1);
+  const _hoisted_17 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_18 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _hoisted_19 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_19 = /* @__PURE__ */ vue.createElementVNode("b", null, "该门实验成绩无效。", -1);
   const _hoisted_20 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_21 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_22 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
@@ -504,6 +504,8 @@ ${file.content}\`\`\``).join("\n\n");
   const _hoisted_24 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_25 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_26 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_27 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_28 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
     __name: "get-anser-content",
     props: {
@@ -519,6 +521,7 @@ ${file.content}\`\`\``).join("\n\n");
       const isInFirstCheck = vue.ref(true);
       const isInSecondCheck = vue.ref(false);
       const isInFinalResult = vue.ref(false);
+      const isHidden = vue.ref(true);
       const answerInfo = vue.ref({
         answer_id: -1,
         answer_radio: -1,
@@ -527,6 +530,7 @@ ${file.content}\`\`\``).join("\n\n");
       const answerContent = vue.ref("");
       const inProgress = vue.ref(false);
       const isError = vue.ref(false);
+      const errorMessages = vue.ref("");
       const isWaitingForRefresh = vue.ref(false);
       const allPaths = vue.ref([]);
       const handleGetAnswerInfo = async () => {
@@ -560,6 +564,7 @@ ${file.content}\`\`\``).join("\n\n");
           isInFinalResult.value = true;
         } else {
           isError.value = true;
+          errorMessages.value = JSON.stringify(res);
         }
         inProgress.value = false;
       };
@@ -568,25 +573,25 @@ ${file.content}\`\`\``).join("\n\n");
         const window2 = _unsafeWindow;
         const { taskId } = getTaskInfo();
         const answer_id = answerInfo.value.answer_id;
-        const url = new URL(`https://data.educoder.net/api/tasks/${taskId}/unlock_answer.json`);
-        url.searchParams.append("answer_id", answer_id.toString());
-        const response = await fetch(
-          url.href,
-          {
-            credentials: "include",
-            headers: {
-              "X-EDU-Signature": window2.xEduSignature || "",
-              "X-EDU-Timestamp": window2.xEduTimestamp || "",
-              "X-EDU-Type": window2.xEduType || "pc"
-            }
-          }
+        const url = new URL(
+          `https://data.educoder.net/api/tasks/${taskId}/unlock_answer.json`
         );
+        url.searchParams.append("answer_id", answer_id.toString());
+        const response = await fetch(url.href, {
+          credentials: "include",
+          headers: {
+            "X-EDU-Signature": window2.xEduSignature || "",
+            "X-EDU-Timestamp": window2.xEduTimestamp || "",
+            "X-EDU-Type": window2.xEduType || "pc"
+          }
+        });
         const res = await response.json();
         if (res && res.contents) {
           answerContent.value = res.contents;
           isInFinalResult.value = true;
         } else {
           isError.value = true;
+          errorMessages.value = JSON.stringify(res);
         }
         inProgress.value = false;
       };
@@ -602,27 +607,36 @@ ${file.content}\`\`\``).join("\n\n");
           }
         }
       );
-      vue.watch(() => isInFirstCheck.value, (value) => {
-        if (value) {
-          isInFirstCheck.value = true;
-          isInSecondCheck.value = false;
-          isInFinalResult.value = false;
+      vue.watch(
+        () => isInFirstCheck.value,
+        (value) => {
+          if (value) {
+            isInFirstCheck.value = true;
+            isInSecondCheck.value = false;
+            isInFinalResult.value = false;
+          }
         }
-      });
-      vue.watch(() => isInSecondCheck.value, (value) => {
-        if (value) {
-          isInFirstCheck.value = false;
-          isInSecondCheck.value = true;
-          isInFinalResult.value = false;
+      );
+      vue.watch(
+        () => isInSecondCheck.value,
+        (value) => {
+          if (value) {
+            isInFirstCheck.value = false;
+            isInSecondCheck.value = true;
+            isInFinalResult.value = false;
+          }
         }
-      });
-      vue.watch(() => isInFinalResult.value, (value) => {
-        if (value) {
-          isInFirstCheck.value = false;
-          isInSecondCheck.value = false;
-          isInFinalResult.value = true;
+      );
+      vue.watch(
+        () => isInFinalResult.value,
+        (value) => {
+          if (value) {
+            isInFirstCheck.value = false;
+            isInSecondCheck.value = false;
+            isInFinalResult.value = true;
+          }
         }
-      });
+      );
       vue.onMounted(() => {
         waitingForReading.value = 0;
         const window2 = _unsafeWindow;
@@ -631,14 +645,16 @@ ${file.content}\`\`\``).join("\n\n");
           return;
         }
         isInFirstCheck.value = true;
+        if (window2.educoderAnswerHelper === void 0) {
+          isHidden.value = true;
+          return;
+        }
+        isHidden.value = false;
         const paths = window2.taskChallengePath && window2.taskChallengePath.split("；").filter((value) => value !== "");
         if (paths) {
           allPaths.value = paths;
         }
       });
-      const handleRefresh = () => {
-        window.location.reload();
-      };
       return (_ctx, _cache) => {
         const _component_v_card_text = vue.resolveComponent("v-card-text");
         const _component_v_textarea = vue.resolveComponent("v-textarea");
@@ -647,7 +663,7 @@ ${file.content}\`\`\``).join("\n\n");
         const _component_v_card = vue.resolveComponent("v-card");
         return vue.openBlock(), vue.createBlock(_component_v_card, {
           "prepend-icon": "mdi-alert",
-          title: isError.value ? "重置失败" : isInFinalResult.value ? "答案已解锁" : isAvailable.value ? "查看答案？这将会留下记录！" : "依赖插件未安装",
+          title: isHidden.value ? "存在疑问？" : isError.value ? "查看答案失败" : isInFinalResult.value ? "答案已解锁" : isAvailable.value ? "查看答案？这将会留下记录！" : "依赖插件未安装",
           loading: inProgress.value
         }, {
           actions: vue.withCtx(() => [
@@ -673,11 +689,11 @@ ${file.content}\`\`\``).join("\n\n");
               onClick: closeDialog
             }, {
               default: vue.withCtx(() => [
-                vue.createTextVNode(vue.toDisplayString(isError.value || isInFinalResult.value ? "完成" : "取消"), 1)
+                vue.createTextVNode(vue.toDisplayString(isHidden.value ? "了解" : isError.value || isInFinalResult.value ? "完成" : "取消"), 1)
               ]),
               _: 1
             }, 8, ["disabled"]),
-            isAvailable.value && !isError.value && !isWaitingForRefresh.value && isInFirstCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+            isAvailable.value && !isError.value && !isWaitingForRefresh.value && isInFirstCheck.value && !isHidden.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
               key: 2,
               disabled: inProgress.value || waitingForReadingDisabled.value,
               loading: inProgress.value,
@@ -690,7 +706,7 @@ ${file.content}\`\`\``).join("\n\n");
               ]),
               _: 1
             }, 8, ["disabled", "loading"])) : vue.createCommentVNode("", true),
-            isAvailable.value && !isError.value && !isWaitingForRefresh.value && isInSecondCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+            isAvailable.value && !isError.value && !isWaitingForRefresh.value && isInSecondCheck.value && !isHidden.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
               key: 3,
               disabled: inProgress.value || waitingForReadingDisabled.value,
               loading: inProgress.value,
@@ -702,69 +718,66 @@ ${file.content}\`\`\``).join("\n\n");
                 vue.createTextVNode(" 已知晓，解锁答案，并留下记录 ")
               ]),
               _: 1
-            }, 8, ["disabled", "loading"])) : vue.createCommentVNode("", true),
-            isWaitingForRefresh.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
-              key: 4,
-              color: "primary",
-              variant: "tonal",
-              onClick: handleRefresh
-            }, {
-              default: vue.withCtx(() => [
-                vue.createTextVNode(" 手动刷新页面 ")
-              ]),
-              _: 1
-            })) : vue.createCommentVNode("", true)
+            }, 8, ["disabled", "loading"])) : vue.createCommentVNode("", true)
           ]),
           default: vue.withCtx(() => [
-            isError.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 0 }, {
+            isHidden.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 0 }, {
               default: vue.withCtx(() => [
-                vue.createTextVNode(" 重置失败，请刷新再试。")
+                vue.createTextVNode("如果有使用上的疑问，请联系开发者。")
               ]),
               _: 1
-            })) : isInFirstCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 1 }, {
+            })) : isError.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 1 }, {
+              default: vue.withCtx(() => [
+                vue.createTextVNode("查看答案失败，可能当前练习不存在答案，或刷新再试，信息未记录。"),
+                _hoisted_1$1,
+                _hoisted_2,
+                vue.createTextVNode(vue.toDisplayString(errorMessages.value), 1)
+              ]),
+              _: 1
+            })) : isInFirstCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 2 }, {
               default: vue.withCtx(() => [
                 vue.createTextVNode(" 你确定要查看当前练习答案？"),
-                _hoisted_1$1,
-                vue.createTextVNode("一旦查看答案，你的信息会被平台记录，可供老师查阅。"),
-                _hoisted_2,
                 _hoisted_3,
-                vue.createTextVNode(" 被记录的查看答案操作会导致但不限于以下结果："),
+                vue.createTextVNode("一旦查看答案，你的信息会被平台记录，可供老师查阅。"),
                 _hoisted_4,
                 _hoisted_5,
+                vue.createTextVNode(" 被记录的查看答案操作会导致但不限于以下结果："),
                 _hoisted_6,
                 _hoisted_7,
-                vue.createTextVNode(" 请注意，此操作不可撤销！"),
                 _hoisted_8,
+                _hoisted_9,
+                vue.createTextVNode(" 请注意，此操作不可撤销！"),
+                _hoisted_10,
                 vue.createTextVNode("一旦查看答案，便会不可逆转地留下记录。 ")
               ]),
               _: 1
-            })) : isInSecondCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 2 }, {
+            })) : isInSecondCheck.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 3 }, {
               default: vue.withCtx(() => [
                 vue.createTextVNode(" 将花费 " + vue.toDisplayString(answerInfo.value.answer_score) + " 积分查看答案", 1),
-                _hoisted_9,
-                _hoisted_10,
-                vue.createTextVNode(" answer_id: " + vue.toDisplayString(answerInfo.value.answer_id), 1),
                 _hoisted_11,
-                vue.createTextVNode(" answer_radio: " + vue.toDisplayString(answerInfo.value.answer_radio), 1),
                 _hoisted_12,
-                vue.createTextVNode(" answer_score: " + vue.toDisplayString(answerInfo.value.answer_score), 1),
+                vue.createTextVNode(" answer_id: " + vue.toDisplayString(answerInfo.value.answer_id), 1),
                 _hoisted_13,
+                vue.createTextVNode(" answer_radio: " + vue.toDisplayString(answerInfo.value.answer_radio), 1),
                 _hoisted_14,
-                vue.createTextVNode(" 一旦查看答案，你的信息会被平台记录，可供老师查阅。"),
+                vue.createTextVNode(" answer_score: " + vue.toDisplayString(answerInfo.value.answer_score), 1),
                 _hoisted_15,
-                vue.createTextVNode(" 可能导致但不限于以下结果："),
                 _hoisted_16,
+                vue.createTextVNode(" 一旦查看答案，你的信息会被平台记录，可供老师查阅。"),
                 _hoisted_17,
+                vue.createTextVNode(" 可能导致但不限于以下结果："),
                 _hoisted_18,
                 _hoisted_19,
+                _hoisted_20,
+                _hoisted_21,
                 vue.createTextVNode(" 你确定要继续吗？ ")
               ]),
               _: 1
-            })) : isInFinalResult.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 3 }, {
+            })) : isInFinalResult.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 4 }, {
               default: vue.withCtx(() => [
                 vue.createTextVNode(" 答案解锁已被记录。"),
-                _hoisted_20,
-                _hoisted_21,
+                _hoisted_22,
+                _hoisted_23,
                 vue.createVNode(_component_v_textarea, {
                   "auto-grow": "",
                   modelValue: answerContent.value,
@@ -777,16 +790,16 @@ ${file.content}\`\`\``).join("\n\n");
                 }, null, 8, ["modelValue", "disabled", "readonly", "loading"])
               ]),
               _: 1
-            })) : (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 4 }, {
+            })) : (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 5 }, {
               default: vue.withCtx(() => [
                 vue.createTextVNode(" 本插件需要《头歌复制助手 EduCoder Copy Helper》安装并启用后方可使用。"),
-                _hoisted_22,
-                vue.createTextVNode("请安装并启用后刷新页面再试。 "),
-                _hoisted_23,
                 _hoisted_24,
-                vue.createTextVNode(" Greasy Fork 安装地址：https://greasyfork.org/scripts/495490 "),
+                vue.createTextVNode("请安装并启用后刷新页面再试。 "),
                 _hoisted_25,
                 _hoisted_26,
+                vue.createTextVNode(" Greasy Fork 安装地址：https://greasyfork.org/scripts/495490 "),
+                _hoisted_27,
+                _hoisted_28,
                 vue.createTextVNode(" ScriptCat脚本猫 安装地址：https://scriptcat.org/script-show-page/1860 ")
               ]),
               _: 1
@@ -804,19 +817,10 @@ ${file.content}\`\`\``).join("\n\n");
       const setIsPersistent = (value) => {
         isPersistent.value = value;
       };
-      const isAvailable = vue.ref(false);
-      vue.onMounted(() => {
-        if (window.educoderAnswerHelper) {
-          isAvailable.value = true;
-        } else {
-          isAvailable.value = false;
-        }
-      });
       return (_ctx, _cache) => {
         const _component_v_btn = vue.resolveComponent("v-btn");
         const _component_v_dialog = vue.resolveComponent("v-dialog");
-        return isAvailable.value ? (vue.openBlock(), vue.createBlock(_component_v_dialog, {
-          key: 0,
+        return vue.openBlock(), vue.createBlock(_component_v_dialog, {
           "max-width": "800",
           width: "600",
           scrollable: "",
@@ -825,7 +829,7 @@ ${file.content}\`\`\``).join("\n\n");
           activator: vue.withCtx(({ props: activatorProps }) => [
             vue.createVNode(_component_v_btn, vue.mergeProps(activatorProps, {
               color: "surface-variant",
-              text: "答案？",
+              text: "？",
               variant: "plain"
             }), null, 16)
           ]),
@@ -836,7 +840,7 @@ ${file.content}\`\`\``).join("\n\n");
             }, null, 8, ["is-active"])
           ]),
           _: 1
-        }, 8, ["persistent"])) : vue.createCommentVNode("", true);
+        }, 8, ["persistent"]);
       };
     }
   });

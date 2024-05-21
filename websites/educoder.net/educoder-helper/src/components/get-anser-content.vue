@@ -22,19 +22,18 @@ const waitingForReading = ref(-1);
 const isInFirstCheck = ref(true);
 const isInSecondCheck = ref(false);
 const isInFinalResult = ref(false);
+const isHidden = ref(true);
 
 const answerInfo = ref<AnswerInfo>({
   answer_id: -1,
   answer_radio: -1,
-  answer_score: -1
+  answer_score: -1,
 });
 const answerContent = ref<string>("");
 
 const inProgress = ref(false);
-// const progress = ref(-1);
-// const progressMessage = ref("准备开始");
-// const isAvailable = ref(false);
 const isError = ref(false);
+const errorMessages = ref<string>("");
 const isWaitingForRefresh = ref(false);
 const allPaths = ref<string[]>([]);
 
@@ -49,12 +48,12 @@ const handleGetAnswerInfo = async () => {
       headers: {
         "X-EDU-Signature": window.xEduSignature || "",
         "X-EDU-Timestamp": window.xEduTimestamp || "",
-        "X-EDU-Type": window.xEduType || "pc"
-      }
-    }
+        "X-EDU-Type": window.xEduType || "pc",
+      },
+    },
   );
   const res = await response.json();
-  if ((res.status) && (res.status === 1) && (res.message) && (res.message.answer_id)) {
+  if (res.status && res.status === 1 && res.message && res.message.answer_id) {
     isInSecondCheck.value = true;
     const answer_id = res.message.answer_id;
     const answer_radio = res.message.answer_radio || -1;
@@ -62,13 +61,20 @@ const handleGetAnswerInfo = async () => {
     answerInfo.value = {
       answer_id,
       answer_radio,
-      answer_score
+      answer_score,
     };
-  } else if ((res.status) && (res.status === 3) && (res.message)&& (res.message[0]) && (res.message[0].answer_contents)){
+  } else if (
+    res.status &&
+    res.status === 3 &&
+    res.message &&
+    res.message[0] &&
+    res.message[0].answer_contents
+  ) {
     answerContent.value = res.message[0].answer_contents;
     isInFinalResult.value = true;
   } else {
     isError.value = true;
+    errorMessages.value = JSON.stringify(res);
   }
   inProgress.value = false;
 };
@@ -78,25 +84,25 @@ const handleUnclockAnswer = async () => {
   const window = unsafeWindow;
   const { taskId } = getTaskInfo();
   const answer_id = answerInfo.value.answer_id;
-  const url = new URL(`https://data.educoder.net/api/tasks/${taskId}/unlock_answer.json`);
-  url.searchParams.append("answer_id", answer_id.toString());
-  const response = await fetch(
-    url.href,
-    {
-      credentials: "include",
-      headers: {
-        "X-EDU-Signature": window.xEduSignature || "",
-        "X-EDU-Timestamp": window.xEduTimestamp || "",
-        "X-EDU-Type": window.xEduType || "pc"
-      }
-    }
+  const url = new URL(
+    `https://data.educoder.net/api/tasks/${taskId}/unlock_answer.json`,
   );
+  url.searchParams.append("answer_id", answer_id.toString());
+  const response = await fetch(url.href, {
+    credentials: "include",
+    headers: {
+      "X-EDU-Signature": window.xEduSignature || "",
+      "X-EDU-Timestamp": window.xEduTimestamp || "",
+      "X-EDU-Type": window.xEduType || "pc",
+    },
+  });
   const res = await response.json();
   if (res && res.contents) {
     answerContent.value = res.contents;
     isInFinalResult.value = true;
   } else {
     isError.value = true;
+    errorMessages.value = JSON.stringify(res);
   }
   inProgress.value = false;
 };
@@ -112,32 +118,41 @@ watch(
         waitingForReading.value = value - 1;
       }, 1000);
     }
-  }
+  },
 );
 
-watch(() => isInFirstCheck.value, (value) => {
-  if (value) {
-    isInFirstCheck.value = true;
-    isInSecondCheck.value = false;
-    isInFinalResult.value = false;
-  }
-});
+watch(
+  () => isInFirstCheck.value,
+  (value) => {
+    if (value) {
+      isInFirstCheck.value = true;
+      isInSecondCheck.value = false;
+      isInFinalResult.value = false;
+    }
+  },
+);
 
-watch(() => isInSecondCheck.value, (value) => {
-  if (value) {
-    isInFirstCheck.value = false;
-    isInSecondCheck.value = true;
-    isInFinalResult.value = false;
-  }
-});
+watch(
+  () => isInSecondCheck.value,
+  (value) => {
+    if (value) {
+      isInFirstCheck.value = false;
+      isInSecondCheck.value = true;
+      isInFinalResult.value = false;
+    }
+  },
+);
 
-watch(() => isInFinalResult.value, (value) => {
-  if (value) {
-    isInFirstCheck.value = false;
-    isInSecondCheck.value = false;
-    isInFinalResult.value = true;
-  }
-});
+watch(
+  () => isInFinalResult.value,
+  (value) => {
+    if (value) {
+      isInFirstCheck.value = false;
+      isInSecondCheck.value = false;
+      isInFinalResult.value = true;
+    }
+  },
+);
 
 onMounted(() => {
   waitingForReading.value = 0;
@@ -147,6 +162,11 @@ onMounted(() => {
     return;
   }
   isInFirstCheck.value = true;
+  if (window.educoderAnswerHelper === undefined) {
+    isHidden.value = true;
+    return;
+  }
+  isHidden.value = false;
   const paths =
     window.taskChallengePath &&
     window.taskChallengePath.split("；").filter((value) => value !== "");
@@ -164,14 +184,30 @@ const handleRefresh = () => {
   <v-card
     prepend-icon="mdi-alert"
     :title="
-      isError ? '重置失败' : isInFinalResult? '答案已解锁' : isAvailable ? '查看答案？这将会留下记录！' : '依赖插件未安装'
+      isHidden
+        ? '存在疑问？'
+        : isError
+          ? '查看答案失败'
+          : isInFinalResult
+            ? '答案已解锁'
+            : isAvailable
+              ? '查看答案？这将会留下记录！'
+              : '依赖插件未安装'
     "
     :loading="inProgress"
   >
-    <v-card-text v-if="isError"> 重置失败，请刷新再试。</v-card-text>
+    <v-card-text v-if="isHidden"
+      >如果有使用上的疑问，请联系开发者。</v-card-text
+    >
+    <v-card-text v-else-if="isError"
+      >查看答案失败，可能当前练习不存在答案，或刷新再试，信息未记录。<br /><br />{{
+        errorMessages
+      }}</v-card-text
+    >
     <v-card-text v-else-if="isInFirstCheck">
       你确定要查看当前练习答案？<br />一旦查看答案，你的信息会被平台记录，可供老师查阅。<br /><br />
-      被记录的查看答案操作会导致但不限于以下结果：<br /><b>该门实验成绩无效。</b><br /><br />
+      被记录的查看答案操作会导致但不限于以下结果：<br /><b>该门实验成绩无效。</b
+      ><br /><br />
       请注意，此操作不可撤销！<br />一旦查看答案，便会不可逆转地留下记录。
     </v-card-text>
     <v-card-text v-else-if="isInSecondCheck">
@@ -223,38 +259,45 @@ const handleRefresh = () => {
       <v-spacer></v-spacer>
 
       <v-btn :disabled="inProgress" @click="closeDialog">
-        {{ isError || isInFinalResult ? "完成" : "取消" }}
+        {{ isHidden ? "了解" : isError || isInFinalResult ? "完成" : "取消" }}
       </v-btn>
 
       <v-btn
         :disabled="inProgress || waitingForReadingDisabled"
         :loading="inProgress"
-        v-if="isAvailable && !isError && !isWaitingForRefresh && isInFirstCheck"
+        v-if="
+          isAvailable &&
+          !isError &&
+          !isWaitingForRefresh &&
+          isInFirstCheck &&
+          !isHidden
+        "
         color="error"
         variant="tonal"
         @click="handleGetAnswerInfo"
       >
-        {{ waitingForReadingDisabled ? `请等待 ${waitingForReading} 秒` : "已知晓上述内容，查看答案，并留下记录" }}
+        {{
+          waitingForReadingDisabled
+            ? `请等待 ${waitingForReading} 秒`
+            : "已知晓上述内容，查看答案，并留下记录"
+        }}
       </v-btn>
 
       <v-btn
         :disabled="inProgress || waitingForReadingDisabled"
-        v-if="isAvailable && !isError && !isWaitingForRefresh && isInSecondCheck"
+        v-if="
+          isAvailable &&
+          !isError &&
+          !isWaitingForRefresh &&
+          isInSecondCheck &&
+          !isHidden
+        "
         :loading="inProgress"
         color="error"
         variant="tonal"
         @click="handleUnclockAnswer"
       >
         已知晓，解锁答案，并留下记录
-      </v-btn>
-
-      <v-btn
-        v-if="isWaitingForRefresh"
-        color="primary"
-        variant="tonal"
-        @click="handleRefresh"
-      >
-        手动刷新页面
       </v-btn>
     </template>
   </v-card>

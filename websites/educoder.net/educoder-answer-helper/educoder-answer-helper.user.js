@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         educoder-answer-helper
 // @namespace    educoder-answer-helper
-// @version      0.2
+// @version      0.3
 // @author       monkey
-// @description  educoder-answer-helper
+// @description  educoder answer helper is from the Internet.
 // @license      MIT
 // @match        *://www.educoder.net/tasks/*
 // @grant        none
@@ -13,6 +13,6 @@
 (function () {
 	'use strict';
 
-	window.educoderAnswerHelper = "0.2";
+	window.educoderAnswerHelper = "0.3";
 
 })();

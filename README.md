@@ -26,9 +26,9 @@
 
 #### [头歌复制助手 Educoder Copy Helper](./websites/educoder.net/educoder-helper) <a href="https://greasyfork.org/scripts/495490" title="前往 Greasy Fork 下载" target="_blank"><img align="center" alt="Greasy Fork 版本" src="https://img.shields.io/greasyfork/v/495490?label=%E7%89%88%E6%9C%AC"></a> <a href="https://greasyfork.org/scripts/495490" title="前往 Greasy Fork 下载" target="_blank"><img align="center" alt="Greasy Fork 下载数量" src="https://img.shields.io/greasyfork/dt/495490?label=%E4%B8%8B%E8%BD%BD"></a>
 
-> **本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装**  
 > 📝解除头歌复制粘贴限制，解除头哥复制缩短限制；  
-> ✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。
+> 🧹大小仅1KB，极简尺寸，无需任何权限，无需任何配置，安装即用；  
+> ✨推荐与《头歌助手 EduCoder Helper》搭配使用解锁“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。
 
 <a href="https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper" title="GitHub 源代码"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-171515?logo=github"></a>
 <a href="https://greasyfork.org/scripts/495490" title="Greasy Fork - 在线安装" target="_blank"><img alt="Greasy Fork - 在线安装" src="https://img.shields.io/badge/Greasy_Fork-%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85-990000?logo=greasyfork&labelColor=7B0000"></a>

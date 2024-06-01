@@ -23,7 +23,7 @@
 
 #### [学习通隐藏答案 Chaoxing Covert Ansewer](./chaoxing.com/SuperStar-Hide-Answer.user.js) <a href="https://greasyfork.org/scripts/469779" title="前往 Greasy Fork 下载" target="_blank"><img align="center" alt="Greasy Fork 版本" src="https://img.shields.io/greasyfork/v/469779?label=%E7%89%88%E6%9C%AC"></a> <a href="https://greasyfork.org/scripts/469779" title="前往 Greasy Fork 下载" target="_blank"><img align="center" alt="Greasy Fork 下载数量" src="https://img.shields.io/greasyfork/dt/469779?label=%E4%B8%8B%E8%BD%BD"></a>
 
-> 支持作业、考试列表电脑端快速查看，免受错过作业与考试困扰
+> 添加一个切换答案按钮，点击可显示/隐藏答案
 
 <a href="https://github.com/lcandy2/user.js/blob/main/chaoxing.com/SuperStar-Hide-Answer.user.js" title="GitHub 源代码"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-171515?logo=github"></a>
 <a href="https://greasyfork.org/scripts/469779" title="Greasy Fork - 在线安装" target="_blank"><img alt="Greasy Fork - 在线安装" src="https://img.shields.io/badge/Greasy_Fork-%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85-990000?logo=greasyfork&labelColor=7B0000"></a>

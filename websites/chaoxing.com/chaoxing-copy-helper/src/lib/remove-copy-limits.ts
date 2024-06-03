@@ -31,8 +31,8 @@ export const removeCopyLimits = () => {
   document.body.removeAttribute("onselectstart");
   document.documentElement.style.userSelect = "unset";
   UE.EventBase.prototype.fireEvent = () => {
-    console.info("[Chaoxing Copy Helper] Removed paste limits.")
-    return null
+    console.info("[Chaoxing Copy Helper] Removed paste limits.");
+    return null;
   };
-  console.info("[Chaoxing Copy Helper] Removed copy limits.")
+  console.info("[Chaoxing Copy Helper] Removed copy limits.");
 };

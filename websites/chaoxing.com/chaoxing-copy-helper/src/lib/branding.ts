@@ -2,7 +2,7 @@ const href = window.location.href;
 
 export const addBranding = () => {
   addExamBranding();
-}
+};
 
 const addExamBranding = () => {
   if (href.includes("exam-ans/exam/test")) {
@@ -13,4 +13,4 @@ const addExamBranding = () => {
       markInfo.appendChild(branding);
     }
   }
-}
+};

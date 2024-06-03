@@ -5,4 +5,3 @@ setTimeout(() => {
   removeCopyLimits();
   addBranding();
 }, 1000);
-

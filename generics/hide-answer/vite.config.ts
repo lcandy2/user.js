@@ -13,15 +13,15 @@ export default defineConfig({
         namespace:
           "https://github.com/lcandy2/user.js/tree/main/generics/hide-answer",
         match: ["*://mooc1.chaoxing.com/mooc*", "*://mooc1.chaoxing.com/exam*"],
-        copyright: "lcandy2 All Rights Reserved"
+        copyright: "lcandy2 All Rights Reserved",
       },
       build: {
         externalGlobals: {
           vue: cdn
-          .npmmirror("Vue", "dist/vue.global.prod.js")
-          .concat(util.dataUrl(";window.Vue=Vue;"))
-        }
-      }
-    })
-  ]
+            .npmmirror("Vue", "dist/vue.global.prod.js")
+            .concat(util.dataUrl(";window.Vue=Vue;")),
+        },
+      },
+    }),
+  ],
 });

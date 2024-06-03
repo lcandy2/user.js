@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         学习通/MOOC等 隐藏答案 Hide Answer
 // @namespace    https://github.com/lcandy2/user.js/tree/main/generics/hide-answer
-// @version      2.1.1
-// @author       monkey
+// @version      2.1.2
+// @author       甜檸Cirtron (lcandy2)
 // @description  添加一个切换答案按钮，点击可显示/隐藏答案
 // @license      AGPL-3.0-or-later
+// @copyright    lcandy2 All Rights Reserved
 // @match        *://mooc1.chaoxing.com/mooc*
 // @match        *://mooc1.chaoxing.com/exam*
 // @require      https://registry.npmmirror.com/vue/3.4.27/files/dist/vue.global.prod.js

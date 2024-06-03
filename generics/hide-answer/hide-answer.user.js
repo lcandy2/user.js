@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         学习通/MOOC等 隐藏答案 Hide Answer
 // @namespace    https://github.com/lcandy2/user.js/tree/main/generics/hide-answer
-// @version      2.2
+// @version      2.3.1
 // @author       甜檸Cirtron (lcandy2)
 // @description  添加一个切换答案按钮，点击可显示/隐藏答案
 // @license      AGPL-3.0-or-later
@@ -615,7 +615,8 @@
             duration: 0,
             border: "left",
             shadow: "",
-            dense: ""
+            dense: "",
+            reverse: ""
           })
         ], 64);
       };

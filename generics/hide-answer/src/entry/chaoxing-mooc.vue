@@ -47,5 +47,5 @@ onUnmounted(() => {
     role="button"
     >{{ isHide ? "显示答案 (H)" : "隐藏答案 (H)" }}</a
   >
-  <vue3-snackbar top :duration="0" border="left" shadow dense />
+  <vue3-snackbar top :duration="0" border="left" shadow dense reverse />
 </template>

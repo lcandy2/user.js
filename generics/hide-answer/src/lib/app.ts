@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import ChaoxingMooc from "../entry/chaoxing-mooc.vue";
 import { SnackbarService } from "vue3-snackbar";
-import.meta.env.DEV && import("vue3-snackbar/dist/style.css");
+// import.meta.env.DEV && import("vue3-snackbar/style");
 
 export const appendChaoxingMoocButton = () => {
   const app = createApp(ChaoxingMooc);

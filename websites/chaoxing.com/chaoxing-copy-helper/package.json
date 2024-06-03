@@ -1,0 +1,28 @@
+{
+  "name": "chaoxing-copy-helper",
+  "description": "📝解除超星学习通复制粘贴限制，解除学习通复制乱码问题；✨“一键复制题目”、“一键粘贴到答案”、“复制好友答案”等功能。🧹大小仅1.62KB，极小尺寸，无需任何权限，无需任何配置，安装即用。💛安全开源可读，无附加功能或远程代码，防止窃取其他信息",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://greasyfork.org/scripts/496958",
+  "author": {
+    "name": "甜檸Cirtron (lcandy2)",
+    "email": "vanilla#citrons.cc",
+    "url": "https://github.com/lcandy2"
+  },
+  "private": true,
+  "version": "1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && shx cp -r ./dist/* ./",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.2.12",
+    "vite-plugin-monkey": "^4.0.0",
+    "vue-tsc": "^2.0.19"
+  }
+}

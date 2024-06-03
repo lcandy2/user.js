@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         学习通/MOOC等 隐藏答案 Hide Answer
 // @namespace    https://github.com/lcandy2/user.js/tree/main/generics/hide-answer
-// @version      2.1.2
+// @version      2.2
 // @author       甜檸Cirtron (lcandy2)
 // @description  添加一个切换答案按钮，点击可显示/隐藏答案
 // @license      AGPL-3.0-or-later
@@ -579,6 +579,7 @@
       const isHide = vue.ref(false);
       const toggleHide = () => {
         const value = isHide.value;
+        snackbar.clear();
         snackbar.add({
           type: value ? "info" : "success",
           title: value ? "答案已显示" : "答案已隐藏",

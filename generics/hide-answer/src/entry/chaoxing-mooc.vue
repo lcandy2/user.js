@@ -11,6 +11,7 @@ const isHide = ref(false);
 
 const toggleHide = () => {
   const value = isHide.value;
+  snackbar.clear();
   snackbar.add({
     type: value ? "info" : "success",
     title: value ? "答案已显示" : "答案已隐藏",

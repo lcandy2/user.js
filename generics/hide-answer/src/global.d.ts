@@ -1,1 +1,1 @@
-declare module 'vue3-snackbar';
+declare module "vue3-snackbar";

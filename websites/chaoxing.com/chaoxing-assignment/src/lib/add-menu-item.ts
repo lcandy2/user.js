@@ -73,7 +73,8 @@ export const addMenuItemLegacy = () => {
     liElement.appendChild(spanElement);
     const aElement = document.createElement("a");
     aElement.id = "chaoxing-assignment-task";
-    aElement.href = "javascript:switchM('chaoxing-assignment-task','https://mooc1-api.chaoxing.com/work/stu-work#chaoxing-assignment')"
+    aElement.href =
+      "javascript:switchM('chaoxing-assignment-task','https://mooc1-api.chaoxing.com/work/stu-work#chaoxing-assignment')";
     aElement.target = "_top";
     aElement.title = "全部作业";
     const bIconElement = document.createElement("b");
@@ -86,7 +87,7 @@ export const addMenuItemLegacy = () => {
     liElement.appendChild(aElement);
     funclistulElement.prepend(liElement);
   }
-}
+};
 
 export const addMenuItemExamLegacy = () => {
   const funclistulElement = document.querySelector("ul.funclistul");
@@ -97,7 +98,8 @@ export const addMenuItemExamLegacy = () => {
     liElement.appendChild(spanElement);
     const aElement = document.createElement("a");
     aElement.id = "chaoxing-assignment-exam";
-    aElement.href = "javascript:switchM('chaoxing-assignment-exam','https://mooc1-api.chaoxing.com/exam-ans/exam/phone/examcode#chaoxing-assignment')"
+    aElement.href =
+      "javascript:switchM('chaoxing-assignment-exam','https://mooc1-api.chaoxing.com/exam-ans/exam/phone/examcode#chaoxing-assignment')";
     aElement.target = "_top";
     aElement.title = "全部考试";
     const bIconElement = document.createElement("b");
@@ -110,4 +112,4 @@ export const addMenuItemExamLegacy = () => {
     liElement.appendChild(aElement);
     funclistulElement.prepend(liElement);
   }
-}
+};

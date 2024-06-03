@@ -4,17 +4,15 @@ import { SnackbarService } from "vue3-snackbar";
 import.meta.env.DEV && import("vue3-snackbar/dist/style.css");
 
 export const appendChaoxingMoocButton = () => {
-
   const app = createApp(ChaoxingMooc);
 
   app.use(SnackbarService);
 
-  const targetElement = document.querySelector('.subNav');
+  const targetElement = document.querySelector(".subNav");
   if (targetElement) {
     const css = document.createElement("link");
     css.rel = "stylesheet";
-    css.href =
-      "https://unpkg.zhimg.com/vue3-snackbar@2.2.2/dist/style.css";
+    css.href = "https://unpkg.zhimg.com/vue3-snackbar@2.2.2/dist/style.css";
     document.head.appendChild(css);
 
     const toggleButton = document.createElement("div");

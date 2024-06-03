@@ -26,14 +26,17 @@ const removeHtmlStyle = () => {
 export const keepRemoveHtmlStyle = () => {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      if (mutation.type === "attributes" && mutation.attributeName === "style") {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "style"
+      ) {
         removeHtmlStyle();
       }
     });
   });
   const html = document.querySelector("html");
   html && observer.observe(html, { attributes: true });
-}
+};
 
 export const removeScripts = () => {
   const scripts = document.querySelectorAll("script");
@@ -42,4 +45,4 @@ export const removeScripts = () => {
       script.remove();
     }
   });
-}
+};

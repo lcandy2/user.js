@@ -9,7 +9,7 @@ const headers = [
   { key: "course", title: "课程" },
   { key: "leftTime", title: "剩余时间" },
   { key: "status", title: "状态" },
-  { key: "action", title: "", sortable: false }
+  { key: "action", title: "", sortable: false },
 ];
 
 const search = ref("");

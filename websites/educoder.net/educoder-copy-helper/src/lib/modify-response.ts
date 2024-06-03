@@ -11,7 +11,7 @@ export async function modifyTaskCopy(request: Request, response: Response) {
       if (json) {
         if (json.shixun) {
           !json.shixun.forbid_copy &&
-          (json.shixun.name = `${json.shixun.name} （已允许复制粘贴）`);
+            (json.shixun.name = `${json.shixun.name} （已允许复制粘贴）`);
           json.shixun.can_copy = true;
           json.shixun.vip = true;
           json.shixun.forbid_copy = false;

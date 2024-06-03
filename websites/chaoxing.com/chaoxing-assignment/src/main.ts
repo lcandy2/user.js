@@ -1,11 +1,14 @@
 import {
   addMenuItem,
-  addMenuItemExam, addMenuItemExamLegacy,
+  addMenuItemExam,
+  addMenuItemExamLegacy,
   addMenuItemLegacy,
-  extractExams, keepRemoveHtmlStyle, removeScripts,
+  extractExams,
+  keepRemoveHtmlStyle,
+  removeScripts,
   removeStyles,
   urlDetection,
-  wrapElements
+  wrapElements,
 } from "./lib";
 import { appendApp } from "./app";
 
@@ -29,6 +32,6 @@ if (urlDetect === "home") {
   addMenuItem();
 }
 if (urlDetect === "legacyHome") {
-  addMenuItemExamLegacy()
-  addMenuItemLegacy()
+  addMenuItemExamLegacy();
+  addMenuItemLegacy();
 }

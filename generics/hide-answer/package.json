@@ -2,7 +2,7 @@
   "name": "hide-answer",
   "private": true,
   "description": "添加一个切换答案按钮，点击可显示/隐藏答案",
-  "version": "2.0",
+  "version": "2.1",
   "type": "module",
   "scripts": {
     "dev": "vite",

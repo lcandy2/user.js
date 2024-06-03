@@ -18,6 +18,28 @@ importers:
         specifier: ^5.3.3
         version: 5.4.5
 
+  generics/hide-answer:
+    dependencies:
+      vue:
+        specifier: ^3.4.27
+        version: 3.4.27(typescript@5.4.5)
+      vue3-snackbar:
+        specifier: ^2.2.2
+        version: 2.2.2(vue@3.4.27(typescript@5.4.5))
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^5.0.4
+        version: 5.0.4(vite@5.2.12)(vue@3.4.27(typescript@5.4.5))
+      vite:
+        specifier: ^5.2.12
+        version: 5.2.12
+      vite-plugin-monkey:
+        specifier: ^4.0.0
+        version: 4.0.0(vite@5.2.12)
+      vue-tsc:
+        specifier: ^2.0.19
+        version: 2.0.19(typescript@5.4.5)
+
   websites/chaoxing.com/chaoxing-assignment:
     dependencies:
       pinia:
@@ -51,6 +73,18 @@ importers:
       vue-tsc:
         specifier: ^2.0.19
         version: 2.0.19(typescript@5.4.5)
+
+  websites/educoder.net/educoder-answer-helper:
+    devDependencies:
+      vite:
+        specifier: ^5.0.11
+        version: 5.2.12
+      vite-plugin-monkey:
+        specifier: ^3.5.1
+        version: 3.5.2(vite@5.2.12)
+      vite-plugin-package-version:
+        specifier: ^1.1.0
+        version: 1.1.0(vite@5.2.12)
 
   websites/educoder.net/educoder-copy-helper:
     devDependencies:
@@ -538,6 +572,9 @@ packages:
     resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
     engines: {node: '>=14.18.0'}
 
+  import-meta-resolve@4.1.0:
+    resolution: {integrity: sha512-I6fiaX09Xivtk+THaMfAwnA3MVA5Big1WHF1Dfx9hFuvNIWpXnorlkzhcQf6ehrqQiiZECRt1poOAkPmer3ruw==}
+
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
 
@@ -753,6 +790,9 @@ packages:
   systemjs@6.15.1:
     resolution: {integrity: sha512-Nk8c4lXvMB98MtbmjX7JwJRgJOL8fluecYCfCeYBznwmpOs8Bf15hLM6z4z71EDAhQVrQrI+wt1aLWSXZq+hXA==}
 
+  tiny-emitter@2.1.0:
+    resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
+
   titleize@3.0.0:
     resolution: {integrity: sha512-KxVu8EYHDPBdUYdKZdKtU2aj2XfEx9AfjXxE/Aj0vT06w2icA09Vus1rh6eSu1y01akYg6BjIK/hxyLJINoMLQ==}
     engines: {node: '>=12'}
@@ -779,6 +819,14 @@ packages:
     engines: {node: ^14.18 || >= 16, pnpm: '>=6'}
     peerDependencies:
       vite: '>=3.0.0'
+    peerDependenciesMeta:
+      vite:
+        optional: true
+
+  vite-plugin-monkey@4.0.0:
+    resolution: {integrity: sha512-Zx+ZNsbuDhcVdsPOu7Ck9TDK7k41V/ngs2/lIvgCl6k4prLaBbJuBVhecWUIGudfEHnJgOY3/GaTZ1gw8g30xA==}
+    peerDependencies:
+      vite: ^5.0.0
     peerDependenciesMeta:
       vite:
         optional: true
@@ -824,6 +872,34 @@ packages:
       terser:
         optional: true
 
+  vite@5.2.12:
+    resolution: {integrity: sha512-/gC8GxzxMK5ntBwb48pR32GGhENnjtY30G4A0jemunsBkiEZFw60s8InGpN8gkhHEkjnRK1aSAxeQgwvFhUHAA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || >=20.0.0
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+
   vue-demi@0.14.7:
     resolution: {integrity: sha512-EOG8KXDQNwkJILkx/gPcoL/7vH+hORoBaKgGe+6W7VFMvCYJfmF2dGbvgDroVnI8LU7/kTu8mbjRZGBU1z9NTA==}
     engines: {node: '>=12'}
@@ -843,6 +919,14 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '*'
+
+  vue3-icon@2.1.0:
+    resolution: {integrity: sha512-cnFiGAEwzp/KQKody2Yj8cBDP4Kez0AUp5mDnp052FA1fECl8a9uYUKLaeRdH0JakmZ7Jfp3tdHbpBEWF9sgBA==}
+
+  vue3-snackbar@2.2.2:
+    resolution: {integrity: sha512-UolbctnEzc7d0lNnD86TYVmqA0Ig+CsKYQsgwc6+dnaebmVENkIzAiylSxpgYJuxxJl86KCA5FQxo/By9/6LqQ==}
+    peerDependencies:
+      vue: ^3.0.0
 
   vue@3.4.27:
     resolution: {integrity: sha512-8s/56uK6r01r1icG/aEOHqyMVxd1bkYcSe9j8HcKtr/xTOFWvnzIVTehNW+5Yt89f+DLBe4A569pnZLS5HzAMA==}
@@ -1019,6 +1103,11 @@ snapshots:
   '@vitejs/plugin-vue@5.0.4(vite@5.2.11)(vue@3.4.27(typescript@5.4.5))':
     dependencies:
       vite: 5.2.11
+      vue: 3.4.27(typescript@5.4.5)
+
+  '@vitejs/plugin-vue@5.0.4(vite@5.2.12)(vue@3.4.27(typescript@5.4.5))':
+    dependencies:
+      vite: 5.2.12
       vue: 3.4.27(typescript@5.4.5)
 
   '@volar/language-core@2.2.4':
@@ -1269,6 +1358,8 @@ snapshots:
 
   human-signals@4.3.1: {}
 
+  import-meta-resolve@4.1.0: {}
+
   inflight@1.0.6:
     dependencies:
       once: 1.4.0
@@ -1454,6 +1545,8 @@ snapshots:
 
   systemjs@6.15.1: {}
 
+  tiny-emitter@2.1.0: {}
+
   titleize@3.0.0: {}
 
   to-fast-properties@2.0.0: {}
@@ -1477,9 +1570,40 @@ snapshots:
     optionalDependencies:
       vite: 5.2.11
 
+  vite-plugin-monkey@3.5.2(vite@5.2.12):
+    dependencies:
+      acorn-walk: 8.3.2
+      cross-spawn: 7.0.3
+      htmlparser2: 9.1.0
+      magic-string: 0.30.10
+      mrmime: 1.0.1
+      open: 9.1.0
+      picocolors: 1.0.1
+      systemjs: 6.15.1
+    optionalDependencies:
+      vite: 5.2.12
+
+  vite-plugin-monkey@4.0.0(vite@5.2.12):
+    dependencies:
+      acorn-walk: 8.3.2
+      cross-spawn: 7.0.3
+      htmlparser2: 9.1.0
+      import-meta-resolve: 4.1.0
+      magic-string: 0.30.10
+      mrmime: 1.0.1
+      open: 9.1.0
+      picocolors: 1.0.1
+      systemjs: 6.15.1
+    optionalDependencies:
+      vite: 5.2.12
+
   vite-plugin-package-version@1.1.0(vite@5.2.11):
     dependencies:
       vite: 5.2.11
+
+  vite-plugin-package-version@1.1.0(vite@5.2.12):
+    dependencies:
+      vite: 5.2.12
 
   vite-plugin-vuetify@2.0.3(vite@5.2.11)(vue@3.4.27(typescript@5.4.5))(vuetify@3.6.6):
     dependencies:
@@ -1493,6 +1617,14 @@ snapshots:
       - supports-color
 
   vite@5.2.11:
+    dependencies:
+      esbuild: 0.20.2
+      postcss: 8.4.38
+      rollup: 4.17.2
+    optionalDependencies:
+      fsevents: 2.3.3
+
+  vite@5.2.12:
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
@@ -1515,6 +1647,14 @@ snapshots:
       '@vue/language-core': 2.0.19(typescript@5.4.5)
       semver: 7.6.2
       typescript: 5.4.5
+
+  vue3-icon@2.1.0: {}
+
+  vue3-snackbar@2.2.2(vue@3.4.27(typescript@5.4.5)):
+    dependencies:
+      tiny-emitter: 2.1.0
+      vue: 3.4.27(typescript@5.4.5)
+      vue3-icon: 2.1.0
 
   vue@3.4.27(typescript@5.4.5):
     dependencies:

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         头歌复制助手 Educoder Copy Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-copy-helper
-// @version      1.4
+// @version      1.5
 // @author       甜檸Cirtron (lcandy2)
 // @description  📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨与《头歌助手 EduCoder Helper》搭配使用解锁“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。🧹大小仅1.82KB，极小尺寸，无需任何权限，无需任何配置，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，防止窃取其他信息
 // @license      AGPL-3.0-or-later
@@ -20,26 +20,46 @@
   'use strict';
 
   async function saveTaskJson(request, response) {
+    try {
+      const signature = request.headers.get("X-EDU-Signature");
+      if (signature) {
+        window.xEduSignature = signature;
+      }
+      const timestamp = request.headers.get("X-EDU-Timestamp");
+      if (timestamp) {
+        window.xEduTimestamp = timestamp;
+      }
+      const type = request.headers.get("X-EDU-Type");
+      if (type) {
+        window.xEduType = type;
+      }
+    } catch (e) {
+      console.error("[educoder-copy-helper] Error reading request headers:", e);
+    }
+    const res = response.clone();
     if (request.url.includes("/api/tasks") || request.url.includes("json?homework_common_id")) {
-      const res = response.clone();
       try {
         const json = await res.json();
-        console.debug(`[educoder-copy-helper] ${request.url.toString()}`, json);
+        console.debug(`[educoder-copy-helper] [RESPONSE] ${request.url.toString()}`, json);
         if (json && json.challenge && json.challenge.path) {
           const path = json.challenge.path;
           window.taskChallengePath = path;
         }
-        const signature = request.headers.get("X-EDU-Signature");
-        if (signature) {
-          window.xEduSignature = signature;
+      } catch (e) {
+        console.error("[educoder-copy-helper] Error reading response body:", e);
+      }
+    }
+    if (request.url.includes("watch_video_histories.json")) {
+      try {
+        const reqJson = await request.json();
+        const resJson = await res.json();
+        console.debug(`[educoder-copy-helper] [REQUEST] ${request.url.toString()}`, reqJson);
+        console.debug(`[educoder-copy-helper] [RESPONSE] ${request.url.toString()}`, resJson);
+        if (reqJson && reqJson.video_id) {
+          window.videoId = reqJson.video_id;
         }
-        const timestamp = request.headers.get("X-EDU-Timestamp");
-        if (timestamp) {
-          window.xEduTimestamp = timestamp;
-        }
-        const type = request.headers.get("X-EDU-Type");
-        if (type) {
-          window.xEduType = type;
+        if (resJson && resJson.log_id) {
+          window.videoLogId = resJson.log_id;
         }
       } catch (e) {
         console.error("[educoder-copy-helper] Error reading response body:", e);
@@ -96,6 +116,6 @@
   }
   const OTHER_MODIFY = false;
   hookFetch();
-  window.educoderCopyHelper = "1.4";
+  window.educoderCopyHelper = "1.5";
 
 })();

@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         头歌助手 Educoder Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper
-// @version      1.7.2
+// @version      1.8
 // @author       甜檸Cirtron (lcandy2)
-// @description  【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。🧹简单高效代码，无需任何权限，无需任何配置，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全
+// @description  【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”、“一键完成视频任务”等功能。🧹简单高效代码，无需权限配置，清除广告界面，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全
 // @license      AGPL-3.0-or-later
 // @copyright    lcandy2 All Rights Reserved
 // @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABsUlEQVR4nO2ZzUrDQBCAA3kM23NfJKuC4FW6vYjZV/DiK7SaeCxYKiRQE5qNB7EPUoT6A3op9GBFi5eeIhsMjNbW2s2apMwHc2t35tud3RxG0xTQ6IRlyw26thtMRFgu55ZzWdGKQKMTlm2Hj22XR1/C4eNTJyhpeceKdz4u+ur43N8QRdtOcP0p4Wt5x47bhkdwt+NTcXlkucFbJkVt7u2XCTW7RpVNCGVREjNtAuLopLmT/P/Qau4u+i0Ba4ocBmXhVu2gklrxBmVjmGQZgXr7YiokRPH1tj9dVoAkItR8EbmlBcTO/5TgN4G/BJmzPqFM/s7Atrm5fYggaQlA+oN72E7ydwbuyHfOeE+6+BbvzawLcyoVeByOpCRavBc9DUfZCaiCoAAAT2AFCLbQki2ke+9SkfkJoMAc8A5A8BldAYLPKABfIS/H3wFVEBRQdAdydwJ60QVUQVAAgN8BD78Dcqz1JdaL/ozqRRdQBUEBAJ5A1i1kgAGHGD6opj+4AwLmq7wAZeGCEZDiMD1pATEtFAO3fy++yp63a6yU4piV+WJmpbpwI85heqkVjyBrzgdOSyKlYdgYdgAAAABJRU5ErkJggg==
@@ -12,6 +12,7 @@
 // @source       https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper
 // @match        *://www.educoder.net/tasks/*
 // @match        *://www.educoder.net/classrooms/*
+// @match        *://www.educoder.net/*
 // @require      https://registry.npmmirror.com/vue/3.4.27/files/dist/vue.global.prod.js
 // @require      data:application/javascript,%3Bwindow.Vue%3DVue%3B
 // @require      https://registry.npmmirror.com/vuetify/3.6.6/files/dist/vuetify.min.js
@@ -35,8 +36,8 @@
   const getTaskInfo = () => {
     const href2 = window.location.href;
     const hrefUrl = new URL(href2);
-    const pathname = hrefUrl.pathname;
-    const parts = pathname.substring(1).split("/");
+    const pathname2 = hrefUrl.pathname;
+    const parts = pathname2.substring(1).split("/");
     const courseId = parts[1];
     const shixunId = parts[2];
     const taskId = parts[3];
@@ -49,8 +50,8 @@
   const getVideoInfo = () => {
     const href2 = window.location.href;
     const hrefUrl = new URL(href2);
-    const pathname = hrefUrl.pathname;
-    const parts = pathname.substring(1).split("/");
+    const pathname2 = hrefUrl.pathname;
+    const parts = pathname2.substring(1).split("/");
     const courseId = parts[1];
     const searchParams = hrefUrl.searchParams;
     const videoId = Number(searchParams.get("new_video_id"));
@@ -1167,12 +1168,25 @@ ${file.content}\`\`\``).join("\n\n");
   function waitTime(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+  const removeBanner = () => {
+    const antSpinContainer = document.querySelector(".ant-spin-container");
+    if (antSpinContainer && antSpinContainer.firstElementChild) {
+      const firstElementChild = antSpinContainer.firstElementChild;
+      if (!firstElementChild.className.includes("header")) {
+        firstElementChild.remove();
+      }
+    }
+  };
   const href = window.location.href;
+  const pathname = window.location.pathname;
   if (href.includes("tasks")) {
     observerCopyAll();
   }
   if (href.includes("video_info")) {
     observerPassVideo();
+  }
+  if (pathname === "/") {
+    removeBanner();
   }
   console.info("loaded");
 

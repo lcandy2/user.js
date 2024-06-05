@@ -22,7 +22,7 @@ export default defineConfig(({ command }) => {
             "https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper",
           source:
             "https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper",
-          match: ["*://www.educoder.net/tasks/*","*://www.educoder.net/classrooms/*"],
+          match: ["*://www.educoder.net/tasks/*","*://www.educoder.net/classrooms/*","*://www.educoder.net/*"],
           "run-at": "document-idle",
         },
         build: {

@@ -93,7 +93,7 @@ export const observerAdRemove = () => {
         if (targetElement) {
           // 执行 appendCopyAllButton() 并取消监听
           removeBanner();
-          observer.disconnect();
+          // observer.disconnect();
           break;
         }
       }

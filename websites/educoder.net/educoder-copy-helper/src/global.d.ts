@@ -5,6 +5,8 @@ declare global {
     xEduTimestamp: string;
     xEduType: string;
     educoderCopyHelper: string;
+    videoId: number;
+    videoLogId: number;
   }
 }
 

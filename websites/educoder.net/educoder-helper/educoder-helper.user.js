@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         头歌助手 Educoder Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper
-// @version      1.5.1
+// @version      1.7
 // @author       甜檸Cirtron (lcandy2)
 // @description  【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。🧹简单高效代码，无需任何权限，无需任何配置，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全
 // @license      AGPL-3.0-or-later
@@ -11,6 +11,7 @@
 // @homepageURL  https://greasyfork.org/scripts/495493
 // @source       https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper
 // @match        *://www.educoder.net/tasks/*
+// @match        *://www.educoder.net/classrooms/*
 // @require      https://registry.npmmirror.com/vue/3.4.27/files/dist/vue.global.prod.js
 // @require      data:application/javascript,%3Bwindow.Vue%3DVue%3B
 // @require      https://registry.npmmirror.com/vuetify/3.6.6/files/dist/vuetify.min.js
@@ -32,8 +33,8 @@
   };
   cssLoader("VuetifyStyle");
   const getTaskInfo = () => {
-    const href = window.location.href;
-    const hrefUrl = new URL(href);
+    const href2 = window.location.href;
+    const hrefUrl = new URL(href2);
     const pathname = hrefUrl.pathname;
     const parts = pathname.substring(1).split("/");
     const courseId = parts[1];
@@ -45,8 +46,33 @@
       taskId
     };
   };
+  const getVideoInfo = () => {
+    const href2 = window.location.href;
+    const hrefUrl = new URL(href2);
+    const pathname = hrefUrl.pathname;
+    const parts = pathname.substring(1).split("/");
+    const courseId = parts[1];
+    const searchParams = hrefUrl.searchParams;
+    const videoId = Number(searchParams.get("new_video_id"));
+    const durationElement = document.querySelector("#duration");
+    const durationText = durationElement == null ? void 0 : durationElement.textContent;
+    let duration = -1;
+    if (durationText) {
+      const timeParts = durationText.split(":");
+      const minutes = Number(timeParts[0]);
+      const seconds = Number(timeParts[1]);
+      const totalSeconds = minutes * 60 + seconds;
+      const randomDecimal = Number(Math.random().toFixed(1));
+      duration = totalSeconds + randomDecimal;
+    }
+    return {
+      courseId,
+      videoId,
+      duration
+    };
+  };
   var _unsafeWindow = /* @__PURE__ */ (() => typeof unsafeWindow != "undefined" ? unsafeWindow : void 0)();
-  const _hoisted_1$3 = {
+  const _hoisted_1$4 = {
     key: 0,
     style: { "display": "flex", "flex-direction": "row", "align-items": "center", "gap": "1em" }
   };
@@ -54,7 +80,7 @@
     class: "text-body-2",
     style: { "margin": "0" }
   };
-  const _sfc_main$6 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$8 = /* @__PURE__ */ vue.defineComponent({
     __name: "copy-all-content",
     props: {
       isActive: {}
@@ -189,7 +215,7 @@ ${file.content}\`\`\``).join("\n\n");
             }),
             vue.createVNode(_component_v_card_actions, null, {
               default: vue.withCtx(() => [
-                isLoading.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$3, [
+                isLoading.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$4, [
                   vue.createVNode(_component_v_progress_circular, { "model-value": progress.value }, null, 8, ["model-value"]),
                   vue.createElementVNode("p", _hoisted_2$2, vue.toDisplayString(progressMessage.value), 1)
                 ])) : vue.createCommentVNode("", true),
@@ -223,7 +249,7 @@ ${file.content}\`\`\``).join("\n\n");
       };
     }
   });
-  const _sfc_main$5 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
     __name: "copy-all",
     setup(__props) {
       return (_ctx, _cache) => {
@@ -241,14 +267,14 @@ ${file.content}\`\`\``).join("\n\n");
             }), null, 16)
           ]),
           default: vue.withCtx(({ isActive }) => [
-            vue.createVNode(_sfc_main$6, { "is-active": isActive }, null, 8, ["is-active"])
+            vue.createVNode(_sfc_main$8, { "is-active": isActive }, null, 8, ["is-active"])
           ]),
           _: 1
         });
       };
     }
   });
-  const _hoisted_1$2 = { style: { "display": "flex", "flex-direction": "row", "align-items": "center", "gap": "1em" } };
+  const _hoisted_1$3 = { style: { "display": "flex", "flex-direction": "row", "align-items": "center", "gap": "1em" } };
   const _hoisted_2$1 = {
     class: "text-body-1",
     style: { "margin": "0" }
@@ -260,7 +286,7 @@ ${file.content}\`\`\``).join("\n\n");
   const _hoisted_7$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_8$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_9$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$6 = /* @__PURE__ */ vue.defineComponent({
     __name: "reset-all-content",
     props: {
       isActive: {},
@@ -403,7 +429,7 @@ ${file.content}\`\`\``).join("\n\n");
           default: vue.withCtx(() => [
             inProgress.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 0 }, {
               default: vue.withCtx(() => [
-                vue.createElementVNode("div", _hoisted_1$2, [
+                vue.createElementVNode("div", _hoisted_1$3, [
                   vue.createVNode(_component_v_progress_circular, {
                     "model-value": progress.value,
                     indeterminate: progress.value === -1
@@ -445,7 +471,7 @@ ${file.content}\`\`\``).join("\n\n");
       };
     }
   });
-  const _sfc_main$3 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$5 = /* @__PURE__ */ vue.defineComponent({
     __name: "reset-all",
     setup(__props) {
       const isPersistent = vue.ref(false);
@@ -468,7 +494,7 @@ ${file.content}\`\`\``).join("\n\n");
             }), null, 16)
           ]),
           default: vue.withCtx(({ isActive }) => [
-            vue.createVNode(_sfc_main$4, {
+            vue.createVNode(_sfc_main$6, {
               "is-active": isActive,
               "set-is-persistent": setIsPersistent
             }, null, 8, ["is-active"])
@@ -478,7 +504,7 @@ ${file.content}\`\`\``).join("\n\n");
       };
     }
   });
-  const _hoisted_1$1 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+  const _hoisted_1$2 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_2 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_3 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_4 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
@@ -506,7 +532,7 @@ ${file.content}\`\`\``).join("\n\n");
   const _hoisted_26 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_27 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
   const _hoisted_28 = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-  const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
     __name: "get-anser-content",
     props: {
       isActive: {},
@@ -729,7 +755,7 @@ ${file.content}\`\`\``).join("\n\n");
             })) : isError.value ? (vue.openBlock(), vue.createBlock(_component_v_card_text, { key: 1 }, {
               default: vue.withCtx(() => [
                 vue.createTextVNode("查看答案失败，可能当前练习不存在答案，或刷新再试，信息未记录。"),
-                _hoisted_1$1,
+                _hoisted_1$2,
                 _hoisted_2,
                 vue.createTextVNode(vue.toDisplayString(errorMessages.value), 1)
               ]),
@@ -810,7 +836,7 @@ ${file.content}\`\`\``).join("\n\n");
       };
     }
   });
-  const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$3 = /* @__PURE__ */ vue.defineComponent({
     __name: "get-anser",
     setup(__props) {
       const isPersistent = vue.ref(false);
@@ -834,7 +860,7 @@ ${file.content}\`\`\``).join("\n\n");
             }), null, 16)
           ]),
           default: vue.withCtx(({ isActive }) => [
-            vue.createVNode(_sfc_main$2, {
+            vue.createVNode(_sfc_main$4, {
               "is-active": isActive,
               "set-is-persistent": setIsPersistent
             }, null, 8, ["is-active"])
@@ -844,16 +870,206 @@ ${file.content}\`\`\``).join("\n\n");
       };
     }
   });
-  const _hoisted_1 = { style: { "display": "flex", "flex-direction": "row", "gap": "0.5em", "align-items": "center" } };
-  const _sfc_main = /* @__PURE__ */ vue.defineComponent({
-    __name: "toolbar-app",
+  const _hoisted_1$1 = { style: { "display": "flex", "flex-direction": "row", "gap": "0.5em", "align-items": "center" } };
+  const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
+    __name: "copy-entry",
     setup(__props) {
       return (_ctx, _cache) => {
-        return vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
-          vue.createVNode(_sfc_main$1),
+        return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
           vue.createVNode(_sfc_main$3),
-          vue.createVNode(_sfc_main$5)
+          vue.createVNode(_sfc_main$5),
+          vue.createVNode(_sfc_main$7)
         ]);
+      };
+    }
+  });
+  const _hoisted_1 = { class: "d-flex flex-column ga-2" };
+  const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
+    __name: "pass-video",
+    setup(__props) {
+      const isLoading = vue.ref(false);
+      const isError = vue.ref(false);
+      const isHelperNotInstalled = vue.ref(false);
+      const progress = vue.ref(-1);
+      const status = vue.ref("");
+      const message = vue.ref("");
+      const handlePassVideo = async () => {
+        if (progress.value === -1) {
+          observeTextContentChange();
+        }
+        isLoading.value = true;
+        isError.value = false;
+        isHelperNotInstalled.value = false;
+        progress.value = 1;
+        status.value = "触发开始播放事件中……";
+        const window2 = _unsafeWindow;
+        const educoderCopyHelper = Number(window2.educoderCopyHelper);
+        if (window2.educoderCopyHelper === void 0 || educoderCopyHelper < 1.5) {
+          isHelperNotInstalled.value = true;
+          isLoading.value = false;
+          isError.value = true;
+          return;
+        }
+        const { duration } = getVideoInfo();
+        const playButton = document.querySelector("button#play");
+        await waitTime(800);
+        if (!isLoading.value) {
+          return;
+        }
+        if (playButton) {
+          message.value = "playButton found!";
+          isLoading && playButton.click();
+          progress.value = 2;
+          status.value = "触发开始播放成功，等待触发完成播放视频事件……";
+          await waitTwoTime();
+          if (!isLoading.value) {
+            return;
+          }
+          isLoading && playButton.click();
+          progress.value = 3;
+          status.value = "触发完成播放事件中……";
+          await waitTime(1200);
+          if (!isLoading.value) {
+            return;
+          }
+          const logId = window2.videoLogId;
+          const body = {
+            ed: "1",
+            point: duration,
+            log_id: logId,
+            total_duration: duration,
+            watch_duration: duration
+          };
+          const response = await fetch(
+            `https://data.educoder.net/api/watch_video_histories.json`,
+            {
+              credentials: "include",
+              method: "POST",
+              headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json; charset=utf-8",
+                "X-EDU-Signature": window2.xEduSignature || "",
+                "X-EDU-Timestamp": window2.xEduTimestamp || "",
+                "X-EDU-Type": window2.xEduType || "pc"
+              },
+              body: JSON.stringify(body)
+            }
+          );
+          const res = await response.json();
+          message.value = res;
+          if (res.status === 0) {
+            progress.value = 4;
+            status.value = `视频已完成，共计学习时长 ${duration} 秒。`;
+            isLoading.value = false;
+          } else {
+            isError.value = true;
+          }
+        } else {
+          isError.value = true;
+        }
+      };
+      const observeTextContentChange = () => {
+        var _a, _b;
+        const vidContainer = document.querySelector("#video-container");
+        const targetElement = (_b = (_a = vidContainer == null ? void 0 : vidContainer.parentElement) == null ? void 0 : _a.parentElement) == null ? void 0 : _b.parentElement;
+        const firstChild = targetElement == null ? void 0 : targetElement.firstElementChild;
+        if (firstChild) {
+          const observer = new MutationObserver((mutationsList) => {
+            for (let mutation of mutationsList) {
+              if (mutation.type === "characterData") {
+                progress.value = 0;
+                status.value = "点击“完成该视频”以开始";
+                message.value = "";
+                isLoading.value = false;
+                isError.value = false;
+                isHelperNotInstalled.value = false;
+              }
+            }
+          });
+          const config = { characterData: true, subtree: true };
+          observer.observe(firstChild, config);
+        } else {
+          console.warn("First child element not found.");
+        }
+      };
+      return (_ctx, _cache) => {
+        const _component_v_btn = vue.resolveComponent("v-btn");
+        const _component_v_card_actions = vue.resolveComponent("v-card-actions");
+        const _component_v_card = vue.resolveComponent("v-card");
+        const _component_v_card_subtitle = vue.resolveComponent("v-card-subtitle");
+        const _component_v_spacer = vue.resolveComponent("v-spacer");
+        return vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+          !isHelperNotInstalled.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+            key: 0,
+            color: "surface-variant",
+            "max-width": "110px",
+            text: "完成该视频",
+            variant: "flat",
+            onClick: handlePassVideo,
+            loading: isLoading.value,
+            disabled: isLoading.value
+          }, null, 8, ["loading", "disabled"])) : vue.createCommentVNode("", true),
+          isHelperNotInstalled.value ? (vue.openBlock(), vue.createBlock(_component_v_card, {
+            key: 1,
+            variant: "outlined",
+            title: "必要插件未安装",
+            subtitle: "请安装《头歌复制助手 EduCoder Copy Helper》1.5 及更新版本以使用该功能，如已安装，请尝试刷新页面重试。"
+          }, {
+            default: vue.withCtx(() => [
+              vue.createVNode(_component_v_card_actions, null, {
+                default: vue.withCtx(() => [
+                  vue.createVNode(_component_v_btn, {
+                    text: "安装《头歌复制助手 EduCoder Copy Helper》",
+                    variant: "elevated",
+                    color: "surface-variant",
+                    href: "https://greasyfork.org/scripts/495490",
+                    target: "_blank"
+                  }),
+                  vue.createVNode(_component_v_btn, {
+                    text: "通过 ScriptCat 脚本猫安装",
+                    variant: "text",
+                    color: "surface-variant",
+                    href: "https://scriptcat.org/script-show-page/1860",
+                    target: "_blank"
+                  })
+                ]),
+                _: 1
+              })
+            ]),
+            _: 1
+          })) : progress.value >= 0 ? (vue.openBlock(), vue.createBlock(_component_v_card, {
+            key: 2,
+            loading: isLoading.value,
+            variant: "outlined",
+            title: progress.value === 4 ? "任务已完成" : progress.value === 0 ? "等待开始" : "正在完成该视频"
+          }, {
+            default: vue.withCtx(() => [
+              vue.createVNode(_component_v_card_subtitle, null, {
+                default: vue.withCtx(() => [
+                  vue.createTextVNode(vue.toDisplayString(isError.value ? "任务执行失败，请刷新再试。" : status.value), 1)
+                ]),
+                _: 1
+              }),
+              vue.createVNode(_component_v_card_actions, null, {
+                default: vue.withCtx(() => [
+                  vue.createTextVNode(" 步骤 " + vue.toDisplayString(progress.value) + " / 4 ", 1),
+                  vue.createVNode(_component_v_spacer),
+                  vue.createTextVNode(" " + vue.toDisplayString(message.value), 1)
+                ]),
+                _: 1
+              })
+            ]),
+            _: 1
+          }, 8, ["loading", "title"])) : vue.createCommentVNode("", true)
+        ]);
+      };
+    }
+  });
+  const _sfc_main = /* @__PURE__ */ vue.defineComponent({
+    __name: "video-entry",
+    setup(__props) {
+      return (_ctx, _cache) => {
+        return vue.openBlock(), vue.createBlock(_sfc_main$1);
       };
     }
   });
@@ -863,7 +1079,7 @@ ${file.content}\`\`\``).join("\n\n");
     css.href = "https://registry.npmmirror.com/@mdi/font/7.4.47/files/css/materialdesignicons.min.css";
     document.head.appendChild(css);
     const vuetify$1 = vuetify.createVuetify({});
-    const app = vue.createApp(_sfc_main);
+    const app = vue.createApp(_sfc_main$2);
     app.use(vuetify$1);
     const antRow = document.querySelectorAll(".ant-row");
     const host = document.createElement("div");
@@ -878,6 +1094,28 @@ ${file.content}\`\`\``).join("\n\n");
       });
     });
     target.prepend(host);
+    app.mount(host);
+  };
+  const appendPassVideoButton = () => {
+    var _a, _b;
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "https://registry.npmmirror.com/@mdi/font/7.4.47/files/css/materialdesignicons.min.css";
+    document.head.appendChild(css);
+    const vuetify$1 = vuetify.createVuetify({});
+    const app = vue.createApp(_sfc_main);
+    app.use(vuetify$1);
+    const vidContainer = document.querySelector("#video-container");
+    const host = document.createElement("div");
+    host.id = "educoder-helper-video-entry";
+    let target = document.body;
+    const targetElement = (_b = (_a = vidContainer.parentElement) == null ? void 0 : _a.parentElement) == null ? void 0 : _b.parentElement;
+    const firstChild = targetElement == null ? void 0 : targetElement.firstElementChild;
+    if (targetElement && firstChild) {
+      targetElement.insertBefore(host, firstChild.nextSibling);
+    } else {
+      target.prepend(host);
+    }
     app.mount(host);
   };
   const observerCopyAll = () => {
@@ -896,7 +1134,38 @@ ${file.content}\`\`\``).join("\n\n");
     const config = { childList: true, subtree: true };
     observer.observe(document, config);
   };
-  observerCopyAll();
+  const observerPassVideo = () => {
+    const observer = new MutationObserver((mutationsList, observer2) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          const vidContainer = document.querySelector("#video-container");
+          const vidEntry = document.querySelector("#educoder-helper-video-entry");
+          if (vidContainer && !vidEntry) {
+            appendPassVideoButton();
+            observer2.disconnect();
+            break;
+          }
+        }
+      }
+    });
+    const config = { childList: true, subtree: true };
+    observer.observe(document, config);
+  };
+  function waitTwoTime() {
+    const randomTime = 2.5 + Math.random() * (5 - 2.5);
+    const randomTimeInMilliseconds = randomTime * 1e3;
+    return new Promise((resolve) => setTimeout(resolve, randomTimeInMilliseconds));
+  }
+  function waitTime(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  const href = window.location.href;
+  if (href.includes("tasks")) {
+    observerCopyAll();
+  }
+  if (href.includes("video_info")) {
+    observerPassVideo();
+  }
   console.info("loaded");
 
 })(Vue, Vuetify, Base64);

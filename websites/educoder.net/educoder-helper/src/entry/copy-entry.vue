@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import CopyAll from "./copy-all.vue";
-import ResetAll from "./reset-all.vue";
-import GetAnser from "./get-anser.vue";
+import CopyAll from "../components/copy-all.vue";
+import ResetAll from "../components/reset-all.vue";
+import GetAnser from "../components/get-anser.vue";
 </script>
 
 <template>

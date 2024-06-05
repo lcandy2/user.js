@@ -6,6 +6,8 @@ declare global {
     xEduType: string;
     educoderCopyHelper: string;
     educoderAnswerHelper: string;
+    videoId: number;
+    videoLogId: number;
   }
 }
 

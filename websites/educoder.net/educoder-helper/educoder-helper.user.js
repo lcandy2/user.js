@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         头歌助手 Educoder Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper
-// @version      1.8.1
+// @version      1.8.2
 // @author       甜檸Cirtron (lcandy2)
 // @description  【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”、“一键完成视频任务”等功能。🧹简单高效代码，无需权限配置，清除广告界面，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全
 // @license      AGPL-3.0-or-later
@@ -1173,8 +1173,8 @@ ${file.content}\`\`\``).join("\n\n");
     const observer = new MutationObserver((mutationsList, observer2) => {
       for (let mutation of mutationsList) {
         if (mutation.type === "childList") {
-          const antSpinContainer = document.querySelector(".ant-spin-container");
-          if (antSpinContainer) {
+          const targetElement = document.querySelector(".ant-layout-header");
+          if (targetElement) {
             removeBanner();
             observer2.disconnect();
             break;

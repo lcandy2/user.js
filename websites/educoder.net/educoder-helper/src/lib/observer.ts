@@ -89,8 +89,8 @@ export const observerAdRemove = () => {
       // 如果是子节点变化
       if (mutation.type === "childList") {
         // 检查是否有 div.#video-container 元素
-        const antSpinContainer = document.querySelector('.ant-spin-container');
-        if (antSpinContainer) {
+        const targetElement = document.querySelector('.ant-layout-header');
+        if (targetElement) {
           // 执行 appendCopyAllButton() 并取消监听
           removeBanner();
           observer.disconnect();

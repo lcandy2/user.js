@@ -1,4 +1,4 @@
-import { observerCopyAll, observerPassVideo, removeBanner } from "./lib";
+import { observerAdRemove, observerCopyAll, observerPassVideo, removeBanner } from "./lib";
 
 const href = window.location.href;
 const pathname = window.location.pathname;
@@ -10,7 +10,7 @@ if (href.includes("video_info")) {
   observerPassVideo();
 }
 if (pathname === "/") {
-  removeBanner();
+  observerAdRemove();
 }
 
 

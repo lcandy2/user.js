@@ -56,12 +56,14 @@ const handlePassVideo = async () => {
   // const logId = res.log_id;
   // message.value = res;
   const playButton = document.querySelector("button#play");
+  const muteButton = document.querySelector("button#volume-button");
   await waitTime(800);
   if (!isLoading.value) {
     return;
   }
   if (playButton) {
     message.value = "playButton found!";
+    isLoading && (muteButton as HTMLButtonElement).click();
     isLoading && (playButton as HTMLButtonElement).click();
     progress.value = 2;
     status.value = "触发开始播放成功，等待触发完成播放视频事件……";
@@ -70,6 +72,7 @@ const handlePassVideo = async () => {
       return;
     }
     isLoading && (playButton as HTMLButtonElement).click();
+    isLoading && (muteButton as HTMLButtonElement).click();
     progress.value = 3;
     status.value = "触发完成播放事件中……";
     const videoId = window.videoId;

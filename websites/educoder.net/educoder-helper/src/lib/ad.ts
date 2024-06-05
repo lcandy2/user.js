@@ -4,7 +4,7 @@ export const removeBanner = () => {
     const firstChild = antSpinContainer.children[0];
     const secondChild = antSpinContainer.children[1];
     if (!firstChild.className.includes('header') && secondChild.className.includes('header')) {
-      firstChild.remove();
+      firstChild.setAttribute('style', 'display: none;')
     }
   }
 }

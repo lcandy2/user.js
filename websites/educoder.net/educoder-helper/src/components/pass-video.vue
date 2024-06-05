@@ -28,6 +28,7 @@ const handlePassVideo = async () => {
     return;
   }
   const { duration } = getVideoInfo();
+  message.value = `duration: ${duration}`;
   // const body = {
   //   point: 0,
   //   video_id: videoId,
@@ -71,11 +72,13 @@ const handlePassVideo = async () => {
     isLoading && (playButton as HTMLButtonElement).click();
     progress.value = 3;
     status.value = "触发完成播放事件中……";
+    const videoId = window.videoId;
+    const logId = window.videoLogId;
+    message.value = `videoId: ${videoId}, logId: ${logId}`;
     await waitTime(1200);
     if (!isLoading.value) {
       return;
     }
-    const logId = window.videoLogId;
     const body = {
       ed: "1",
       point: duration,
@@ -106,9 +109,11 @@ const handlePassVideo = async () => {
       isLoading.value = false;
     } else {
       isError.value = true;
+      isLoading.value = false;
     }
   } else {
     isError.value = true;
+    isLoading.value = false;
   }
 };
 

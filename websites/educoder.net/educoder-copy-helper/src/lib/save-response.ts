@@ -7,7 +7,7 @@ export async function saveTaskJson(request: Request, response: Response) {
     try {
       // taskChallengePath
       const json = await res.json();
-      console.info("saveTaskJson", json);
+      console.debug(`[educoder-copy-helper] ${request.url.toString()}`, json);
       if (json && json.challenge && json.challenge.path) {
         const path = json.challenge.path;
         window.taskChallengePath = path;
@@ -28,7 +28,7 @@ export async function saveTaskJson(request: Request, response: Response) {
         window.xEduType = type;
       }
     } catch (e) {
-      console.error("Error reading response body:", e);
+      console.error("[educoder-copy-helper] Error reading response body:", e);
     }
   }
 }

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         头歌复制助手 Educoder Copy Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-copy-helper
-// @version      1.3
+// @version      1.4
 // @author       甜檸Cirtron (lcandy2)
 // @description  📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨与《头歌助手 EduCoder Helper》搭配使用解锁“一键复制”、“一键全部文件复制”、“导出全部文件”等功能。🧹大小仅1.82KB，极小尺寸，无需任何权限，无需任何配置，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，防止窃取其他信息
 // @license      AGPL-3.0-or-later
@@ -11,6 +11,7 @@
 // @homepageURL  https://greasyfork.org/scripts/495490
 // @source       https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-copy-helper
 // @match        *://www.educoder.net/tasks/*
+// @match        *://www.educoder.net/classrooms/*
 // @grant        none
 // @run-at       document-start
 // ==/UserScript==
@@ -23,7 +24,7 @@
       const res = response.clone();
       try {
         const json = await res.json();
-        console.info("saveTaskJson", json);
+        console.debug(`[educoder-copy-helper] ${request.url.toString()}`, json);
         if (json && json.challenge && json.challenge.path) {
           const path = json.challenge.path;
           window.taskChallengePath = path;
@@ -41,7 +42,7 @@
           window.xEduType = type;
         }
       } catch (e) {
-        console.error("Error reading response body:", e);
+        console.error("[educoder-copy-helper] Error reading response body:", e);
       }
     }
   }
@@ -67,29 +68,8 @@
           if (json.challenge) {
             json.challenge.diasble_copy = false;
           }
-          if (OTHER_MODIFY) {
-            if (json && json.challenge) {
-              json.challenge.thiry_party = true;
-            }
-            if (json && json.myshixun) {
-              json.myshixun.system_tip = true;
-            }
-            if (json && json.game) {
-              json.game.answer_open = 1;
-            }
-            if (json && json.shixun_environments) {
-              json.shixun_environments.forEach((item) => {
-                if (item) {
-                  item.allow_use_code_debugger = true;
-                }
-              });
-            }
-            json.is_teacher = true;
-            json.myshixun_manager = true;
-            json.chatgpt = true;
-            json.open_local_evaluate = true;
-            json.openai_tpi = true;
-          }
+          if (OTHER_MODIFY)
+            ;
         }
         return new Response(JSON.stringify(json), {
           status: response.status,
@@ -114,8 +94,8 @@
     };
     window.fetch = hookedFetch;
   }
-  const OTHER_MODIFY = true;
+  const OTHER_MODIFY = false;
   hookFetch();
-  window.educoderCopyHelper = "1.3";
+  window.educoderCopyHelper = "1.4";
 
 })();

@@ -10,7 +10,7 @@ export const postCheckIn = () => {
       return;
     }
     const response = await fetch(
-      `https://data.educoder.net/api/watch_video_histories.json`,
+      `https://data.educoder.net/api/users/attendance.json`,
       {
         credentials: "include",
         method: "POST",

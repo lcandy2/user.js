@@ -31,5 +31,9 @@ export const postCheckIn = () => {
     }
   };
 
-  asyncPostCheckIn().then(() => null);
+  requestIdleCallback(() => {
+    setTimeout(async () => {
+      await asyncPostCheckIn();
+    }, 1000);
+  });
 };

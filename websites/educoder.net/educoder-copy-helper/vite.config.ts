@@ -17,7 +17,7 @@ export default defineConfig({
           "https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-copy-helper",
         source:
           "https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-copy-helper",
-        match: ["*://www.educoder.net/tasks/*","*://www.educoder.net/classrooms/*"],
+        match: ["*://www.educoder.net/*"],
         "run-at": "document-start",
       },
     }),

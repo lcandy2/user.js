@@ -1,5 +1,5 @@
 import { appendCopyAllButton, appendPassVideoButton } from "./app";
-import { removeBanner } from "./ad";
+import { removeAffix, removeBanner, removeModal } from "./ad";
 
 export const observerCopyAll = () => {
   // 创建一个观察器实例
@@ -89,10 +89,14 @@ export const observerAdRemove = () => {
       // 如果是子节点变化
       if (mutation.type === "childList") {
         // 检查是否有 div.#video-container 元素
-        const targetElement = document.querySelector('.ant-layout-header');
-        if (targetElement) {
+        const headerElement = document.querySelector('.ant-layout-header');
+        const modalElement = document.querySelector('.selfdomModal___doNCF');
+        const affixElement = document.querySelector('.affixContainer___CWtV9');
+        if (headerElement || modalElement || affixElement) {
           // 执行 appendCopyAllButton() 并取消监听
           removeBanner();
+          removeModal();
+          removeAffix();
           // observer.disconnect();
           break;
         }

@@ -1,4 +1,5 @@
 import { observerAdRemove, observerCopyAll, observerPassVideo, removeBanner } from "./lib";
+import { postCheckIn } from "./lib/check-in";
 
 const href = window.location.href;
 const pathname = window.location.pathname;
@@ -9,9 +10,10 @@ if (href.includes("tasks")) {
 if (href.includes("video_info")) {
   observerPassVideo();
 }
-if (pathname === "/") {
+// if (pathname === "/") {
   observerAdRemove();
-}
+// }
+postCheckIn();
 
 
-console.info("loaded");
+console.debug("[educoder-helper] main.ts loaded!");

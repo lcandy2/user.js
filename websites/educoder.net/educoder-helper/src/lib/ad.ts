@@ -8,3 +8,13 @@ export const removeBanner = () => {
     }
   }
 }
+
+export const removeModal = () => {
+  const adModal = document.querySelector('div.selfdomModal___doNCF');
+  adModal?.setAttribute('style', 'display: none;');
+}
+
+export const removeAffix = () => {
+  const affixContainer = document.querySelector('.affixContainer___CWtV9');
+  affixContainer?.setAttribute('style', 'display: none;');
+}

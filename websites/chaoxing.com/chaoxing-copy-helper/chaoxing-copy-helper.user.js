@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         学习通复制粘贴助手 Chaoxing Copy Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/chaoxing.com/chaoxing-copy-helper
-// @version      1.3
+// @version      1.4
 // @author       甜檸Cirtron (lcandy2)
 // @description  📝解除超星学习通复制粘贴限制，解除学习通复制乱码问题；✨“一键复制题目”、“一键粘贴到答案”、“复制好友答案”等功能。🧹大小仅1.62KB，极小尺寸，无需任何权限，无需任何配置，安装即用。💛安全开源可读，无附加功能或远程代码，防止窃取其他信息
 // @license      AGPL-3.0-or-later
@@ -20,11 +20,15 @@
     document.documentElement.style.userSelect = "unset";
     if (UE && UE.instants && typeof UE.instants === "object") {
       for (const [key, instance] of Object.entries(UE.instants)) {
-        if (instance.options) {
-          instance.options.disablePasteImage = false;
-        }
-        if (instance.removeListener) {
-          instance.removeListener("beforepaste", editorPaste);
+        try {
+          if (instance.options) {
+            instance.options.disablePasteImage = false;
+          }
+          if (instance.removeListener) {
+            instance.removeListener("beforepaste", editorPaste);
+          }
+        } catch (error) {
+          console.error("[Chaoxing Copy Helper] Failed to remove copy limits from instance", key, error);
         }
       }
     }
@@ -56,7 +60,11 @@
   };
   setTimeout(() => {
     removeDebuggerLimit();
-    removeCopyLimits();
+    try {
+      removeCopyLimits();
+    } catch (error) {
+      console.error("[Chaoxing Copy Helper] Failed to remove copy limits.", error);
+    }
     addBranding();
   }, 1e3);
 

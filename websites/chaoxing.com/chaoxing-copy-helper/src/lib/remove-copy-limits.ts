@@ -20,11 +20,15 @@ export const removeCopyLimits = () => {
   document.documentElement.style.userSelect = "unset";
   if (UE && UE.instants && typeof UE.instants === 'object') {
     for (const [key, instance] of Object.entries(UE.instants)) {
-      if (instance.options) {
-        instance.options.disablePasteImage = false;
-      }
-      if (instance.removeListener) {
-        instance.removeListener('beforepaste', editorPaste);
+      try {
+        if (instance.options) {
+          instance.options.disablePasteImage = false;
+        }
+        if (instance.removeListener) {
+          instance.removeListener('beforepaste', editorPaste);
+        }
+      } catch (error) {
+        console.error("[Chaoxing Copy Helper] Failed to remove copy limits from instance", key, error);
       }
     }
   }

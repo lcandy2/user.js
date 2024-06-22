@@ -4,6 +4,10 @@ import { removeDebuggerLimit } from "./lib/remove-debugger-limit";
 
 setTimeout(() => {
   removeDebuggerLimit();
-  removeCopyLimits();
+  try {
+    removeCopyLimits();
+  } catch (error) {
+    console.error("[Chaoxing Copy Helper] Failed to remove copy limits.", error);
+  }
   addBranding();
 }, 1000);

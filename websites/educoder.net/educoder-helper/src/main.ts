@@ -1,4 +1,4 @@
-import { observerAdRemove, observerCopyAll, observerPassVideo, removeBanner } from "./lib";
+import { observerAdRemove, observerCopyAll, observerExerciseCopyLimit, observerPassVideo, removeBanner } from "./lib";
 import { postCheckIn } from "./lib/check-in";
 
 const href = window.location.href;
@@ -13,6 +13,9 @@ if (href.includes("video_info")) {
 // if (pathname === "/") {
   observerAdRemove();
 // }
+if (pathname.includes("exercise")) {
+  observerExerciseCopyLimit();
+}
 postCheckIn();
 
 

@@ -7,6 +7,7 @@ declare global {
     educoderCopyHelper: string;
     videoId: number;
     videoLogId: number;
+    taskId: string;
   }
 }
 

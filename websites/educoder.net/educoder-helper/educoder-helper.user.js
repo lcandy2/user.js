@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         头歌助手 Educoder Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper
-// @version      2.1
+// @version      2.6
 // @author       甜檸Cirtron (lcandy2)
-// @description  【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”、“一键完成视频任务”等功能。🧹简单高效代码，无需权限配置，清除广告界面，全自动化签到，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全
+// @description  【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制，支持考试；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”、“一键完成视频任务”等功能。🧹简单高效代码，无需权限配置，清除广告界面，全自动化签到，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全
 // @license      AGPL-3.0-or-later
 // @copyright    lcandy2 All Rights Reserved
 // @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABsUlEQVR4nO2ZzUrDQBCAA3kM23NfJKuC4FW6vYjZV/DiK7SaeCxYKiRQE5qNB7EPUoT6A3op9GBFi5eeIhsMjNbW2s2apMwHc2t35tud3RxG0xTQ6IRlyw26thtMRFgu55ZzWdGKQKMTlm2Hj22XR1/C4eNTJyhpeceKdz4u+ur43N8QRdtOcP0p4Wt5x47bhkdwt+NTcXlkucFbJkVt7u2XCTW7RpVNCGVREjNtAuLopLmT/P/Qau4u+i0Ba4ocBmXhVu2gklrxBmVjmGQZgXr7YiokRPH1tj9dVoAkItR8EbmlBcTO/5TgN4G/BJmzPqFM/s7Atrm5fYggaQlA+oN72E7ydwbuyHfOeE+6+BbvzawLcyoVeByOpCRavBc9DUfZCaiCoAAAT2AFCLbQki2ke+9SkfkJoMAc8A5A8BldAYLPKABfIS/H3wFVEBRQdAdydwJ60QVUQVAAgN8BD78Dcqz1JdaL/ozqRRdQBUEBAJ5A1i1kgAGHGD6opj+4AwLmq7wAZeGCEZDiMD1pATEtFAO3fy++yp63a6yU4piV+WJmpbpwI85heqkVjyBrzgdOSyKlYdgYdgAAAABJRU5ErkJggg==
@@ -36,8 +36,8 @@
   const getTaskInfo = () => {
     const href2 = window.location.href;
     const hrefUrl = new URL(href2);
-    const pathname = hrefUrl.pathname;
-    const parts = pathname.substring(1).split("/");
+    const pathname2 = hrefUrl.pathname;
+    const parts = pathname2.substring(1).split("/");
     const courseId = parts[1];
     const shixunId = parts[2];
     const taskId = parts[3];
@@ -50,8 +50,8 @@
   const getVideoInfo = () => {
     const href2 = window.location.href;
     const hrefUrl = new URL(href2);
-    const pathname = hrefUrl.pathname;
-    const parts = pathname.substring(1).split("/");
+    const pathname2 = hrefUrl.pathname;
+    const parts = pathname2.substring(1).split("/");
     const courseId = parts[1];
     const searchParams = hrefUrl.searchParams;
     const videoId = Number(searchParams.get("new_video_id"));
@@ -111,7 +111,7 @@
           for (const [index, path] of paths.entries()) {
             progress.value = (index + 1) / paths.length * 100;
             progressMessage.value = `正在获取文件：${path}`;
-            const { taskId } = getTaskInfo();
+            const taskId = window2.taskId || getTaskInfo().taskId;
             const response = await fetch(
               `https://data.educoder.net/api/tasks/${taskId}/rep_content.json?path=${path}`,
               {
@@ -321,8 +321,8 @@ ${file.content}\`\`\``).join("\n\n");
             progress.value = -1;
           }
           progressMessage.value = `正在重置：${path}`;
-          const { taskId } = getTaskInfo();
           const window2 = _unsafeWindow;
+          const taskId = window2.taskId || getTaskInfo().taskId;
           const response = await fetch(
             `https://data.educoder.net/api/tasks/${taskId}/reset_original_code.json?path=${path}`,
             {
@@ -331,7 +331,8 @@ ${file.content}\`\`\``).join("\n\n");
                 "X-EDU-Signature": window2.xEduSignature || "",
                 "X-EDU-Timestamp": window2.xEduTimestamp || "",
                 "X-EDU-Type": window2.xEduType || "pc"
-              }
+              },
+              cache: "no-store"
             }
           );
           const res = await response.json();
@@ -345,6 +346,7 @@ ${file.content}\`\`\``).join("\n\n");
         progress.value = -1;
         progressMessage.value = "等待刷新";
         isWaitingForRefresh.value = true;
+        window.onbeforeunload = null;
         await new Promise((resolve) => setTimeout(resolve, 1e3));
         window.location.reload();
         progressMessage.value = "重置完成，等待页面刷新";
@@ -563,7 +565,7 @@ ${file.content}\`\`\``).join("\n\n");
       const handleGetAnswerInfo = async () => {
         inProgress.value = true;
         const window2 = _unsafeWindow;
-        const { taskId } = getTaskInfo();
+        const taskId = window2.taskId || getTaskInfo().taskId;
         const response = await fetch(
           `https://data.educoder.net/api/tasks/${taskId}/get_answer_info.json`,
           {
@@ -598,7 +600,7 @@ ${file.content}\`\`\``).join("\n\n");
       const handleUnclockAnswer = async () => {
         inProgress.value = true;
         const window2 = _unsafeWindow;
-        const { taskId } = getTaskInfo();
+        const taskId = window2.taskId || getTaskInfo().taskId;
         const answer_id = answerInfo.value.answer_id;
         const url = new URL(
           `https://data.educoder.net/api/tasks/${taskId}/unlock_answer.json`
@@ -1145,6 +1147,16 @@ ${file.content}\`\`\``).join("\n\n");
     const affixContainer = document.querySelector(".affixContainer___CWtV9");
     affixContainer == null ? void 0 : affixContainer.setAttribute("style", "display: none;");
   };
+  const removeUserSelectLimit = () => {
+    const qItemElement = document.querySelector(".questionItem___q6Hgu > *");
+    if (qItemElement) {
+      qItemElement.style.userSelect = "text";
+      const firstChild = qItemElement.querySelector(":first-child");
+      if (firstChild) {
+        firstChild.style.userSelect = "none";
+      }
+    }
+  };
   const observerCopyAll = () => {
     const observer = new MutationObserver((mutationsList, observer2) => {
       for (let mutation of mutationsList) {
@@ -1197,6 +1209,21 @@ ${file.content}\`\`\``).join("\n\n");
     const config = { childList: true, subtree: true };
     observer.observe(document, config);
   };
+  const observerExerciseCopyLimit = () => {
+    const observer = new MutationObserver((mutationsList, observer2) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          const qItemElement = document.querySelector(".questionItem___q6Hgu");
+          if (qItemElement) {
+            removeUserSelectLimit();
+            break;
+          }
+        }
+      }
+    });
+    const config = { childList: true, subtree: true };
+    observer.observe(document, config);
+  };
   function waitTwoTime() {
     const randomTime = 2.5 + Math.random() * (5 - 2.5);
     const randomTimeInMilliseconds = randomTime * 1e3;
@@ -1240,6 +1267,7 @@ ${file.content}\`\`\``).join("\n\n");
     });
   };
   const href = window.location.href;
+  const pathname = window.location.pathname;
   if (href.includes("tasks")) {
     observerCopyAll();
   }
@@ -1247,6 +1275,9 @@ ${file.content}\`\`\``).join("\n\n");
     observerPassVideo();
   }
   observerAdRemove();
+  if (pathname.includes("exercise")) {
+    observerExerciseCopyLimit();
+  }
   postCheckIn();
   console.debug("[educoder-helper] main.ts loaded!");
 

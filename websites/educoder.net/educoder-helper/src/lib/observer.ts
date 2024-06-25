@@ -1,5 +1,6 @@
 import { appendCopyAllButton, appendPassVideoButton } from "./app";
 import { removeAffix, removeBanner, removeModal } from "./ad";
+import { removeUserSelectLimit } from "./exercise";
 
 export const observerCopyAll = () => {
   // 创建一个观察器实例
@@ -110,3 +111,31 @@ export const observerAdRemove = () => {
   // 开始观察 body 元素
   observer.observe(document, config);
 };
+
+export const observerExerciseCopyLimit = () => {
+  // 创建一个观察器实例
+  const observer = new MutationObserver((mutationsList, observer) => {
+    // 检查所有的 DOM 变化
+    for (let mutation of mutationsList) {
+      // 如果是子节点变化
+      if (mutation.type === "childList") {
+        // 检查是否有 div.#video-container 元素
+        const qItemElement = document.querySelector('.questionItem___q6Hgu');
+        // const modalElement = document.querySelector('.selfdomModal___doNCF');
+        // const affixElement = document.querySelector('.affixContainer___CWtV9');
+        if (qItemElement) {
+          // 执行 appendCopyAllButton() 并取消监听
+          removeUserSelectLimit();
+          // observer.disconnect();
+          break;
+        }
+      }
+    }
+  });
+
+  // 配置观察器选项
+  const config = { childList: true, subtree: true };
+
+  // 开始观察 body 元素
+  observer.observe(document, config);
+}

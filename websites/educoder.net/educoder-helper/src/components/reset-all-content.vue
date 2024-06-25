@@ -39,8 +39,8 @@ const handleReset = async () => {
       progress.value = -1;
     }
     progressMessage.value = `正在重置：${path}`;
-    const { taskId } = getTaskInfo();
     const window = unsafeWindow;
+    const taskId = window.taskId || getTaskInfo().taskId;
     const response = await fetch(
       `https://data.educoder.net/api/tasks/${taskId}/reset_original_code.json?path=${path}`,
       {
@@ -50,6 +50,7 @@ const handleReset = async () => {
           "X-EDU-Timestamp": window.xEduTimestamp || "",
           "X-EDU-Type": window.xEduType || "pc",
         },
+        cache: "no-store",
       },
     );
     const res = await response.json();
@@ -64,6 +65,7 @@ const handleReset = async () => {
   progress.value = -1;
   progressMessage.value = "等待刷新";
   isWaitingForRefresh.value = true;
+  window.onbeforeunload = null;
   await new Promise((resolve) => setTimeout(resolve, 1000));
   window.location.reload();
   progressMessage.value = "重置完成，等待页面刷新";

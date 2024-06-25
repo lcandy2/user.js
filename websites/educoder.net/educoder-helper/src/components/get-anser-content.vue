@@ -40,7 +40,7 @@ const allPaths = ref<string[]>([]);
 const handleGetAnswerInfo = async () => {
   inProgress.value = true;
   const window = unsafeWindow;
-  const { taskId } = getTaskInfo();
+  const taskId = window.taskId || getTaskInfo().taskId;
   const response = await fetch(
     `https://data.educoder.net/api/tasks/${taskId}/get_answer_info.json`,
     {
@@ -82,7 +82,7 @@ const handleGetAnswerInfo = async () => {
 const handleUnclockAnswer = async () => {
   inProgress.value = true;
   const window = unsafeWindow;
-  const { taskId } = getTaskInfo();
+  const taskId = window.taskId || getTaskInfo().taskId;
   const answer_id = answerInfo.value.answer_id;
   const url = new URL(
     `https://data.educoder.net/api/tasks/${taskId}/unlock_answer.json`,

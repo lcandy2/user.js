@@ -8,6 +8,7 @@ declare global {
     educoderAnswerHelper: string;
     videoId: number;
     videoLogId: number;
+    taskId: string;
   }
 }
 

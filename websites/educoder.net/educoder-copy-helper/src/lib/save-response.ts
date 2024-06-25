@@ -55,4 +55,19 @@ export async function saveTaskJson(request: Request, response: Response) {
       console.error("[educoder-copy-helper] Error reading response body:", e);
     }
   }
+
+  if (request.url.includes("rep_content.json")) {
+    try {
+      // taskId
+      const url = new URL(request.url);
+      const pathSegments = url.pathname.split('/');
+      const taskId = pathSegments[pathSegments.length - 2];
+      console.debug(`[educoder-copy-helper] [RESPONSE] ${request.url.toString()}`, taskId);
+      if (taskId) {
+        window.taskId = taskId;
+      }
+    } catch (e) {
+      console.error("[educoder-copy-helper] Error reading response body:", e);
+    }
+  }
 }

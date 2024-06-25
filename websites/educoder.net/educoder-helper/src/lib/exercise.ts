@@ -12,3 +12,10 @@ export const removeUserSelectLimit = () => {
     }
   }
 }
+
+export const removeContextMenuLimit = () => {
+    // 重新绑定 contextmenu 事件，取消原来的禁止
+    document.addEventListener('contextmenu', function(event) {
+      event.stopPropagation(); // 阻止事件传播
+    }, true); // 使用捕获模式
+}

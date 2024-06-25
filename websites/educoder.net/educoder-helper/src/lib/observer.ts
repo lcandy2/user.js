@@ -1,6 +1,6 @@
 import { appendCopyAllButton, appendPassVideoButton } from "./app";
 import { removeAffix, removeBanner, removeModal } from "./ad";
-import { removeUserSelectLimit } from "./exercise";
+import { removeContextMenuLimit, removeUserSelectLimit } from "./exercise";
 
 export const observerCopyAll = () => {
   // 创建一个观察器实例
@@ -126,6 +126,7 @@ export const observerExerciseCopyLimit = () => {
         if (qItemElement) {
           // 执行 appendCopyAllButton() 并取消监听
           removeUserSelectLimit();
+          removeContextMenuLimit();
           // observer.disconnect();
           break;
         }

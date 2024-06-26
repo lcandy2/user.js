@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-select
-// @namespace    https://github.com/lcandy2/hunau-jwxt-course-select
+// @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
 // @version      3.3.3
 // @author       monkey
 // @description  qiangzhi-course-select
@@ -2119,7 +2119,8 @@
             terser: "^5.26.0",
             vite: "^5.0.10",
             "vite-plugin-monkey": "^3.5.1"
-        }
+        },
+        packageManager: "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
     }, zt = window.location.href;
 
     zt.includes(Pt);

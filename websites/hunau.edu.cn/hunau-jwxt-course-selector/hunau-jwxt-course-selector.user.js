@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.3
+// @version      4.4
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.3";
+    const version = "4.4";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -296,7 +296,9 @@ jx0404id: ${item.jx0404id}`,
         isActivatorRunning.value = true;
         const jx0502zbid = getActivator_jx0502zbid();
         if (jx0502zbid) {
-          const url = `http://${window.location.host}/jsxsd/xsxk/xsxk_index?jx0502zbid=${jx0502zbid}`;
+          const href22 = window.location.href;
+          const index = href22.indexOf(JWXT);
+          const url = `${href22.slice(0, index + JWXT.length)}/xsxk/xsxk_index?jx0502zbid=${jx0502zbid}`;
           const res = await getFetch(url);
           const resText = await res.text();
           const parser = new DOMParser();
@@ -906,13 +908,16 @@ jx0404id: ${item.jx0404id}`,
     const div = document.createElement("div");
     if (target) {
       target.prepend(div);
+      console.log(div);
       app.mount(div);
     }
   };
   if (isXsrkxz || isXklcView) {
-    setTimeout(() => {
-      mount();
-    }, 100);
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(() => {
+        mount();
+      }, 100);
+    });
   }
 
 })(Vue, Vuetify);

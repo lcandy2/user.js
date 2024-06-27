@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.11
+// @version      4.12
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.11";
+    const version = "4.12";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -289,6 +289,16 @@ jx0404id: ${item.jx0404id}`,
         }
         return "";
       };
+      const getActivator_url = () => {
+        const jx0502zbid = getActivator_jx0502zbid();
+        if (jx0502zbid) {
+          const href22 = window.location.href;
+          const index = href22.indexOf(JWXT);
+          const url = `${href22.slice(0, index + JWXT.length)}/xsxk/xsxk_index?jx0502zbid=${jx0502zbid}`;
+          return url;
+        }
+        return null;
+      };
       const tryActivate = async () => {
         if (isActivated.value || !isActivatorRunning.value) {
           isActivatorRunning.value = false;
@@ -297,11 +307,8 @@ jx0404id: ${item.jx0404id}`,
         activatorMessage.value = "";
         activatorTimes.value += 1;
         isActivatorRunning.value = true;
-        const jx0502zbid = getActivator_jx0502zbid();
-        if (jx0502zbid) {
-          const href22 = window.location.href;
-          const index = href22.indexOf(JWXT);
-          const url = `${href22.slice(0, index + JWXT.length)}/xsxk/xsxk_index?jx0502zbid=${jx0502zbid}`;
+        const url = getActivator_url();
+        if (url) {
           const res = await getFetch(url);
           const resText = await res.text();
           const parser = new DOMParser();
@@ -556,13 +563,14 @@ jx0404id: ${item.jx0404id}`,
                   size: "x-large",
                   rounded: "lg",
                   elevation: "4",
-                  href: getCourseSelectorUrl()
+                  href: getCourseSelectorUrl(),
+                  target: isActivatorRunning.value || isSelectorRunning.value ? "_self" : "_blank"
                 }, {
                   default: vue.withCtx(() => [
                     vue.createTextVNode("进入选课页面 ")
                   ]),
                   _: 1
-                }, 8, ["href"])
+                }, 8, ["href", "target"])
               ]),
               _: 1
             })) : (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 3 }, [
@@ -643,6 +651,20 @@ jx0404id: ${item.jx0404id}`,
                                     ]),
                                     _: 1
                                   }, 8, ["loading", "disabled"]),
+                                  vue.createVNode(_component_v_btn, {
+                                    color: "indigo",
+                                    variant: "elevated",
+                                    size: "large",
+                                    rounded: "lg",
+                                    elevation: "4",
+                                    loading: isActivatorRunning.value,
+                                    href: ""
+                                  }, {
+                                    default: vue.withCtx(() => [
+                                      vue.createTextVNode(" 打开手动选课页面 ")
+                                    ]),
+                                    _: 1
+                                  }, 8, ["loading"]),
                                   isActivatorRunning.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
                                     key: 0,
                                     color: "indigo",

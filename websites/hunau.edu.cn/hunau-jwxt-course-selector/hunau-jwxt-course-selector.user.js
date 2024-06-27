@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.7
+// @version      4.8
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.7";
+    const version = "4.8";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -309,11 +309,13 @@ jx0404id: ${item.jx0404id}`,
           const resBody = resDom.body.textContent;
           console.log(res, resText, resDom, resBody);
           activatorMessage.value = resBody || "";
-          await getCourseData();
           if (resBody && resBody.includes("登录")) {
             isGlobalNeedReLogin.value = true;
             isActivated.value = false;
+          } else {
+            isGlobalNeedReLogin.value = false;
           }
+          await getCourseData();
           await delay(400);
           await tryActivate();
         }
@@ -396,6 +398,10 @@ jx0404id: ${item.jx0404id}`,
       };
       const getCourseData = async () => {
         if (!isXklcView2) return;
+        if (isGlobalNeedReLogin) {
+          isActivated.value = false;
+          await getFetch("/sso.jsp");
+        }
         isStuCourseDataLoading.value = true;
         const getUrl = () => {
           if (isBXXK.value) {

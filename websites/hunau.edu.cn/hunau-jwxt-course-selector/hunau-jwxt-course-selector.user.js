@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.6
+// @version      4.7
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.6";
+    const version = "4.7";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -258,6 +258,7 @@ jx0404id: ${item.jx0404id}`,
         () => isActivatorRunning.value || isStuCourseDataLoading.value || isSelectorRunning.value
       );
       const isGlobalNeedLogin = vue.ref(false);
+      const isGlobalNeedReLogin = vue.ref(false);
       const globalCurrentTime = vue.ref(/* @__PURE__ */ new Date());
       const isSelectorRunning = vue.ref(false);
       const selectorCourseDataStatus = vue.ref([]);
@@ -309,6 +310,10 @@ jx0404id: ${item.jx0404id}`,
           console.log(res, resText, resDom, resBody);
           activatorMessage.value = resBody || "";
           await getCourseData();
+          if (resBody && resBody.includes("登录")) {
+            isGlobalNeedReLogin.value = true;
+            isActivated.value = false;
+          }
           await delay(400);
           await tryActivate();
         }
@@ -654,6 +659,17 @@ jx0404id: ${item.jx0404id}`,
                             color: "error",
                             variant: "text",
                             size: "large",
+                            href: "/sso.jsp"
+                          }, {
+                            default: vue.withCtx(() => [
+                              vue.createTextVNode(" 重新登录而不退出 ")
+                            ]),
+                            _: 1
+                          }),
+                          vue.createVNode(_component_v_btn, {
+                            color: "error",
+                            variant: "text",
+                            size: "large",
                             href: "/jsxsd/xk/LoginToXk?method=exit"
                           }, {
                             default: vue.withCtx(() => [
@@ -794,7 +810,7 @@ jx0404id: ${item.jx0404id}`,
                                     ]),
                                     _: 1
                                   }, 8, ["disabled"]),
-                                  isGlobalNeedLogin.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+                                  isGlobalNeedLogin.value || isGlobalNeedReLogin.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
                                     key: 0,
                                     color: "error",
                                     variant: "elevated",
@@ -804,11 +820,11 @@ jx0404id: ${item.jx0404id}`,
                                     href: "/jsxsd/xk/LoginToXk?method=exit"
                                   }, {
                                     default: vue.withCtx(() => [
-                                      vue.createTextVNode(" 重新登录 ")
+                                      vue.createTextVNode(" 退出账号重新登录 ")
                                     ]),
                                     _: 1
                                   })) : vue.createCommentVNode("", true),
-                                  isGlobalNeedLogin.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+                                  isGlobalNeedLogin.value || isGlobalNeedReLogin.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
                                     key: 1,
                                     color: "error",
                                     variant: "outlined",

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.12
+// @version      4.13
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.12";
+    const version = "4.13";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -563,14 +563,13 @@ jx0404id: ${item.jx0404id}`,
                   size: "x-large",
                   rounded: "lg",
                   elevation: "4",
-                  href: getCourseSelectorUrl(),
-                  target: isActivatorRunning.value || isSelectorRunning.value ? "_self" : "_blank"
+                  href: getCourseSelectorUrl()
                 }, {
                   default: vue.withCtx(() => [
                     vue.createTextVNode("进入选课页面 ")
                   ]),
                   _: 1
-                }, 8, ["href", "target"])
+                }, 8, ["href"])
               ]),
               _: 1
             })) : (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 3 }, [
@@ -651,20 +650,6 @@ jx0404id: ${item.jx0404id}`,
                                     ]),
                                     _: 1
                                   }, 8, ["loading", "disabled"]),
-                                  vue.createVNode(_component_v_btn, {
-                                    color: "indigo",
-                                    variant: "elevated",
-                                    size: "large",
-                                    rounded: "lg",
-                                    elevation: "4",
-                                    loading: isActivatorRunning.value,
-                                    href: ""
-                                  }, {
-                                    default: vue.withCtx(() => [
-                                      vue.createTextVNode(" 打开手动选课页面 ")
-                                    ]),
-                                    _: 1
-                                  }, 8, ["loading"]),
                                   isActivatorRunning.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
                                     key: 0,
                                     color: "indigo",
@@ -676,7 +661,22 @@ jx0404id: ${item.jx0404id}`,
                                       vue.createTextVNode(vue.toDisplayString(`正在尝试激活（第${activatorTimes.value.toString()}次），点击停止`), 1)
                                     ]),
                                     _: 1
-                                  })) : vue.createCommentVNode("", true)
+                                  })) : vue.createCommentVNode("", true),
+                                  vue.createVNode(_component_v_btn, {
+                                    color: "indigo",
+                                    variant: "elevated",
+                                    size: "large",
+                                    rounded: "lg",
+                                    elevation: "4",
+                                    loading: isActivatorRunning.value,
+                                    href: getActivator_url(),
+                                    target: isActivatorRunning.value || isSelectorRunning.value ? "_self" : "_blank"
+                                  }, {
+                                    default: vue.withCtx(() => [
+                                      vue.createTextVNode(" 打开手动选课页面 ")
+                                    ]),
+                                    _: 1
+                                  }, 8, ["loading", "href", "target"])
                                 ]),
                                 _: 1
                               })

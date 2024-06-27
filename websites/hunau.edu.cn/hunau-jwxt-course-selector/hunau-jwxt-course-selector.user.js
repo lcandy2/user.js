@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.8
+// @version      4.9
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.8";
+    const version = "4.9";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -438,13 +438,13 @@ jx0404id: ${item.jx0404id}`,
       };
       const filteredStuCourseData = vue.computed(() => {
         const filteredByTeacher = vue.computed(() => {
-          if (!searchTeacher.value) return stuCourseData.value;
+          if (!searchTeacher.value || searchTeacher.value === "*") return stuCourseData.value;
           return stuCourseData.value.filter(
             (course) => course.teacher.includes(searchTeacher.value)
           );
         });
         const filteredByName = vue.computed(() => {
-          if (!searchName.value) return stuCourseData.value;
+          if (!searchName.value || searchName.value === "*") return stuCourseData.value;
           return stuCourseData.value.filter(
             (course) => course.name.includes(searchName.value)
           );

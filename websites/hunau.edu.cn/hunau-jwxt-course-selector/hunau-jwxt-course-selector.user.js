@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.10
+// @version      4.11
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.10";
+    const version = "4.11";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -349,12 +349,12 @@ jx0404id: ${item.jx0404id}`,
           status[i] = -1;
           status[i] = 1;
           times[i] += 1;
-          const course = selected[i];
           if (isSelectorRunning.value) {
+            console.log("trySelectCourse", selected[i]);
             const xkResult = await operCourseSelect(
               operUrl,
-              course.kcid,
-              course.jx0404id
+              selected[i].kcid,
+              selected[i].jx0404id
             );
             const xkMessage = xkResult.message;
             const xkResultString = JSON.stringify(xkResult);

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.4
+// @version      4.5
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.4";
+    const version = "4.5";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -227,7 +227,9 @@ jx0404id: ${item.jx0404id}`,
       const courseType = vue.ref("BXXK");
       const isBXXK = vue.computed(() => courseType.value === "BXXK");
       const isXXXK = vue.computed(() => courseType.value === "XXXK");
-      const isGGXXKXK = vue.computed(() => courseType.value === "GGXXKXK" || courseType.value === "GGXXKXK_ALL");
+      const isGGXXKXK = vue.computed(
+        () => courseType.value === "GGXXKXK" || courseType.value === "GGXXKXK_ALL"
+      );
       const isGGXXKXK_ALL = vue.computed(() => courseType.value === "GGXXKXK_ALL");
       const isStuCourseDataLoading = vue.ref(false);
       const stuCourseData = vue.ref([]);
@@ -403,7 +405,19 @@ jx0404id: ${item.jx0404id}`,
         if (dataUrl) {
           const data = await getStuCourseData(dataUrl, isGGXXKXK_ALL.value && true);
           console.log("getCourseData", data);
-          if (data !== null) isActivated.value = true;
+          if (data !== null) {
+            if (!isGGXXKXK.value) {
+              isActivated.value = true;
+            } else {
+              const bxxk = GET_BXXK_URL();
+              if (bxxk) {
+                const bxxkData = await getStuCourseData(bxxk);
+                if (bxxkData !== null) {
+                  isActivated.value = true;
+                }
+              }
+            }
+          }
           stuCourseData.value = data ? data : [];
         } else {
           console.error("dataUrl is not valid");
@@ -507,7 +521,6 @@ jx0404id: ${item.jx0404id}`,
               default: vue.withCtx(() => [
                 vue.createTextVNode("选课助手"),
                 vue.createElementVNode("span", _hoisted_1, "v" + vue.toDisplayString(vue.unref(getVersion)()), 1),
-                vue.createTextVNode(),
                 vue.createElementVNode("span", _hoisted_2, vue.toDisplayString(globalCurrentTime.value.toLocaleTimeString()), 1)
               ]),
               _: 1
@@ -771,7 +784,9 @@ jx0404id: ${item.jx0404id}`,
                                     onClick: _cache[13] || (_cache[13] = () => {
                                       isSelectorRunning.value = false;
                                       isActivatorRunning.value = false;
-                                      selectorCourseDataStatus.value = selectorCourseDataStatus.value.map((status) => status === 0 || status === 1 ? -1 : status);
+                                      selectorCourseDataStatus.value = selectorCourseDataStatus.value.map(
+                                        (status) => status === 0 || status === 1 ? -1 : status
+                                      );
                                     })
                                   }, {
                                     default: vue.withCtx(() => [

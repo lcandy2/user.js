@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.5
+// @version      4.6
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.5";
+    const version = "4.6";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -808,13 +808,32 @@ jx0404id: ${item.jx0404id}`,
                                     ]),
                                     _: 1
                                   })) : vue.createCommentVNode("", true),
+                                  isGlobalNeedLogin.value ? (vue.openBlock(), vue.createBlock(_component_v_btn, {
+                                    key: 1,
+                                    color: "error",
+                                    variant: "outlined",
+                                    size: "large",
+                                    rounded: "lg",
+                                    elevation: "4",
+                                    onClick: _cache[14] || (_cache[14] = async () => {
+                                      isActivated.value = false;
+                                      activatorTimes.value = 0;
+                                      isActivatorRunning.value = true;
+                                      await tryActivate();
+                                    })
+                                  }, {
+                                    default: vue.withCtx(() => [
+                                      vue.createTextVNode(" 重新激活 ")
+                                    ]),
+                                    _: 1
+                                  })) : vue.createCommentVNode("", true),
                                   vue.createVNode(_component_v_checkbox_btn, {
                                     modelValue: isStuCourseDataAllSelected.value,
-                                    "onUpdate:modelValue": _cache[14] || (_cache[14] = ($event) => isStuCourseDataAllSelected.value = $event),
+                                    "onUpdate:modelValue": _cache[15] || (_cache[15] = ($event) => isStuCourseDataAllSelected.value = $event),
                                     label: "选择全部课程",
                                     disabled: isSelectorRunning.value,
                                     "hide-details": "",
-                                    onClick: _cache[15] || (_cache[15] = ($event) => isStuCourseDataAllSelected.value = !isStuCourseDataAllSelected.value)
+                                    onClick: _cache[16] || (_cache[16] = ($event) => isStuCourseDataAllSelected.value = !isStuCourseDataAllSelected.value)
                                   }, null, 8, ["modelValue", "disabled"])
                                 ]),
                                 _: 1
@@ -875,7 +894,7 @@ jx0404id: ${item.jx0404id}`,
               }),
               vue.createVNode(_component_v_data_table, {
                 modelValue: stuCourseDataSelected.value,
-                "onUpdate:modelValue": _cache[16] || (_cache[16] = ($event) => stuCourseDataSelected.value = $event),
+                "onUpdate:modelValue": _cache[17] || (_cache[17] = ($event) => stuCourseDataSelected.value = $event),
                 items: filteredStuCourseData.value,
                 hover: "",
                 color: "indigo",

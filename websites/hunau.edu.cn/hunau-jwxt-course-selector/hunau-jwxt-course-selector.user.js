@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.9
+// @version      4.10
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.9";
+    const version = "4.10";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -969,11 +969,16 @@ jx0404id: ${item.jx0404id}`,
     }
   };
   if (isXsrkxz || isXklcView) {
-    document.addEventListener("DOMContentLoaded", function() {
+    try {
       setTimeout(() => {
         mount();
       }, 100);
-    });
+    } catch (error) {
+      console.error(error);
+      document.addEventListener("DOMContentLoaded", function() {
+        mount();
+      });
+    }
   }
 
 })(Vue, Vuetify);

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hunau-jwxt-course-selector
 // @namespace    https://github.com/lcandy2/hunau-jwxt-course-selector
-// @version      4.13
+// @version      4.14
 // @author       甜檸Cirtron (lcandy2)
 // @license      None
 // @icon         http://www.qzdatasoft.com/favicon.ico
@@ -113,7 +113,7 @@
     return Object.keys(json).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`).join("&");
   };
   const getVersion = () => {
-    const version = "4.13";
+    const version = "4.14";
     return version.toString();
   };
   const postFetch = (url, body) => {
@@ -192,8 +192,8 @@ jx0404id: ${item.jx0404id}`,
   const operCourseSelect = async (url, kcid, jx0404id) => {
     const xsxkUrl = url;
     const reqParams = xsxkUrl.searchParams;
-    reqParams.append("kcid", kcid);
-    reqParams.append("jx0404id", jx0404id);
+    reqParams.set("kcid", kcid);
+    reqParams.set("jx0404id", jx0404id);
     xsxkUrl.search = reqParams.toString();
     try {
       const response = await getFetch(xsxkUrl);

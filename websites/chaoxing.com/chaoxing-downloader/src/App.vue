@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { nextTick, onMounted, ref } from "vue";
+import {backgroundFetch} from "./lib/background-fetch";
 
 const buttonRef = ref<any>(null);
 const downloadLink = ref<string>("");
@@ -34,13 +35,14 @@ const handleClick = async (event: Event) => {
   isDownloading.value = true;
   if (buttonRef.value && !isFinished.value) {
     try {
-      const tokenReq = await fetch(
-        `https://pan-yz.chaoxing.com/api/token/uservalid`,
-        {
-          credentials: "include",
-        },
-      );
-      const tokenJson = await tokenReq.json();
+      // const tokenReq = await fetch(
+      //   `https://pan-yz.chaoxing.com/api/token/uservalid`,
+      //   {
+      //     credentials: "include",
+      //   },
+      // );
+      const tokenReq = await backgroundFetch("https://pan-yz.chaoxing.com/api/token/uservalid");
+      const tokenJson = JSON.parse(tokenReq);
       const token = tokenJson._token;
       const fileInfoApi = new URL(
         "https://pan-yz.chaoxing.com/api/share/downloadUrl",
@@ -49,10 +51,11 @@ const handleClick = async (event: Event) => {
       fileInfoApi.searchParams.set("_token", token);
       fileInfoApi.searchParams.set("sarepuid", fileInfo.value.puid);
       fileInfoApi.searchParams.set("objectid", fileInfo.value.objectId);
-      const fileInfoReq = await fetch(fileInfoApi.toString(), {
-        credentials: "include",
-      });
-      const fileInfoJson = await fileInfoReq.json();
+      // const fileInfoReq = await fetch(fileInfoApi.toString(), {
+      //   credentials: "include",
+      // });
+      const fileInfoReq = await backgroundFetch(fileInfoApi.toString());
+      const fileInfoJson = JSON.parse(fileInfoReq);
       const fileInfoUrl = fileInfoJson.url;
       downloadLink.value = fileInfoUrl.toString();
       isFinished.value = true;

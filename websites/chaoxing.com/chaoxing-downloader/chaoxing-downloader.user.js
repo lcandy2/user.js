@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         学习通下载器 Chaoxing Downloader
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/chaoxing.com/chaoxing-downloader
-// @version      1.1
+// @version      1.2
 // @author       甜檸Cirtron (lcandy2)
 // @description  一键下载资料文件，无视系统限制。
 // @license      AGPL-3.0-or-later
@@ -15,14 +15,31 @@
 // @require      https://registry.npmmirror.com/vuetify/3.6.6/files/dist/vuetify.min.js
 // @require      data:application/javascript,%3B
 // @resource     VuetifyStyle  https://registry.npmmirror.com/vuetify/3.6.6/files/dist/vuetify.min.css
+// @connect      pan-yz.chaoxing.com
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
+// @grant        GM_xmlhttpRequest
 // @run-at       document-end
 // ==/UserScript==
 
 (function (vue, vuetify) {
   'use strict';
 
+  var _GM_xmlhttpRequest = /* @__PURE__ */ (() => typeof GM_xmlhttpRequest != "undefined" ? GM_xmlhttpRequest : void 0)();
+  const backgroundFetch = async (url) => {
+    return new Promise((resolve, reject) => {
+      _GM_xmlhttpRequest({
+        method: "GET",
+        url,
+        onload: (response) => {
+          resolve(response.responseText);
+        },
+        onerror: (error) => {
+          reject(error);
+        }
+      });
+    });
+  };
   const _sfc_main = /* @__PURE__ */ vue.defineComponent({
     __name: "App",
     setup(__props) {
@@ -46,13 +63,8 @@
         isDownloading.value = true;
         if (buttonRef.value && !isFinished.value) {
           try {
-            const tokenReq = await fetch(
-              `https://pan-yz.chaoxing.com/api/token/uservalid`,
-              {
-                credentials: "include"
-              }
-            );
-            const tokenJson = await tokenReq.json();
+            const tokenReq = await backgroundFetch("https://pan-yz.chaoxing.com/api/token/uservalid");
+            const tokenJson = JSON.parse(tokenReq);
             const token = tokenJson._token;
             const fileInfoApi = new URL(
               "https://pan-yz.chaoxing.com/api/share/downloadUrl"
@@ -61,10 +73,8 @@
             fileInfoApi.searchParams.set("_token", token);
             fileInfoApi.searchParams.set("sarepuid", fileInfo.value.puid);
             fileInfoApi.searchParams.set("objectid", fileInfo.value.objectId);
-            const fileInfoReq = await fetch(fileInfoApi.toString(), {
-              credentials: "include"
-            });
-            const fileInfoJson = await fileInfoReq.json();
+            const fileInfoReq = await backgroundFetch(fileInfoApi.toString());
+            const fileInfoJson = JSON.parse(fileInfoReq);
             const fileInfoUrl = fileInfoJson.url;
             downloadLink.value = fileInfoUrl.toString();
             isFinished.value = true;

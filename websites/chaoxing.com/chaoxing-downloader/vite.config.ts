@@ -19,6 +19,7 @@ export default defineConfig(({ command }) => {
           source:
             "https://github.com/lcandy2/user.js/tree/main/websites/chaoxing.com/chaoxing-downloader",
           match: ["*://*.chaoxing.com/mooc2-ans/coursedata/stu-datalist*"],
+          connect: ["pan-yz.chaoxing.com"],
           "run-at": "document-end",
         },
         build: {

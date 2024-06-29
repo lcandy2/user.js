@@ -1,7 +1,7 @@
 {
   "name": "chaoxing-downloader",
   "private": true,
-  "version": "1.1",
+  "version": "1.2",
   "license": "AGPL-3.0-or-later",
   "description": "一键下载资料文件，无视系统限制。",
   "homepage": "https://greasyfork.org/scripts/499214",

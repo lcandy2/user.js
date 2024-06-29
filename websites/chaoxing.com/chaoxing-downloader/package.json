@@ -1,0 +1,30 @@
+{
+  "name": "chaoxing-downloader",
+  "private": true,
+  "version": "1.1",
+  "license": "AGPL-3.0-or-later",
+  "description": "一键下载资料文件，无视系统限制。",
+  "homepage": "https://greasyfork.org/scripts/499214",
+  "author": {
+    "name": "甜檸Cirtron (lcandy2)",
+    "email": "vanilla#citrons.cc",
+    "url": "https://github.com/lcandy2"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build && shx cp -r ./dist/* ./",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.27",
+    "vuetify": "^3.6.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.2.12",
+    "vite-plugin-monkey": "^4.0.0",
+    "vite-plugin-vuetify": "^2.0.3",
+    "vue-tsc": "^2.0.19"
+  }
+}

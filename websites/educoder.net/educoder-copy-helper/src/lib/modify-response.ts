@@ -152,6 +152,7 @@ const modifyExercise = async (request: Request, response: Response): Promise<Res
     json.answer_open = true;
     json.open_score = 0;
     json.open_total_score = 0;
+    json.screen_shot_open = false;
   }
 
   if (request.url.includes("/api/exercises") && request.url.includes("get_exercise_user_info.json")) {

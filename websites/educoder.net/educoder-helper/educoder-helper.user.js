@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         头歌助手 Educoder Helper
 // @namespace    https://github.com/lcandy2/user.js/tree/main/websites/educoder.net/educoder-helper
-// @version      2.7
+// @version      2.8
 // @author       甜檸Cirtron (lcandy2)
 // @description  【本脚本需配合《头歌复制助手 Educoder Copy Helper》使用，使用脚本前请确保复制助手已安装】📝解除头歌复制粘贴限制，解除头哥复制缩短限制，支持考试；✨增加“一键复制”、“一键全部文件复制”、“导出全部文件”、“一键完成视频任务”等功能。🧹简单高效代码，无需权限配置，清除广告界面，全自动化签到，安装即用。💛安全开源可读，无论是编译前后的代码均保持开源和易读性，保护隐私与账号安全
 // @license      AGPL-3.0-or-later
